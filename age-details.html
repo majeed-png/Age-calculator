@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>حاسبة العمر – تفاصيل عمرك | عبدالمجيد الثويني</title>
 <meta name="description" content="تفاصيل دقيقة لعُمرك بالعربي: سنوات وشهور وأسابيع وأيام وساعات، مع معلومات اليوم والفصل ووقت عيد ميلادك القادم وحقائق ممتعة.">
-<meta name="keywords" content="تفاصيل العمر, عمر بالاشهر, عمر بالايام, حساب العمر بالهجري, حساب العمر بالميلادي, متى عيد ميلادي, كم باقي على عيد ميلادي, احسب عمري, حاسبة العمر">
+<meta name="keywords" content="تفاصيل العمر, عمر بالاشهر, عمر بالايام, حساب العمر بالهجري, حساب العمر بالميلادي, متى عيد ميلادي, كم باقي على عيد ميلادي, احسب عمري, حاسبة العمر, أم القرى">
 <meta property="og:title" content="تفاصيل عمرك">
 <meta property="og:description" content="تفاصيل دقيقة لعُمرك بالعربي + حقائق ممتعة.">
 <style>
@@ -14,8 +14,8 @@
   --card:#151a22;
   --text:#e9eef6;
   --muted:#a8b3c7;
-  --accent:#2ed3c6; /* default accent (buttons) */
-  --accent-2:#2ed3c6;
+  --accent:#6d62ff; /* default accent */
+  --accent-2:#6d62ff;
   --radius:14px;
   --shadow: 0 10px 30px rgba(0,0,0,.25);
   --font: "Tajawal", system-ui, -apple-system, "Segoe UI", Roboto, "Noto Kufi Arabic", "Noto Sans Arabic", Arial, "Apple Color Emoji","Segoe UI Emoji";
@@ -39,8 +39,8 @@ html,body{height:100%}
 body{
   margin:0;
   background:
-     radial-gradient(1200px 600px at 100% -10%, rgba(76,76,255,.10), transparent 60%),
-     radial-gradient(1200px 600px at -30% 110%, rgba(0, 255, 191,.08), transparent 60%),
+     radial-gradient(1200px 600px at 100% -10%, rgba(124,92,255,.10), transparent 60%),
+     radial-gradient(1200px 600px at -30% 110%, rgba(46,211,198,.08), transparent 60%),
      var(--bg);
   color:var(--text);
   font-family:var(--font);
@@ -72,22 +72,29 @@ input, select, button{
   width:100%;
   border-radius:12px;
   padding:12px 14px;
+  height:52px;
   background:#0c0f14;
   color:var(--text);
   border:1px solid rgba(255,255,255,.08);
   outline:none;
+  transition: box-shadow .2s, border-color .2s;
 }
 :root[data-theme='light'] input,
 :root[data-theme='light'] select,
 :root[data-theme='light'] button{
   background:#f1f5f9;
   border:1px solid rgba(0,0,0,.08);
+  color:#0b0f14;
+}
+input:focus, select:focus{
+  box-shadow:0 0 0 3px color-mix(in oklab, var(--accent) 40%, transparent);
+  border-color: var(--accent);
 }
 button{
   cursor:pointer;
   border:none;
   background:linear-gradient(135deg, var(--accent), var(--accent-2));
-  color:#05171a;
+  color:white;
   font-weight:800;
 }
 .muted{color:var(--muted)}
@@ -104,7 +111,7 @@ button{
 }
 .inputs{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:end}
 @media(max-width:800px){.inputs{grid-template-columns:1fr}}
-.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
 @media(max-width:900px){.kpis{grid-template-columns:repeat(2,1fr)}}
 .kpi{background:#0c0f14;border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:14px}
 :root[data-theme='light'] .kpi{background:#f1f5f9;border:1px solid rgba(0,0,0,.06)}
@@ -120,12 +127,22 @@ footer{opacity:.7;padding:20px 6px}
 }
 :root[data-theme='light'] .theme-btn{background:#f1f5f9;border:1px solid rgba(0,0,0,.12);color:#0b0f14!important}
 .theme-btn.selected{outline:3px solid var(--accent); outline-offset:3px; border-color:var(--accent)}
-.color-dot{width:22px;height:22px;border-radius:50%;border:2px solid rgba(255,255,255,.5);cursor:pointer}
+.color-dot{width:26px;height:26px;border-radius:50%;border:2px solid rgba(255,255,255,.5);cursor:pointer;position:relative}
 :root[data-theme='light'] .color-dot{border-color:rgba(0,0,0,.35)}
+.color-dot.selected::after{
+  content:"✓"; position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  font-weight:900; color:#000; mix-blend-mode:screen;
+}
 .small-btn{min-width:56px}
+/* Custom select wrapper for consistent height */
+.select-wrap{position:relative}
+.select-wrap select{appearance:none;-webkit-appearance:none;padding-inline-start:14px;padding-inline-end:40px}
+.select-wrap .caret{
+  position:absolute; left:12px; top:50%; transform:translateY(-50%); pointer-events:none; opacity:.7;
+}
 
 .bento{display:grid;grid-template-columns:1.2fr 1fr;gap:16px}
-@media(max-width:900px){.bento{grid-template-columns:1fr}}
+@media(max-width:1100px){.bento{grid-template-columns:1fr}}
 
 /* Birthday special theme */
 .birthday .card, .birthday body{ 
@@ -164,6 +181,7 @@ footer{opacity:.7;padding:20px 6px}
     <div class="card">
       <h2>عمرك بصيغ وأشكال مختلفة</h2>
       <div class="kpis">
+        <div class="kpi"><div class="muted">بالسنوات</div><div class="num" id="yearsAge">—</div></div>
         <div class="kpi"><div class="muted">بالأشهر</div><div class="num" id="monthsAge">—</div></div>
         <div class="kpi"><div class="muted">بالأسابيع</div><div class="num" id="weeksAge">—</div></div>
         <div class="kpi"><div class="muted">بالأيام</div><div class="num" id="daysAge">—</div></div>
@@ -181,7 +199,7 @@ footer{opacity:.7;padding:20px 6px}
       <h3>العمر بالميلادي</h3>
       <div id="gregInfo" class="muted">—</div>
       <hr/>
-      <h3>العمر بالهجري (تقريبي)</h3>
+      <h3>العمر بالهجري (أم القرى)</h3>
       <div id="hijriInfo" class="muted">—</div>
     </div>
 
@@ -193,7 +211,7 @@ footer{opacity:.7;padding:20px 6px}
       <div class="fact"><div>نمت</div><div><b id="slept">—</b></div></div>
       <div class="fact"><div>أمضيت في تناول الطعام</div><div><b id="eaten">—</b></div></div>
       <div class="notice">
-        <b>توضيح:</b> تم استخدام معدلات تقريبية شائعة (بدون إعدادات): ٢٠ ألف نَفَس يوميًا، ٨٠ نبضة/دقيقة، ١٠ ضحكات/يوم، ٨ ساعات نوم/يوم، ٨٠ دقيقة طعام/يوم.
+        <b>توضيح:</b> معدلات تقريبية ثابتة: ٢٠ ألف نَفَس/يوم، ٨٠ نبضة/دقيقة، ١٠ ضحكات/يوم، ٨ ساعات نوم/يوم، ٨٠ دقيقة طعام/يوم.
       </div>
     </div>
   </div>
@@ -209,8 +227,8 @@ footer{opacity:.7;padding:20px 6px}
   <hr/>
   <h3>لون الأزرار</h3>
   <div class="row" id="accentRow">
+    <div class="color-dot" data-accent="#6d62ff" style="background:#6d62ff"></div>
     <div class="color-dot" data-accent="#2ed3c6" style="background:#2ed3c6"></div>
-    <div class="color-dot" data-accent="#7c5cff" style="background:#7c5cff"></div>
     <div class="color-dot" data-accent="#f97316" style="background:#f97316"></div>
     <div class="color-dot" data-accent="#22c55e" style="background:#22c55e"></div>
     <div class="color-dot" data-accent="#06b6d4" style="background:#06b6d4"></div>
@@ -239,6 +257,12 @@ function markSelectedTheme(t){
     else b.classList.remove('selected');
   });
 }
+function markSelectedAccent(c){
+  document.querySelectorAll('.color-dot').forEach(d=>{
+    if(d.getAttribute('data-accent')===c) d.classList.add('selected');
+    else d.classList.remove('selected');
+  });
+}
 function setTheme(t){
   if(!t) t='dark';
   const root = document.documentElement;
@@ -252,10 +276,11 @@ function setAccent(c){
   document.documentElement.style.setProperty('--accent', c);
   document.documentElement.style.setProperty('--accent-2', c);
   localStorage.setItem('ageAccent', c);
+  markSelectedAccent(c);
 }
 function loadPrefs(){
   const t = localStorage.getItem('ageTheme') || 'dark';
-  const c = localStorage.getItem('ageAccent') || '#2ed3c6';
+  const c = localStorage.getItem('ageAccent') || '#6d62ff';
   setAccent(c);
   setTheme(t);
 }
@@ -267,7 +292,8 @@ function setupSettings(){
   document.querySelectorAll('.color-dot').forEach(d=> d.addEventListener('click', ()=> setAccent(d.getAttribute('data-accent')) ));
   loadPrefs();
 }
-// Calendars
+
+// ===== Calendars (Tabular + Umm al-Qura via Intl) =====
 function gregToJDN(y,m,d){
   if(m <= 2){ y -= 1; m += 12; }
   const A = Math.floor(y/100);
@@ -288,35 +314,47 @@ function jdnToGreg(jd){
   const year = (month > 2) ? C - 4716 : C - 4715;
   return {year, month, day};
 }
+// Tabular islamic -> JDN
 const ISLAMIC_EPOCH = 1948439.5;
 function islamicToJDN(y,m,d){
   return d + Math.ceil(29.5*(m-1)) + (y-1)*354 + Math.floor((3 + 11*y)/30) + ISLAMIC_EPOCH - 1;
 }
-function jdnToIslamic(jd){
-  jd = Math.floor(jd) + 0.5;
-  const year = Math.floor((30*(jd - ISLAMIC_EPOCH) + 10646) / 10631);
-  const first = islamicToJDN(year,1,1);
-  const month = Math.min(12, Math.ceil((jd - first + 1)/29.5));
-  const day = Math.floor(jd - islamicToJDN(year, month, 1)) + 1;
-  return {year, month, day};
+
+// Use Intl to get Umm al-Qura y/m/d for a Gregorian date (returns numbers)
+function gregToUmmAlQura(date){
+  const parts = new Intl.DateTimeFormat('en-u-ca-islamic-umalqura', {year:'numeric',month:'numeric',day:'numeric'}).formatToParts(date);
+  return {
+    year: +parts.find(p=>p.type==='year').value,
+    month:+parts.find(p=>p.type==='month').value,
+    day:  +parts.find(p=>p.type==='day').value
+  };
 }
-function getSeason(month){
-  const names = {winter:'الشتاء', spring:'الربيع', summer:'الصيف', autumn:'الخريف'};
-  if([12,1,2].includes(month)) return names.winter;
-  if([3,4,5].includes(month)) return names.spring;
-  if([6,7,8].includes(month)) return names.summer;
-  return names.autumn;
+// Find Gregorian date that corresponds to given Umm al-Qura y/m/d using local search around tabular estimate
+function ummAlQuraToGreg(y,m,d){
+  // initial guess via tabular
+  const g0 = jdnToGreg(islamicToJDN(y,m,d));
+  const base = new Date(Date.UTC(g0.year, g0.month-1, g0.day));
+  const dayMs = 24*60*60*1000;
+  const tryFind = (span)=>{
+    for(let off=-span; off<=span; off++){
+      const t = new Date(base.getTime()+ off*dayMs);
+      const h = gregToUmmAlQura(t);
+      if(h.year===y && h.month===m && h.day===d){
+        return {year:t.getUTCFullYear(), month:t.getUTCMonth()+1, day:t.getUTCDate()};
+      }
+    }
+    return null;
+  };
+  return tryFind(6) || tryFind(20) || {year:g0.year, month:g0.month, day:g0.day}; // fallback tabular
 }
-function getWeekdayName(date){
-  const days = ['الأحد','الإثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
-  return days[date.getDay()];
-}
-function lifeStage(years){
-  if(years < 13) return 'طفولة';
-  if(years < 20) return 'مراهقة';
-  if(years < 36) return 'شباب';
-  if(years < 60) return 'متوسط العمر';
-  return 'كبير سن';
+// Hijri month length (Umm al-Qura) by difference between 1st of next and current month
+function ummMonthLength(y,m){
+  const start = ummAlQuraToGreg(y,m,1);
+  let ny = y, nm = m+1; if(nm>12){ nm=1; ny++; }
+  const next = ummAlQuraToGreg(ny,nm,1);
+  const d1 = Date.UTC(start.year, start.month-1, start.day);
+  const d2 = Date.UTC(next.year, next.month-1, next.day);
+  return Math.round((d2-d1)/(24*60*60*1000));
 }
 
 
@@ -368,47 +406,51 @@ function calcAndRender(){
   if(now.getUTCDate() < gD) months -= 1;
   const weeks = Math.floor(days/7);
 
-  $('monthsAge').textContent = fmt(months) + ' شهر و ' + fmt((days%30)) + ' يوم';
+  $('yearsAge').textContent = fmt(years);
+  $('monthsAge').textContent = fmt(months);
   $('weeksAge').textContent = fmt(weeks);
   $('daysAge').textContent = fmt(days);
   $('hoursAge').textContent = fmt(hours);
 
-  const weekName = getWeekdayName(new Date(gY, gM-1, gD));
+  const weekName = ['الأحد','الإثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'][new Date(gY, gM-1, gD).getDay()];
   $('weekday').textContent = weekName;
-  $('season').textContent = getSeason(gM);
-  $('lifeStage').textContent = lifeStage(years);
+  $('season').textContent = (function(m){if([12,1,2].includes(m))return 'الشتاء';if([3,4,5].includes(m))return 'الربيع';if([6,7,8].includes(m))return 'الصيف';return 'الخريف';})(gM);
+  $('lifeStage').textContent = (function(y){if(y<13)return'طفولة';if(y<20)return'مراهقة';if(y<36)return'شباب';if(y<60)return'متوسط العمر';return'كبير سن';})(years);
 
   let nextB = new Date(now.getFullYear(), gM-1, gD);
   if(nextB < now) nextB = new Date(now.getFullYear()+1, gM-1, gD);
   const remMs = nextB - now;
   const rDays = Math.floor(remMs/dayMs);
   const rHours = Math.floor( (remMs - rDays*dayMs) / (60*60*1000) );
-  const nextBDayName = getWeekdayName(nextB);
+  const nextBDayName = ['الأحد','الإثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'][nextB.getDay()];
 
   $('gregInfo').innerHTML = `تاريخ الميلاد: <b>${gD}-${gM}-${gY}</b><br>
     العمر: <b>${fmt(years)}</b> سنة و <b>${fmt(months%12)}</b> شهر و <b>${fmt((days%30))}</b> يوم<br>
     باقي لعيد ميلادك القادم: <b>${fmt(rDays)}</b> يوم و <b>${fmt(rHours)}</b> ساعة<br>
     سيكون عيد ميلادك يوم <b>${nextBDayName} </b> الموافق <b>${nextB.getDate()}-${nextB.getMonth()+1}-${nextB.getFullYear()}</b>`;
 
-  const nowJDN = gregToJDN(now.getFullYear(), now.getMonth()+1, now.getDate());
-  const nowH = jdnToIslamic(nowJDN);
-  const birthJDN = gregToJDN(gY, gM, gD);
-  const birthH = jdnToIslamic(birthJDN);
-
-  let hYears = nowH.year - birthH.year;
-  let hMonths = nowH.month - birthH.month;
-  let hDays = nowH.day - birthH.day;
-  if(hDays < 0){ hMonths -= 1; hDays += 30; }
-  if(hMonths < 0){ hYears -= 1; hMonths += 12; }
+  // Hijri (Umm al-Qura) info
+  const nowH = gregToUmmAlQura(now);
+  const birthH = gregToUmmAlQura(new Date(gY, gM-1, gD));
+  let hy = nowH.year - birthH.year;
+  let hm = nowH.month - birthH.month;
+  let hd = nowH.day - birthH.day;
+  if(hd<0){ // borrow from previous month length
+    let by = nowH.year, bm = nowH.month-1; if(bm<1){ bm=12; by--; }
+    hd += ummMonthLength(by,bm); hm -= 1;
+  }
+  if(hm<0){ hy -= 1; hm += 12; }
   $('hijriInfo').innerHTML = `تاريخ الميلاد: <b>${birthH.day}-${birthH.month}-${birthH.year} هـ</b><br>
-  العمر: <b>${fmt(hYears)}</b> سنة و <b>${fmt(hMonths)}</b> شهر و <b>${fmt(hDays)}</b> يوم (حساب تقريبي)`;
+    العمر: <b>${fmt(hy)}</b> سنة و <b>${fmt(hm)}</b> شهر و <b>${fmt(hd)}</b> يوم (حسب أم القرى)`;
 
+  // Facts
   const breathsPerDay = 20000, bpm = 80, laughsPerDay = 10, sleepHours = 8, eatMinutes = 80;
   $('breaths').textContent = fmt(breathsPerDay * days);
   $('heartbeats').textContent = fmt(Math.round(bpm*60*24 * days));
   $('laughs').textContent = fmt(laughsPerDay * days);
-  const s = daysToYMD((sleepHours/24) * days);
-  const e = daysToYMD((eatMinutes/60/24) * days);
+  const toYMD = (dd)=>{ const y=Math.floor(dd/365.25); dd -= y*365.25; const mo=Math.floor(dd/30.4375); dd -= mo*30.4375; const d=Math.round(dd); return {y,mo,d}; };
+  const s = toYMD((sleepHours/24) * days);
+  const e = toYMD((eatMinutes/60/24) * days);
   $('slept').textContent = `${fmt(s.y)} سنة و ${fmt(s.mo)} شهر و ${fmt(s.d)} يوم`;
   $('eaten').textContent = `${fmt(e.y)} سنة و ${fmt(e.mo)} شهر و ${fmt(e.d)} يوم`;
 
