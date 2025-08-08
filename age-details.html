@@ -128,7 +128,7 @@ footer{opacity:.7;padding:20px 6px}
 .lang-chip.selected{outline:3px solid var(--accent); outline-offset:3px; opacity:1}
 .share-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
 .share-btn{max-width:220px}
-:root[data-theme='light'] .birthday-banner{ color:#0b0f14 }
+:root[data-theme='light'] .birthday-banner{ color:#0b0f14 !important; text-shadow:none !important; }
 .copy-toast{position:fixed;bottom:22px;right:22px;background:var(--card);border:1px solid rgba(255,255,255,.14);padding:10px 14px;border-radius:12px;display:none}
 
 .bento{display:grid;grid-template-columns:1.2fr 1fr;gap:16px}
@@ -140,7 +140,7 @@ footer{opacity:.7;padding:20px 6px}
 .birthday-banner{ display:none; background:linear-gradient(135deg, #ffd700, #ff69b4); color:#ffffff; border:0; text-align:center; padding:18px; border-radius:16px; font-weight:900; font-size:1.4rem; box-shadow:0 10px 40px rgba(0,0,0,.35), inset 0 0 60px rgba(255,255,255,.5); }
 .birthday .birthday-banner{ display:block; }
 .confetti-piece{position:fixed;width:10px;height:14px;top:-14px;opacity:.9}
-:root[data-theme='light'] .birthday-banner{ color:#0b0f14 }
+:root[data-theme='light'] .birthday-banner{ color:#0b0f14 !important; text-shadow:none !important; }
 .copy-toast{position:fixed;bottom:22px;right:22px;background:var(--card);border:1px solid rgba(255,255,255,.14);padding:10px 14px;border-radius:12px;display:none}
 </style>
 </head>
@@ -300,7 +300,7 @@ const I18N = {
         copied:"Link copied ✅" }
 };
 function getLang(){ return localStorage.getItem('ageLang') || 'ar'; }
-function setLang(l){ localStorage.setItem('ageLang', l); applyI18n(); markLang(l); }
+function setLang(l){ localStorage.setItem('ageLang', l); applyI18n(); markLang(l); try{ if(typeof calcAndRender==='function'){ calcAndRender(); } }catch(e){} }
 function markLang(l){ document.querySelectorAll('.lang-chip').forEach(e=> e.classList.toggle('selected', e.getAttribute('data-lang')===l)); }
 function applyI18n(){
   const l = getLang(); const dict = I18N[l];
