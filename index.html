@@ -20,12 +20,13 @@
   --shadow: 0 10px 30px rgba(0,0,0,.25);
   --font: "Tajawal", system-ui, -apple-system, "Segoe UI", Roboto, "Noto Kufi Arabic", "Noto Sans Arabic", Arial, "Apple Color Emoji","Segoe UI Emoji";
 }
-/* LIGHT THEME */
+
+/* LIGHT THEME (made darker/warmer for contrast) */
 :root[data-theme='light']{
-  --bg:#f5f7fb;
-  --card:#ffffff;
+  --bg:#e7ecf3;            /* was very bright; now darker */
+  --card:#f1f4f9;
   --text:#0b0f14;
-  --muted:#536175;
+  --muted:#4b5565;
 }
 /* AMOLED true black */
 :root[data-theme='amoled']{
@@ -34,6 +35,7 @@
   --text:#e9eef6;
   --muted:#a8b3c7;
 }
+
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
@@ -49,10 +51,11 @@ body{
 :root[data-theme='light'] body,
 :root[data-theme='light']{
   background:
-     radial-gradient(1200px 600px at 100% -10%, rgba(124,92,255,.08), transparent 60%),
-     radial-gradient(1200px 600px at -30% 110%, rgba(46,211,198,.08), transparent 60%),
+     radial-gradient(1200px 600px at 100% -10%, rgba(124,92,255,.06), transparent 60%),
+     radial-gradient(1200px 600px at -30% 110%, rgba(46,211,198,.06), transparent 60%),
      var(--bg);
 }
+
 .container{max-width:1000px;margin:24px auto;padding:16px}
 .card{
   background:var(--card);
@@ -62,7 +65,7 @@ body{
   box-shadow: var(--shadow);
   margin-top:16px;
 }
-:root[data-theme='light'] .card{border:1px solid rgba(10,10,10,.06)}
+:root[data-theme='light'] .card{border:1px solid rgba(10,10,10,.08)}
 h1{margin:0 0 8px 0;font-weight:800;letter-spacing:.2px}
 h2{margin:22px 0 10px 0;font-weight:800}
 h3{margin:14px 0 10px 0;font-weight:800}
@@ -82,12 +85,12 @@ input, select, button{
 :root[data-theme='light'] input,
 :root[data-theme='light'] select,
 :root[data-theme='light'] button{
-  background:#f1f5f9;
-  border:1px solid rgba(0,0,0,.08);
+  background:#e9edf4;
+  border:1px solid rgba(0,0,0,.10);
   color:#0b0f14;
 }
 input:focus, select:focus{
-  box-shadow:0 0 0 3px color-mix(in oklab, var(--accent) 40%, transparent);
+  box-shadow:0 0 0 3px color-mix(in oklab, var(--accent) 38%, transparent);
   border-color: var(--accent);
 }
 button{
@@ -99,7 +102,7 @@ button{
 }
 .muted{color:var(--muted)}
 .notice{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px;margin-top:10px}
-:root[data-theme='light'] .notice{background:#f8fafc;border:1px dashed rgba(0,0,0,.12)}
+:root[data-theme='light'] .notice{background:#eef3fa;border:1px dashed rgba(0,0,0,.12)}
 .navbar{
   display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:8px
 }
@@ -114,10 +117,10 @@ button{
 .kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
 @media(max-width:900px){.kpis{grid-template-columns:repeat(2,1fr)}}
 .kpi{background:#0c0f14;border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:14px}
-:root[data-theme='light'] .kpi{background:#f1f5f9;border:1px solid rgba(0,0,0,.06)}
+:root[data-theme='light'] .kpi{background:#e9edf4;border:1px solid rgba(0,0,0,.08)}
 .kpi .num{font-size:1.6rem;font-weight:900}
 .tag{padding:6px 10px;border-radius:12px;background:rgba(255,255,255,.08);font-weight:700}
-:root[data-theme='light'] .tag{background:#eef2f7}
+:root[data-theme='light'] .tag{background:#e9edf4}
 footer{opacity:.7;padding:20px 6px}
 .panel{display:none;margin-top:10px}
 .row{display:flex;gap:10px;flex-wrap:wrap}
@@ -125,7 +128,7 @@ footer{opacity:.7;padding:20px 6px}
   padding:12px 14px;border-radius:12px;background:#0c0f14;border:1px solid rgba(255,255,255,.14);
   cursor:pointer;color:var(--text)!important;min-width:140px;text-align:center;position:relative;
 }
-:root[data-theme='light'] .theme-btn{background:#f1f5f9;border:1px solid rgba(0,0,0,.12);color:#0b0f14!important}
+:root[data-theme='light'] .theme-btn{background:#e9edf4;border:1px solid rgba(0,0,0,.12);color:#0b0f14!important}
 .theme-btn.selected{outline:3px solid var(--accent); outline-offset:3px; border-color:var(--accent)}
 .color-dot{width:26px;height:26px;border-radius:50%;border:2px solid rgba(255,255,255,.5);cursor:pointer;position:relative}
 :root[data-theme='light'] .color-dot{border-color:rgba(0,0,0,.35)}
@@ -133,13 +136,21 @@ footer{opacity:.7;padding:20px 6px}
   content:"✓"; position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
   font-weight:900; color:#000; mix-blend-mode:screen;
 }
-.small-btn{min-width:56px}
+.small-btn{min-width:56px;}
+
 /* Custom select wrapper for consistent height */
 .select-wrap{position:relative}
 .select-wrap select{appearance:none;-webkit-appearance:none;padding-inline-start:14px;padding-inline-end:40px}
 .select-wrap .caret{
   position:absolute; left:12px; top:50%; transform:translateY(-50%); pointer-events:none; opacity:.7;
 }
+
+/* i18n helper (just styling) */
+.lang-chip{padding:8px 12px;border-radius:12px;background:#0c0f14;border:1px solid rgba(255,255,255,.14);cursor:pointer}
+.lang-chip.selected{outline:3px solid var(--accent); outline-offset:3px}
+
+.share-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.share-btn{max-width:200px}
 
 .inputs{grid-template-columns:repeat(4,1fr)}
 @media(max-width:800px){.inputs{grid-template-columns:1fr}}
@@ -148,53 +159,23 @@ footer{opacity:.7;padding:20px 6px}
 <body>
 <div class="container">
   <div class="navbar">
-    <div class="badge">⚡ آلة حساب العمر</div>
+    <div class="badge" data-i18n="app_badge">⚡ آلة حساب العمر</div>
     <div class="row">
-      <button id="openCustomize" style="max-width:160px">الإعدادات</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <h1>أدخل تاريخ ميلادك</h1>
-    <div class="muted">اختر نوع التاريخ، ثم اكتب اليوم والشهر والسنة.</div>
-    <div class="notice" style="margin-top:10px">التحويل <b>الهجري</b> هنا وفق <b>تقويم أم القرى</b> للفترة 1937–2077 (قد يختلف قبل/بعد هذا النطاق).</div>
-    <div class="inputs" style="margin-top:10px">
-      <div class="select-wrap">
-        <label>نوع التاريخ</label>
-        <select id="calType">
-          <option value="greg" selected>ميلادي</option>
-          <option value="hijri">هجري (أم القرى)</option>
-        </select>
-        <div class="caret">▾</div>
-      </div>
-      <div>
-        <label>اليوم</label>
-        <input id="day" type="number" min="1" max="31" placeholder="1">
-      </div>
-      <div>
-        <label>الشهر</label>
-        <input id="month" type="number" min="1" max="12" placeholder="1">
-      </div>
-      <div>
-        <label>السنة</label>
-        <input id="year" type="number" min="1" max="9999" placeholder="1410 أو 1998">
-      </div>
-    </div>
-    <div class="row" style="margin-top:12px">
-      <button id="calcBtn" style="max-width:200px">احسب</button>
+      <button id="openCustomize" style="max-width:160px" data-i18n="settings">الإعدادات</button>
     </div>
   </div>
 
   
-<div id="customizePanel" class="panel notice">
-  <h3>الخلفية</h3>
+<div id="customizePanel" class="panel card" style="margin-top:8px">
+  <h3 data-i18n="settings_title">الإعدادات</h3>
+  <h4 data-i18n="background">الخلفية</h4>
   <div class="row">
-    <div class="theme-btn" data-theme="light">فاتح</div>
-    <div class="theme-btn" data-theme="dark">داكن</div>
-    <div class="theme-btn" data-theme="amoled">أسود خالص (AMOLED)</div>
+    <div class="theme-btn" data-theme="light" data-i18n="theme_light">فاتح</div>
+    <div class="theme-btn" data-theme="dark" data-i18n="theme_dark">داكن</div>
+    <div class="theme-btn" data-theme="amoled" data-i18n="theme_amoled">أسود خالص (AMOLED)</div>
   </div>
   <hr/>
-  <h3>لون الأزرار</h3>
+  <h4 data-i18n="button_color">لون الأزرار</h4>
   <div class="row" id="accentRow">
     <div class="color-dot" data-accent="#6d62ff" style="background:#6d62ff"></div>
     <div class="color-dot" data-accent="#2ed3c6" style="background:#2ed3c6"></div>
@@ -203,9 +184,61 @@ footer{opacity:.7;padding:20px 6px}
     <div class="color-dot" data-accent="#06b6d4" style="background:#06b6d4"></div>
     <div class="color-dot" data-accent="#ef4444" style="background:#ef4444"></div>
   </div>
-  <div class="muted" style="margin-top:8px">الخلفية لا تغيّر ألوان الأزرار — اختر اللون هنا.</div>
+  <hr/>
+  <h4 data-i18n="language">اللغة</h4>
+  <div class="row">
+    <div class="lang-chip" data-lang="ar">العربية</div>
+    <div class="lang-chip" data-lang="en">English</div>
+  </div>
+  <hr/>
+  <h4 data-i18n="timezone">المنطقة الزمنية</h4>
+  <div class="row">
+    <select id="tzSelect" style="max-width:360px">
+      <option value="Asia/Riyadh">Asia/Riyadh (KSA)</option>
+      <option value="Asia/Dubai">Asia/Dubai (UAE)</option>
+      <option value="Africa/Cairo">Africa/Cairo (EG)</option>
+      <option value="Europe/London">Europe/London (UK)</option>
+      <option value="Europe/Paris">Europe/Paris (FR)</option>
+      <option value="America/New_York">America/New_York (US)</option>
+      <option value="America/Los_Angeles">America/Los_Angeles (US)</option>
+      <option value="Asia/Tokyo">Asia/Tokyo (JP)</option>
+      <option value="Asia/Istanbul">Asia/Istanbul (TR)</option>
+    </select>
+  </div>
+  <div class="muted" style="margin-top:8px" data-i18n="settings_hint">الخلفية لا تغيّر ألوان الأزرار — اختر اللون أعلاه. يتم حفظ الإعدادات تلقائيًا.</div>
 </div>
 
+
+  <div class="card">
+    <h1 data-i18n="input_title">أدخل تاريخ ميلادك</h1>
+    <div class="muted" data-i18n="input_hint">اختر نوع التاريخ، ثم اكتب اليوم والشهر والسنة.</div>
+    <div class="notice" style="margin-top:10px" data-i18n="hijri_notice">التحويل <b>الهجري</b> هنا وفق <b>تقويم أم القرى</b> للفترة 1937–2077 (قد يختلف قبل/بعد هذا النطاق).</div>
+    <div class="inputs" style="margin-top:10px">
+      <div class="select-wrap">
+        <label data-i18n="type_label">نوع التاريخ</label>
+        <select id="calType">
+          <option value="greg" data-i18n="gregorian">ميلادي</option>
+          <option value="hijri" data-i18n="hijri">هجري (أم القرى)</option>
+        </select>
+        <div class="caret">▾</div>
+      </div>
+      <div>
+        <label data-i18n="day">اليوم</label>
+        <input id="day" type="number" min="1" max="31" placeholder="1">
+      </div>
+      <div>
+        <label data-i18n="month">الشهر</label>
+        <input id="month" type="number" min="1" max="12" placeholder="1">
+      </div>
+      <div>
+        <label data-i18n="year">السنة</label>
+        <input id="year" type="number" min="1" max="9999" placeholder="1410 أو 1998">
+      </div>
+    </div>
+    <div class="row" style="margin-top:12px">
+      <button id="calcBtn" style="max-width:200px" data-i18n="calc">احسب</button>
+    </div>
+  </div>
 
   <footer class="container">
     صُنِع لـ <b>عبدالمجيد الثويني</b> · يعمل دون إنترنت · © <span id="yearNow"></span>
@@ -214,8 +247,126 @@ footer{opacity:.7;padding:20px 6px}
 
 <script>
 const $ = (id)=>document.getElementById(id);
-const fmt = (n)=> Number.isFinite(n) ? n.toLocaleString('ar-SA') : '—';
+const fmt = (n, lang='ar')=> Number.isFinite(n) ? n.toLocaleString(lang==='ar'?'ar-SA':'en') : '—';
 
+/* i18n */
+const I18N = {
+  ar: {
+    app_badge: "⚡ آلة حساب العمر",
+    settings: "الإعدادات",
+    settings_title: "الإعدادات",
+    background: "الخلفية",
+    theme_light: "فاتح",
+    theme_dark: "داكن",
+    theme_amoled: "أسود خالص (AMOLED)",
+    button_color: "لون الأزرار",
+    language: "اللغة",
+    timezone: "المنطقة الزمنية",
+    settings_hint: "الخلفية لا تغيّر ألوان الأزرار — اختر اللون أعلاه. يتم حفظ الإعدادات تلقائيًا.",
+    input_title: "أدخل تاريخ ميلادك",
+    input_hint: "اختر نوع التاريخ، ثم اكتب اليوم والشهر والسنة.",
+    hijri_notice: "التحويل <b>الهجري</b> هنا وفق <b>تقويم أم القرى</b> للفترة 1937–2077 (قد يختلف قبل/بعد هذا النطاق).",
+    type_label: "نوع التاريخ",
+    gregorian: "ميلادي",
+    hijri: "هجري (أم القرى)",
+    day: "اليوم",
+    month: "الشهر",
+    year: "السنة",
+    calc: "احسب",
+    details_badge: "🎯 تفاصيل عمرك",
+    birthday_today: "اليوم عيد ميلادك! كل عام وأنت بخير 🎉",
+    metrics_title: "عمرك بصيغ وأشكال مختلفة",
+    years: "بالسنوات",
+    months: "بالأشهر",
+    weeks: "بالأسابيع",
+    days: "بالأيام",
+    hours: "بالساعات",
+    more_info: "معلومات أكثر عن عمرك",
+    born_day: "ولدت يوم: ",
+    born_season: "ولدت في فصل: ",
+    life_stage: "مرحلة حياتك: ",
+    sleep: "نومك الصحي: من 7 إلى 9 ساعات يوميًا",
+    greg_age: "العمر بالميلادي",
+    hijri_age: "العمر بالهجري (أم القرى)",
+    facts: "حقائق حصلت في حياتك",
+    breaths: "تَنَفَّست",
+    heartbeats: "نَبَض قلبك",
+    laughs: "ضحكت",
+    slept: "نمت",
+    eaten: "أمضيت في تناول الطعام",
+    clarify: "معدلات تقريبية ثابتة: ٢٠ ألف نَفَس/يوم، ٨٠ نبضة/دقيقة، ١٠ ضحكات/يوم، ٨ ساعات نوم/يوم، ٨٠ دقيقة طعام/يوم.",
+    no_birth: "لم يتم إدخال تاريخ ميلاد بعد.",
+    go_input: "اذهب لصفحة الإدخال",
+    share_image: "مشاركة النتيجة كصورة"
+  },
+  en: {
+    app_badge: "⚡ Age Calculator",
+    settings: "Settings",
+    settings_title: "Settings",
+    background: "Background",
+    theme_light: "Light",
+    theme_dark: "Dark",
+    theme_amoled: "Pure Black (AMOLED)",
+    button_color: "Button Color",
+    language: "Language",
+    timezone: "Time Zone",
+    settings_hint: "Background doesn’t change button color — pick a color above. Your preferences are saved automatically.",
+    input_title: "Enter Your Birthdate",
+    input_hint: "Choose date type, then fill day, month, and year.",
+    hijri_notice: "Hijri conversion uses the Umm al-Qura calendar for 1937–2077 (outside this range it may differ).",
+    type_label: "Date type",
+    gregorian: "Gregorian",
+    hijri: "Hijri (Umm al-Qura)",
+    day: "Day",
+    month: "Month",
+    year: "Year",
+    calc: "Calculate",
+    details_badge: "🎯 Your Age Details",
+    birthday_today: "It's your birthday today! Happy Birthday 🎉",
+    metrics_title: "Your Age in Many Ways",
+    years: "Years",
+    months: "Months",
+    weeks: "Weeks",
+    days: "Days",
+    hours: "Hours",
+    more_info: "More about your age",
+    born_day: "Born on: ",
+    born_season: "Season: ",
+    life_stage: "Life stage: ",
+    sleep: "Healthy sleep: 7–9 hours/day",
+    greg_age: "Age (Gregorian)",
+    hijri_age: "Age (Hijri – Umm al-Qura)",
+    facts: "Facts from your life",
+    breaths: "Breaths taken",
+    heartbeats: "Heartbeats",
+    laughs: "Times you laughed",
+    slept: "Time spent sleeping",
+    eaten: "Time spent eating",
+    clarify: "Approximate averages: 20k breaths/day, 80 bpm, 10 laughs/day, 8 h sleep/day, 80 min eating/day.",
+    no_birth: "No birthdate entered yet.",
+    go_input: "Go to input page",
+    share_image: "Share as Image"
+  }
+};
+function getLang(){ return localStorage.getItem('ageLang') || 'ar'; }
+function setLang(l){ localStorage.setItem('ageLang', l); applyI18n(); markLang(l); }
+function markLang(l){
+  document.querySelectorAll('.lang-chip').forEach(e=> e.classList.toggle('selected', e.getAttribute('data-lang')===l));
+}
+function applyI18n(){
+  const l = getLang(); const dict = I18N[l];
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k = el.getAttribute('data-i18n');
+    if(dict[k]) el.innerHTML = dict[k];
+  });
+  // Button label
+  const sbtn = document.getElementById('openCustomize'); if(sbtn) sbtn.textContent = dict.settings;
+  // Dir switching
+  document.documentElement.setAttribute('lang', l);
+  document.documentElement.setAttribute('dir', l==='ar'?'rtl':'ltr');
+}
+
+/* Theme/Accent/Prefs */
 function markSelectedTheme(t){
   document.querySelectorAll('.theme-btn').forEach(b=>{
     if(b.getAttribute('data-theme')===t) b.classList.add('selected');
@@ -246,24 +397,44 @@ function setAccent(c){
 function loadPrefs(){
   const t = localStorage.getItem('ageTheme') || 'dark';
   const c = localStorage.getItem('ageAccent') || '#6d62ff';
-  setAccent(c);
-  setTheme(t);
+  const l = getLang();
+  setAccent(c); setTheme(t); markLang(l); applyI18n();
+  const tz = localStorage.getItem('ageTZ') || 'Asia/Riyadh';
+  const tzSel = document.getElementById('tzSelect'); if(tzSel){ tzSel.value = tz; }
 }
 function setupSettings(){
   const btn = document.getElementById('openCustomize');
   const p = document.getElementById('customizePanel');
-  if(btn && p){ btn.onclick = ()=>{ p.style.display = (p.style.display === 'block') ? 'none' : 'block'; }; }
+  if(btn && p){ btn.onclick = ()=>{ p.style.display = (p.style.display === 'block') ? 'none' : 'block'; window.scrollTo({top:0, behavior:'smooth'}); }; }
   document.querySelectorAll('.theme-btn').forEach(b=> b.addEventListener('click', ()=> setTheme(b.getAttribute('data-theme')) ));
   document.querySelectorAll('.color-dot').forEach(d=> d.addEventListener('click', ()=> setAccent(d.getAttribute('data-accent')) ));
+  document.querySelectorAll('.lang-chip').forEach(d=> d.addEventListener('click', ()=> setLang(d.getAttribute('data-lang')) ));
+  const tzSel = document.getElementById('tzSelect');
+  if(tzSel){ tzSel.addEventListener('change', ()=>{ localStorage.setItem('ageTZ', tzSel.value); location.reload(); }); }
   loadPrefs();
 }
 
-// ===== Calendars (Tabular + Umm al-Qura via Intl) =====
-function gregToJDN(y,m,d){
-  if(m <= 2){ y -= 1; m += 12; }
-  const A = Math.floor(y/100);
-  const B = 2 - A + Math.floor(A/4);
-  return Math.floor(365.25*(y + 4716)) + Math.floor(30.6001*(m + 1)) + d + B - 1524.5;
+/* Timezone helpers */
+function nowInTZ(tz){
+  const f = new Intl.DateTimeFormat('en-US',{timeZone:tz, year:'numeric', month:'numeric', day:'numeric', hour:'numeric', minute:'numeric', second:'numeric', hour12:false});
+  const parts = f.formatToParts(new Date());
+  const get = t => +parts.find(p=>p.type===t).value;
+  // Return a Date in UTC representing the same instant in that timezone
+  return new Date(Date.UTC(get('year'), get('month')-1, get('day'), get('hour'), get('minute'), get('second')));
+}
+
+/* Hijri (Umm al-Qura) */
+function gregToUmmAlQura(date){
+  const parts = new Intl.DateTimeFormat('en-u-ca-islamic-umalqura', {year:'numeric',month:'numeric',day:'numeric'}).formatToParts(date);
+  return {
+    year: +parts.find(p=>p.type==='year').value,
+    month:+parts.find(p=>p.type==='month').value,
+    day:  +parts.find(p=>p.type==='day').value
+  };
+}
+const ISLAMIC_EPOCH = 1948439.5;
+function islamicToJDN(y,m,d){
+  return d + Math.ceil(29.5*(m-1)) + (y-1)*354 + Math.floor((3 + 11*y)/30) + ISLAMIC_EPOCH - 1;
 }
 function jdnToGreg(jd){
   const Z = Math.floor(jd + 0.5);
@@ -279,24 +450,7 @@ function jdnToGreg(jd){
   const year = (month > 2) ? C - 4716 : C - 4715;
   return {year, month, day};
 }
-// Tabular islamic -> JDN
-const ISLAMIC_EPOCH = 1948439.5;
-function islamicToJDN(y,m,d){
-  return d + Math.ceil(29.5*(m-1)) + (y-1)*354 + Math.floor((3 + 11*y)/30) + ISLAMIC_EPOCH - 1;
-}
-
-// Use Intl to get Umm al-Qura y/m/d for a Gregorian date (returns numbers)
-function gregToUmmAlQura(date){
-  const parts = new Intl.DateTimeFormat('en-u-ca-islamic-umalqura', {year:'numeric',month:'numeric',day:'numeric'}).formatToParts(date);
-  return {
-    year: +parts.find(p=>p.type==='year').value,
-    month:+parts.find(p=>p.type==='month').value,
-    day:  +parts.find(p=>p.type==='day').value
-  };
-}
-// Find Gregorian date that corresponds to given Umm al-Qura y/m/d using local search around tabular estimate
 function ummAlQuraToGreg(y,m,d){
-  // initial guess via tabular
   const g0 = jdnToGreg(islamicToJDN(y,m,d));
   const base = new Date(Date.UTC(g0.year, g0.month-1, g0.day));
   const dayMs = 24*60*60*1000;
@@ -310,9 +464,8 @@ function ummAlQuraToGreg(y,m,d){
     }
     return null;
   };
-  return tryFind(6) || tryFind(20) || {year:g0.year, month:g0.month, day:g0.day}; // fallback tabular
+  return tryFind(6) || tryFind(20) || {year:g0.year, month:g0.month, day:g0.day};
 }
-// Hijri month length (Umm al-Qura) by difference between 1st of next and current month
 function ummMonthLength(y,m){
   const start = ummAlQuraToGreg(y,m,1);
   let ny = y, nm = m+1; if(nm>12){ nm=1; ny++; }
@@ -325,21 +478,23 @@ function ummMonthLength(y,m){
 
 document.getElementById('calcBtn').onclick = ()=>{ 
   const d = +$('day').value, m = +$('month').value, y = +$('year').value;
-  if(!d||!m||!y){alert('من فضلك أكمل اليوم والشهر والسنة'); return;}
+  if(!d||!m||!y){alert(getLang()==='ar'?'من فضلك أكمل اليوم والشهر والسنة':'Please fill day, month and year'); return;}
   const type = $('calType').value;
   let gY,gM,gD;
   if(type==='greg'){ gY=y; gM=m; gD=d; }
   else {
-    const g = ummAlQuraToGreg(y,m,d); // precise by Intl
+    const g = ummAlQuraToGreg(y,m,d); // precise
     gY=g.year; gM=g.month; gD=g.day;
   }
   localStorage.setItem('birthInfo', JSON.stringify({type, input:{d,m,y}, greg:{gY,gM,gD}}));
   window.location.href = 'age-details.html';
 };
+
 ['day','month','year'].forEach(id=> $(id).addEventListener('keydown', e=>{ if(e.key==='Enter') $('calcBtn').click(); }));
 
 document.getElementById('yearNow').textContent = new Date().getFullYear();
 setupSettings();
+applyI18n();
 </script>
 </body>
 </html>
