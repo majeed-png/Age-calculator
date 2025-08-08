@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>حاسبة العمر – إدخال التاريخ | عبدالمجيد الثويني</title>
+<meta name="description" content="حاسبة العمر العربية: احسب عمرك بالميلادي أو بالهجري بسرعة وبدقة. يعمل دون إنترنت.">
+<meta name="keywords" content="حاسبة العمر, حساب العمر, احسب عمرك, حساب العمر بالميلادي, حساب العمر بالهجري, تحويل التاريخ, العمر بالاشهر, كم عمري, كم باقي على عيد ميلادي, تقييم العمر, Age Calculator Arabic, Hijri to Gregorian, Gregorian to Hijri, حساب تاريخ الميلاد, حساب العمر الحقيقي">
+<meta property="og:title" content="حاسبة العمر – إدخال التاريخ">
+<meta property="og:description" content="احسب عمرك بالميلادي أو بالهجري بسرعة وبدقة.">
+<style>
+
+:root{
+  --bg:#0f1115;
+  --card:#151a22;
+  --text:#e9eef6;
+  --muted:#a8b3c7;
+  --accent:#49c5b6;
+  --accent-2:#7c5cff;
+  --radius:14px;
+  --shadow: 0 10px 30px rgba(0,0,0,.25);
+  --font: "Tajawal", system-ui, -apple-system, "Segoe UI", Roboto, "Noto Kufi Arabic", "Noto Sans Arabic", Arial, "Apple Color Emoji","Segoe UI Emoji";
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background:
+     radial-gradient(1200px 600px at 100% -10%, rgba(76,76,255,.12), transparent 60%),
+     radial-gradient(1200px 600px at -30% 110%, rgba(0, 255, 191,.10), transparent 60%),
+     var(--bg);
+  color:var(--text);
+  font-family:var(--font);
+  line-height:1.7;
+}
+.container{max-width:1000px;margin:24px auto;padding:16px}
+.card{
+  background:var(--card);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius: var(--radius);
+  padding:18px;
+  box-shadow: var(--shadow);
+  margin-top:16px;
+}
+h1{margin:0 0 8px 0;font-weight:800;letter-spacing:.2px}
+h2{margin:22px 0 10px 0;font-weight:800}
+h3{margin:14px 0 10px 0;font-weight:800}
+a{color:var(--accent)}
+label{display:block;font-weight:700;margin-bottom:6px}
+input, select, button{
+  width:100%;
+  border-radius:12px;
+  padding:12px 14px;
+  background:#0c0f14;
+  color:var(--text);
+  border:1px solid rgba(255,255,255,.08);
+  outline:none;
+}
+button{
+  cursor:pointer;
+  border:none;
+  background:linear-gradient(135deg, var(--accent), var(--accent-2));
+  font-weight:800;
+}
+.muted{color:var(--muted)}
+.notice{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px;margin-top:10px}
+.navbar{
+  display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:8px
+}
+.badge{
+  display:inline-flex;gap:8px;align-items:center;
+  padding:6px 10px;border-radius:999px;
+  background:rgba(255,255,255,.06);font-weight:700
+}
+.inputs{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:end}
+@media(max-width:800px){.inputs{grid-template-columns:1fr}}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:900px){.kpis{grid-template-columns:repeat(2,1fr)}}
+.kpi{background:#0c0f14;border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:14px}
+.kpi .num{font-size:1.6rem;font-weight:900}
+.tag{padding:6px 10px;border-radius:12px;background:rgba(255,255,255,.08);font-weight:700}
+.fact{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px dashed rgba(255,255,255,.08)}
+.fact:last-child{border-bottom:0}
+footer{opacity:.7;padding:20px 6px}
+.panel{display:none;margin-top:10px}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.color-dot{width:18px;height:18px;border-radius:50%;border:2px solid rgba(255,255,255,.4);cursor:pointer}
+
+.inputs{grid-template-columns:repeat(4,1fr)}
+@media(max-width:800px){.inputs{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="navbar">
+    <div class="badge">⚡ آلة حساب العمر</div>
+    <button id="openCustomize" style="max-width:160px">الإعدادات</button>
+  </div>
+  <div class="card">
+    <h1 id="welcome">أدخل تاريخ ميلادك</h1>
+    <div class="muted">اختر نوع التاريخ، ثم اكتب اليوم والشهر والسنة.</div>
+    <div class="notice" style="margin-top:10px">التحويل الهجري هنا حسابي (Tabular Islamic) وقد يختلف يومًا واحدًا عن أم القرى.</div>
+    <div class="inputs" style="margin-top:10px">
+      <div>
+        <label>نوع التاريخ</label>
+        <select id="calType">
+          <option value="greg" selected>ميلادي</option>
+          <option value="hijri">هجري</option>
+        </select>
+      </div>
+      <div>
+        <label>اليوم</label>
+        <input id="day" type="number" min="1" max="31" placeholder="1">
+      </div>
+      <div>
+        <label>الشهر</label>
+        <input id="month" type="number" min="1" max="12" placeholder="1">
+      </div>
+      <div>
+        <label>السنة</label>
+        <input id="year" type="number" min="1" max="9999" placeholder="1998">
+      </div>
+    </div>
+    <div class="row" style="margin-top:12px">
+      <button id="calcBtn" style="max-width:200px">احسب</button>
+    </div>
+  </div>
+
+  
+<div id="customizePanel" class="panel notice">
+  <div class="row">
+    <div style="min-width:220px;flex:1">
+      <label>الاسم الظاهر</label>
+      <input id="displayName" />
+    </div>
+    <div style="min-width:220px;flex:1">
+      <label>اللون الرئيسي</label>
+      <div class="row" id="colorRow">
+        <div class="color-dot" data-color="#49c5b6" style="background:#49c5b6"></div>
+        <div class="color-dot" data-color="#7c5cff" style="background:#7c5cff"></div>
+        <div class="color-dot" data-color="#f97316" style="background:#f97316"></div>
+        <div class="color-dot" data-color="#22c55e" style="background:#22c55e"></div>
+        <div class="color-dot" data-color="#06b6d4" style="background:#06b6d4"></div>
+      </div>
+    </div>
+  </div>
+  <hr/>
+  <h3>معدّلات الحقائق اليومية</h3>
+  <div class="kpis">
+    <div class="kpi">
+      <div>عدد الأنفاس في اليوم (تقريبي)</div>
+      <input id="breathsPerDay" type="number" value="20000" min="10000" max="40000">
+    </div>
+    <div class="kpi">
+      <div>نبضات القلب في الدقيقة (متوسط الراحة)</div>
+      <input id="bpm" type="number" value="80" min="40" max="120">
+    </div>
+    <div class="kpi">
+      <div>عدد الضحكات يوميًا</div>
+      <input id="laughsPerDay" type="number" value="10" min="0" max="100">
+    </div>
+    <div class="kpi">
+      <div>ساعات النوم يوميًا</div>
+      <input id="sleepHours" type="number" value="8" min="3" max="12" step="0.5">
+    </div>
+    <div class="kpi">
+      <div>وقت تناول الطعام يوميًا (دقيقة)</div>
+      <input id="eatMinutes" type="number" value="80" min="10" max="300">
+    </div>
+  </div>
+  <div class="row" style="margin-top:12px">
+    <button id="savePrefs" style="max-width:200px">حفظ التخصيص</button>
+    <span class="muted">يتم الحفظ محليًا في المتصفح – يبقى حتى لو رجعت لاحقًا.</span>
+  </div>
+</div>
+
+
+  <footer class="container">
+    صُنِع لـ <b id="footerName">عبدالمجيد الثويني</b> · يعمل دون إنترنت · © <span id="yearNow"></span>
+  </footer>
+</div>
+
+<script>
+
+// ===== Shared helpers (settings + calendars) =====
+const $ = (id)=>document.getElementById(id);
+const fmt = (n)=> Number.isFinite(n) ? n.toLocaleString('ar-SA') : '—';
+
+function setName(name){
+  const appName = document.getElementById('appName');
+  const footerName = document.getElementById('footerName');
+  if(appName) appName.textContent = name || '—';
+  if(footerName) footerName.textContent = name || '—';
+}
+
+const prefsKey = 'ageCalcPrefsV2';
+function savePrefs(){
+  const p = {
+    name: $('displayName').value.trim(),
+    accent: getComputedStyle(document.documentElement).getPropertyValue('--accent').trim(),
+    breathsPerDay: +$('breathsPerDay').value,
+    bpm: +$('bpm').value,
+    laughsPerDay: +$('laughsPerDay').value,
+    sleepHours: +$('sleepHours').value,
+    eatMinutes: +$('eatMinutes').value
+  };
+  localStorage.setItem(prefsKey, JSON.stringify(p));
+  setName(p.name);
+  alert('تم حفظ التخصيص ✅');
+}
+function loadPrefs(){
+  const txt = localStorage.getItem(prefsKey);
+  // defaults
+  let p = {
+    name: 'عبدالمجيد الثويني',
+    accent: '#49c5b6',
+    breathsPerDay: 20000,
+    bpm: 80,
+    laughsPerDay: 10,
+    sleepHours: 8,
+    eatMinutes: 80
+  };
+  if(txt){
+    try{ p = Object.assign(p, JSON.parse(txt)); }catch(e){}
+  }
+  $('displayName').value = p.name;
+  document.documentElement.style.setProperty('--accent', p.accent);
+  document.documentElement.style.setProperty('--accent-2', p.accent);
+  $('breathsPerDay').value = p.breathsPerDay;
+  $('bpm').value = p.bpm;
+  $('laughsPerDay').value = p.laughsPerDay;
+  $('sleepHours').value = p.sleepHours;
+  $('eatMinutes').value = p.eatMinutes;
+  setName(p.name);
+}
+function attachColorPickers(){
+  document.querySelectorAll('.color-dot').forEach(d=>{
+    d.addEventListener('click', ()=>{
+      const c = d.getAttribute('data-color');
+      document.documentElement.style.setProperty('--accent', c);
+      document.documentElement.style.setProperty('--accent-2', c);
+    });
+  });
+}
+function setupSettings(){
+  const btn = document.getElementById('openCustomize');
+  const p = document.getElementById('customizePanel');
+  if(!btn || !p) return;
+  btn.onclick = ()=>{ p.style.display = (p.style.display === 'block') ? 'none' : 'block'; };
+  const saveBtn = document.getElementById('savePrefs');
+  if(saveBtn) saveBtn.onclick = savePrefs;
+  attachColorPickers();
+  loadPrefs();
+}
+
+// Calendars & date math
+function gregToJDN(y,m,d){
+  if(m <= 2){ y -= 1; m += 12; }
+  const A = Math.floor(y/100);
+  const B = 2 - A + Math.floor(A/4);
+  return Math.floor(365.25*(y + 4716)) + Math.floor(30.6001*(m + 1)) + d + B - 1524.5;
+}
+function jdnToGreg(jd){
+  const Z = Math.floor(jd + 0.5);
+  let A = Z;
+  const alpha = Math.floor((A - 1867216.25)/36524.25);
+  A = A + 1 + alpha - Math.floor(alpha/4);
+  const B = A + 1524;
+  const C = Math.floor((B - 122.1)/365.25);
+  const D = Math.floor(365.25*C);
+  const E = Math.floor((B - D)/30.6001);
+  const day = B - D - Math.floor(30.6001*E);
+  const month = (E < 14) ? E - 1 : E - 13;
+  const year = (month > 2) ? C - 4716 : C - 4715;
+  return {year, month, day};
+}
+const ISLAMIC_EPOCH = 1948439.5;
+function islamicToJDN(y,m,d){
+  return d + Math.ceil(29.5*(m-1)) + (y-1)*354 + Math.floor((3 + 11*y)/30) + ISLAMIC_EPOCH - 1;
+}
+function jdnToIslamic(jd){
+  jd = Math.floor(jd) + 0.5;
+  const year = Math.floor((30*(jd - ISLAMIC_EPOCH) + 10646) / 10631);
+  const first = islamicToJDN(year,1,1);
+  const month = Math.min(12, Math.ceil((jd - first + 1)/29.5));
+  const day = Math.floor(jd - islamicToJDN(year, month, 1)) + 1;
+  return {year, month, day};
+}
+function getSeason(month){
+  const names = {winter:'الشتاء', spring:'الربيع', summer:'الصيف', autumn:'الخريف'};
+  if([12,1,2].includes(month)) return names.winter;
+  if([3,4,5].includes(month)) return names.spring;
+  if([6,7,8].includes(month)) return names.summer;
+  return names.autumn;
+}
+function getWeekdayName(date){
+  const days = ['الأحد','الإثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
+  return days[date.getDay()];
+}
+function lifeStage(years){
+  if(years < 13) return 'طفولة';
+  if(years < 20) return 'مراهقة';
+  if(years < 36) return 'شباب';
+  if(years < 60) return 'متوسط العمر';
+  return 'كبير سن';
+}
+
+
+// Save birth date and go to details
+document.getElementById('calcBtn').onclick = ()=>{ 
+  const d = +$('day').value, m = +$('month').value, y = +$('year').value;
+  if(!d||!m||!y){alert('من فضلك أكمل اليوم والشهر والسنة'); return;}
+  const type = $('calType').value;
+  let gY,gM,gD;
+  if(type==='greg'){ gY=y; gM=m; gD=d; }
+  else {
+    const jd = islamicToJDN(y,m,d);
+    const g = jdnToGreg(jd);
+    gY=g.year; gM=g.month; gD=g.day;
+  }
+  localStorage.setItem('birthInfo', JSON.stringify({type, input:{d,m,y}, greg:{gY,gM,gD}}));
+  window.location.href = 'age-details.html';
+};
+
+document.getElementById('yearNow').textContent = new Date().getFullYear();
+document.getElementById('welcome').innerHTML = 'أدخل تاريخ ميلادك';
+setupSettings();
+</script>
+</body>
+</html>
