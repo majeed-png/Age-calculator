@@ -9,29 +9,49 @@
 <meta property="og:title" content="حاسبة العمر – إدخال التاريخ">
 <meta property="og:description" content="احسب عمرك بالميلادي أو بالهجري بسرعة وبدقة.">
 <style>
-
 :root{
   --bg:#0f1115;
   --card:#151a22;
   --text:#e9eef6;
   --muted:#a8b3c7;
-  --accent:#49c5b6;
-  --accent-2:#7c5cff;
+  --accent:#2ed3c6; /* fixed accent */
+  --accent-2:#2ed3c6;
   --radius:14px;
   --shadow: 0 10px 30px rgba(0,0,0,.25);
   --font: "Tajawal", system-ui, -apple-system, "Segoe UI", Roboto, "Noto Kufi Arabic", "Noto Sans Arabic", Arial, "Apple Color Emoji","Segoe UI Emoji";
+}
+/* LIGHT THEME */
+:root[data-theme='light']{
+  --bg:#f5f7fb;
+  --card:#ffffff;
+  --text:#0b0f14;
+  --muted:#536175;
+}
+/* AMOLED true black */
+:root[data-theme='amoled']{
+  --bg:#000000;
+  --card:#0a0a0a;
+  --text:#e9eef6;
+  --muted:#a8b3c7;
 }
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
   margin:0;
   background:
-     radial-gradient(1200px 600px at 100% -10%, rgba(76,76,255,.12), transparent 60%),
-     radial-gradient(1200px 600px at -30% 110%, rgba(0, 255, 191,.10), transparent 60%),
+     radial-gradient(1200px 600px at 100% -10%, rgba(76,76,255,.10), transparent 60%),
+     radial-gradient(1200px 600px at -30% 110%, rgba(0, 255, 191,.08), transparent 60%),
      var(--bg);
   color:var(--text);
   font-family:var(--font);
   line-height:1.7;
+}
+:root[data-theme='light'] body,
+:root[data-theme='light']{
+  background:
+     radial-gradient(1200px 600px at 100% -10%, rgba(124,92,255,.08), transparent 60%),
+     radial-gradient(1200px 600px at -30% 110%, rgba(46,211,198,.08), transparent 60%),
+     var(--bg);
 }
 .container{max-width:1000px;margin:24px auto;padding:16px}
 .card{
@@ -42,6 +62,7 @@ body{
   box-shadow: var(--shadow);
   margin-top:16px;
 }
+:root[data-theme='light'] .card{border:1px solid rgba(10,10,10,.06)}
 h1{margin:0 0 8px 0;font-weight:800;letter-spacing:.2px}
 h2{margin:22px 0 10px 0;font-weight:800}
 h3{margin:14px 0 10px 0;font-weight:800}
@@ -56,14 +77,22 @@ input, select, button{
   border:1px solid rgba(255,255,255,.08);
   outline:none;
 }
+:root[data-theme='light'] input,
+:root[data-theme='light'] select,
+:root[data-theme='light'] button{
+  background:#f1f5f9;
+  border:1px solid rgba(0,0,0,.08);
+}
 button{
   cursor:pointer;
   border:none;
   background:linear-gradient(135deg, var(--accent), var(--accent-2));
+  color:#05171a;
   font-weight:800;
 }
 .muted{color:var(--muted)}
 .notice{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px;margin-top:10px}
+:root[data-theme='light'] .notice{background:#f8fafc;border:1px dashed rgba(0,0,0,.12)}
 .navbar{
   display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:8px
 }
@@ -77,14 +106,15 @@ button{
 .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 @media(max-width:900px){.kpis{grid-template-columns:repeat(2,1fr)}}
 .kpi{background:#0c0f14;border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:14px}
+:root[data-theme='light'] .kpi{background:#f1f5f9;border:1px solid rgba(0,0,0,.06)}
 .kpi .num{font-size:1.6rem;font-weight:900}
 .tag{padding:6px 10px;border-radius:12px;background:rgba(255,255,255,.08);font-weight:700}
-.fact{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px dashed rgba(255,255,255,.08)}
-.fact:last-child{border-bottom:0}
+:root[data-theme='light'] .tag{background:#eef2f7}
 footer{opacity:.7;padding:20px 6px}
 .panel{display:none;margin-top:10px}
 .row{display:flex;gap:10px;flex-wrap:wrap}
-.color-dot{width:18px;height:18px;border-radius:50%;border:2px solid rgba(255,255,255,.4);cursor:pointer}
+.theme-btn{padding:8px 12px;border-radius:12px;background:#0c0f14;border:1px solid rgba(255,255,255,.14);cursor:pointer}
+:root[data-theme='light'] .theme-btn{background:#f1f5f9;border:1px solid rgba(0,0,0,.12)}
 
 .inputs{grid-template-columns:repeat(4,1fr)}
 @media(max-width:800px){.inputs{grid-template-columns:1fr}}
@@ -94,10 +124,13 @@ footer{opacity:.7;padding:20px 6px}
 <div class="container">
   <div class="navbar">
     <div class="badge">⚡ آلة حساب العمر</div>
-    <button id="openCustomize" style="max-width:160px">الإعدادات</button>
+    <div class="row">
+      <button id="openCustomize" style="max-width:160px">الإعدادات</button>
+    </div>
   </div>
+
   <div class="card">
-    <h1 id="welcome">أدخل تاريخ ميلادك</h1>
+    <h1>أدخل تاريخ ميلادك</h1>
     <div class="muted">اختر نوع التاريخ، ثم اكتب اليوم والشهر والسنة.</div>
     <div class="notice" style="margin-top:10px">التحويل الهجري هنا حسابي (Tabular Islamic) وقد يختلف يومًا واحدًا عن أم القرى.</div>
     <div class="inputs" style="margin-top:10px">
@@ -128,132 +161,52 @@ footer{opacity:.7;padding:20px 6px}
 
   
 <div id="customizePanel" class="panel notice">
+  <h3>الخلفية</h3>
   <div class="row">
-    <div style="min-width:220px;flex:1">
-      <label>الاسم الظاهر</label>
-      <input id="displayName" />
-    </div>
-    <div style="min-width:220px;flex:1">
-      <label>اللون الرئيسي</label>
-      <div class="row" id="colorRow">
-        <div class="color-dot" data-color="#49c5b6" style="background:#49c5b6"></div>
-        <div class="color-dot" data-color="#7c5cff" style="background:#7c5cff"></div>
-        <div class="color-dot" data-color="#f97316" style="background:#f97316"></div>
-        <div class="color-dot" data-color="#22c55e" style="background:#22c55e"></div>
-        <div class="color-dot" data-color="#06b6d4" style="background:#06b6d4"></div>
-      </div>
-    </div>
+    <button class="theme-btn" data-theme="light">فاتح</button>
+    <button class="theme-btn" data-theme="dark">داكن</button>
+    <button class="theme-btn" data-theme="amoled">أسود خالص (AMOLED)</button>
   </div>
-  <hr/>
-  <h3>معدّلات الحقائق اليومية</h3>
-  <div class="kpis">
-    <div class="kpi">
-      <div>عدد الأنفاس في اليوم (تقريبي)</div>
-      <input id="breathsPerDay" type="number" value="20000" min="10000" max="40000">
-    </div>
-    <div class="kpi">
-      <div>نبضات القلب في الدقيقة (متوسط الراحة)</div>
-      <input id="bpm" type="number" value="80" min="40" max="120">
-    </div>
-    <div class="kpi">
-      <div>عدد الضحكات يوميًا</div>
-      <input id="laughsPerDay" type="number" value="10" min="0" max="100">
-    </div>
-    <div class="kpi">
-      <div>ساعات النوم يوميًا</div>
-      <input id="sleepHours" type="number" value="8" min="3" max="12" step="0.5">
-    </div>
-    <div class="kpi">
-      <div>وقت تناول الطعام يوميًا (دقيقة)</div>
-      <input id="eatMinutes" type="number" value="80" min="10" max="300">
-    </div>
-  </div>
-  <div class="row" style="margin-top:12px">
-    <button id="savePrefs" style="max-width:200px">حفظ التخصيص</button>
-    <span class="muted">يتم الحفظ محليًا في المتصفح – يبقى حتى لو رجعت لاحقًا.</span>
-  </div>
+  <div class="muted" style="margin-top:8px">الخلفية لا تغيّر ألوان الأزرار.</div>
 </div>
 
 
   <footer class="container">
-    صُنِع لـ <b id="footerName">عبدالمجيد الثويني</b> · يعمل دون إنترنت · © <span id="yearNow"></span>
+    صُنِع لـ <b>عبدالمجيد الثويني</b> · يعمل دون إنترنت · © <span id="yearNow"></span>
   </footer>
 </div>
 
 <script>
-
-// ===== Shared helpers (settings + calendars) =====
 const $ = (id)=>document.getElementById(id);
 const fmt = (n)=> Number.isFinite(n) ? n.toLocaleString('ar-SA') : '—';
 
-function setName(name){
-  const appName = document.getElementById('appName');
-  const footerName = document.getElementById('footerName');
-  if(appName) appName.textContent = name || '—';
-  if(footerName) footerName.textContent = name || '—';
+function setTheme(t){
+  if(!t) t='dark';
+  const root = document.documentElement;
+  if(t==='light') root.setAttribute('data-theme','light');
+  else if(t==='amoled') root.setAttribute('data-theme','amoled');
+  else { root.setAttribute('data-theme','dark'); }
+  localStorage.setItem('ageTheme', t);
 }
-
-const prefsKey = 'ageCalcPrefsV2';
-function savePrefs(){
-  const p = {
-    name: $('displayName').value.trim(),
-    accent: getComputedStyle(document.documentElement).getPropertyValue('--accent').trim(),
-    breathsPerDay: +$('breathsPerDay').value,
-    bpm: +$('bpm').value,
-    laughsPerDay: +$('laughsPerDay').value,
-    sleepHours: +$('sleepHours').value,
-    eatMinutes: +$('eatMinutes').value
-  };
-  localStorage.setItem(prefsKey, JSON.stringify(p));
-  setName(p.name);
-  alert('تم حفظ التخصيص ✅');
+function loadTheme(){
+  const t = localStorage.getItem('ageTheme') || 'dark';
+  setTheme(t);
 }
-function loadPrefs(){
-  const txt = localStorage.getItem(prefsKey);
-  // defaults
-  let p = {
-    name: 'عبدالمجيد الثويني',
-    accent: '#49c5b6',
-    breathsPerDay: 20000,
-    bpm: 80,
-    laughsPerDay: 10,
-    sleepHours: 8,
-    eatMinutes: 80
-  };
-  if(txt){
-    try{ p = Object.assign(p, JSON.parse(txt)); }catch(e){}
-  }
-  $('displayName').value = p.name;
-  document.documentElement.style.setProperty('--accent', p.accent);
-  document.documentElement.style.setProperty('--accent-2', p.accent);
-  $('breathsPerDay').value = p.breathsPerDay;
-  $('bpm').value = p.bpm;
-  $('laughsPerDay').value = p.laughsPerDay;
-  $('sleepHours').value = p.sleepHours;
-  $('eatMinutes').value = p.eatMinutes;
-  setName(p.name);
-}
-function attachColorPickers(){
-  document.querySelectorAll('.color-dot').forEach(d=>{
-    d.addEventListener('click', ()=>{
-      const c = d.getAttribute('data-color');
-      document.documentElement.style.setProperty('--accent', c);
-      document.documentElement.style.setProperty('--accent-2', c);
-    });
+function setupThemeButtons(){
+  document.querySelectorAll('.theme-btn').forEach(b=>{
+    b.addEventListener('click', ()=> setTheme(b.getAttribute('data-theme')) );
   });
 }
 function setupSettings(){
   const btn = document.getElementById('openCustomize');
   const p = document.getElementById('customizePanel');
-  if(!btn || !p) return;
-  btn.onclick = ()=>{ p.style.display = (p.style.display === 'block') ? 'none' : 'block'; };
-  const saveBtn = document.getElementById('savePrefs');
-  if(saveBtn) saveBtn.onclick = savePrefs;
-  attachColorPickers();
-  loadPrefs();
+  if(btn && p){
+    btn.onclick = ()=>{ p.style.display = (p.style.display === 'block') ? 'none' : 'block'; };
+  }
+  setupThemeButtons();
+  loadTheme();
 }
-
-// Calendars & date math
+// Calendars
 function gregToJDN(y,m,d){
   if(m <= 2){ y -= 1; m += 12; }
   const A = Math.floor(y/100);
@@ -306,7 +259,6 @@ function lifeStage(years){
 }
 
 
-// Save birth date and go to details
 document.getElementById('calcBtn').onclick = ()=>{ 
   const d = +$('day').value, m = +$('month').value, y = +$('year').value;
   if(!d||!m||!y){alert('من فضلك أكمل اليوم والشهر والسنة'); return;}
@@ -323,7 +275,6 @@ document.getElementById('calcBtn').onclick = ()=>{
 };
 
 document.getElementById('yearNow').textContent = new Date().getFullYear();
-document.getElementById('welcome').innerHTML = 'أدخل تاريخ ميلادك';
 setupSettings();
 </script>
 </body>

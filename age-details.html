@@ -9,29 +9,49 @@
 <meta property="og:title" content="تفاصيل عمرك">
 <meta property="og:description" content="تفاصيل دقيقة لعُمرك بالعربي + حقائق ممتعة.">
 <style>
-
 :root{
   --bg:#0f1115;
   --card:#151a22;
   --text:#e9eef6;
   --muted:#a8b3c7;
-  --accent:#49c5b6;
-  --accent-2:#7c5cff;
+  --accent:#2ed3c6; /* fixed accent */
+  --accent-2:#2ed3c6;
   --radius:14px;
   --shadow: 0 10px 30px rgba(0,0,0,.25);
   --font: "Tajawal", system-ui, -apple-system, "Segoe UI", Roboto, "Noto Kufi Arabic", "Noto Sans Arabic", Arial, "Apple Color Emoji","Segoe UI Emoji";
+}
+/* LIGHT THEME */
+:root[data-theme='light']{
+  --bg:#f5f7fb;
+  --card:#ffffff;
+  --text:#0b0f14;
+  --muted:#536175;
+}
+/* AMOLED true black */
+:root[data-theme='amoled']{
+  --bg:#000000;
+  --card:#0a0a0a;
+  --text:#e9eef6;
+  --muted:#a8b3c7;
 }
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
   margin:0;
   background:
-     radial-gradient(1200px 600px at 100% -10%, rgba(76,76,255,.12), transparent 60%),
-     radial-gradient(1200px 600px at -30% 110%, rgba(0, 255, 191,.10), transparent 60%),
+     radial-gradient(1200px 600px at 100% -10%, rgba(76,76,255,.10), transparent 60%),
+     radial-gradient(1200px 600px at -30% 110%, rgba(0, 255, 191,.08), transparent 60%),
      var(--bg);
   color:var(--text);
   font-family:var(--font);
   line-height:1.7;
+}
+:root[data-theme='light'] body,
+:root[data-theme='light']{
+  background:
+     radial-gradient(1200px 600px at 100% -10%, rgba(124,92,255,.08), transparent 60%),
+     radial-gradient(1200px 600px at -30% 110%, rgba(46,211,198,.08), transparent 60%),
+     var(--bg);
 }
 .container{max-width:1000px;margin:24px auto;padding:16px}
 .card{
@@ -42,6 +62,7 @@ body{
   box-shadow: var(--shadow);
   margin-top:16px;
 }
+:root[data-theme='light'] .card{border:1px solid rgba(10,10,10,.06)}
 h1{margin:0 0 8px 0;font-weight:800;letter-spacing:.2px}
 h2{margin:22px 0 10px 0;font-weight:800}
 h3{margin:14px 0 10px 0;font-weight:800}
@@ -56,14 +77,22 @@ input, select, button{
   border:1px solid rgba(255,255,255,.08);
   outline:none;
 }
+:root[data-theme='light'] input,
+:root[data-theme='light'] select,
+:root[data-theme='light'] button{
+  background:#f1f5f9;
+  border:1px solid rgba(0,0,0,.08);
+}
 button{
   cursor:pointer;
   border:none;
   background:linear-gradient(135deg, var(--accent), var(--accent-2));
+  color:#05171a;
   font-weight:800;
 }
 .muted{color:var(--muted)}
 .notice{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px;margin-top:10px}
+:root[data-theme='light'] .notice{background:#f8fafc;border:1px dashed rgba(0,0,0,.12)}
 .navbar{
   display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:8px
 }
@@ -77,14 +106,15 @@ button{
 .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 @media(max-width:900px){.kpis{grid-template-columns:repeat(2,1fr)}}
 .kpi{background:#0c0f14;border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:14px}
+:root[data-theme='light'] .kpi{background:#f1f5f9;border:1px solid rgba(0,0,0,.06)}
 .kpi .num{font-size:1.6rem;font-weight:900}
 .tag{padding:6px 10px;border-radius:12px;background:rgba(255,255,255,.08);font-weight:700}
-.fact{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px dashed rgba(255,255,255,.08)}
-.fact:last-child{border-bottom:0}
+:root[data-theme='light'] .tag{background:#eef2f7}
 footer{opacity:.7;padding:20px 6px}
 .panel{display:none;margin-top:10px}
 .row{display:flex;gap:10px;flex-wrap:wrap}
-.color-dot{width:18px;height:18px;border-radius:50%;border:2px solid rgba(255,255,255,.4);cursor:pointer}
+.theme-btn{padding:8px 12px;border-radius:12px;background:#0c0f14;border:1px solid rgba(255,255,255,.14);cursor:pointer}
+:root[data-theme='light'] .theme-btn{background:#f1f5f9;border:1px solid rgba(0,0,0,.12)}
 
 .bento{display:grid;grid-template-columns:1.2fr 1fr;gap:16px}
 @media(max-width:900px){.bento{grid-template-columns:1fr}}
@@ -97,7 +127,7 @@ footer{opacity:.7;padding:20px 6px}
 .birthday-banner{ 
   display:none; 
   background:linear-gradient(135deg, #ffd700, #ff69b4);
-  color:#2b1430;
+  color:#ffffff; /* white */
   border:0;
   text-align:center;
   padding:18px;
@@ -115,8 +145,8 @@ footer{opacity:.7;padding:20px 6px}
   <div class="navbar">
     <div class="badge">🎯 تفاصيل عمرك</div>
     <div class="row">
-      <a href="age-index.html"><button style="max-width:160px;background:#0c0f14;border:1px solid rgba(255,255,255,.15)">رجوع</button></a>
-      <button id="openCustomize" style="max-width:160px">الإعدادات</button>
+      <button id="openCustomize" style="max-width:140px">الإعدادات</button>
+      <a href="index.html"><button style="max-width:120px;background:#0c0f14;border:1px solid rgba(255,255,255,.15)">رجوع</button></a>
     </div>
   </div>
 
@@ -155,143 +185,63 @@ footer{opacity:.7;padding:20px 6px}
       <div class="fact"><div>نمت</div><div><b id="slept">—</b></div></div>
       <div class="fact"><div>أمضيت في تناول الطعام</div><div><b id="eaten">—</b></div></div>
       <div class="notice">
-        <b>توضيح:</b> يتم حساب الحقائق بناءً على المعدلات اليومية في الإعدادات، ثم ضربها بعدد أيام حياتك.
+        <b>توضيح:</b> تم استخدام معدلات تقريبية شائعة (بدون إعدادات): ٢٠ ألف نَفَس يوميًا، ٨٠ نبضة/دقيقة، ١٠ ضحكات/يوم، ٨ ساعات نوم/يوم، ٨٠ دقيقة طعام/يوم.
       </div>
     </div>
   </div>
 
   
 <div id="customizePanel" class="panel notice">
+  <h3>الخلفية</h3>
   <div class="row">
-    <div style="min-width:220px;flex:1">
-      <label>الاسم الظاهر</label>
-      <input id="displayName" />
-    </div>
-    <div style="min-width:220px;flex:1">
-      <label>اللون الرئيسي</label>
-      <div class="row" id="colorRow">
-        <div class="color-dot" data-color="#49c5b6" style="background:#49c5b6"></div>
-        <div class="color-dot" data-color="#7c5cff" style="background:#7c5cff"></div>
-        <div class="color-dot" data-color="#f97316" style="background:#f97316"></div>
-        <div class="color-dot" data-color="#22c55e" style="background:#22c55e"></div>
-        <div class="color-dot" data-color="#06b6d4" style="background:#06b6d4"></div>
-      </div>
-    </div>
+    <button class="theme-btn" data-theme="light">فاتح</button>
+    <button class="theme-btn" data-theme="dark">داكن</button>
+    <button class="theme-btn" data-theme="amoled">أسود خالص (AMOLED)</button>
   </div>
-  <hr/>
-  <h3>معدّلات الحقائق اليومية</h3>
-  <div class="kpis">
-    <div class="kpi">
-      <div>عدد الأنفاس في اليوم (تقريبي)</div>
-      <input id="breathsPerDay" type="number" value="20000" min="10000" max="40000">
-    </div>
-    <div class="kpi">
-      <div>نبضات القلب في الدقيقة (متوسط الراحة)</div>
-      <input id="bpm" type="number" value="80" min="40" max="120">
-    </div>
-    <div class="kpi">
-      <div>عدد الضحكات يوميًا</div>
-      <input id="laughsPerDay" type="number" value="10" min="0" max="100">
-    </div>
-    <div class="kpi">
-      <div>ساعات النوم يوميًا</div>
-      <input id="sleepHours" type="number" value="8" min="3" max="12" step="0.5">
-    </div>
-    <div class="kpi">
-      <div>وقت تناول الطعام يوميًا (دقيقة)</div>
-      <input id="eatMinutes" type="number" value="80" min="10" max="300">
-    </div>
-  </div>
-  <div class="row" style="margin-top:12px">
-    <button id="savePrefs" style="max-width:200px">حفظ التخصيص</button>
-    <span class="muted">يتم الحفظ محليًا في المتصفح – يبقى حتى لو رجعت لاحقًا.</span>
-  </div>
+  <div class="muted" style="margin-top:8px">الخلفية لا تغيّر ألوان الأزرار.</div>
 </div>
 
 
   <div class="card notice" id="noData" style="display:none">
-    لم يتم إدخال تاريخ ميلاد بعد. <a href="age-index.html">اذهب لصفحة الإدخال</a>.
+    لم يتم إدخال تاريخ ميلاد بعد. <a href="index.html">اذهب لصفحة الإدخال</a>.
   </div>
 
   <footer class="container">
-    صُنِع لـ <b id="footerName">عبدالمجيد الثويني</b> · يعمل دون إنترنت · © <span id="yearNow"></span>
+    صُنِع لـ <b>عبدالمجيد الثويني</b> · يعمل دون إنترنت · © <span id="yearNow"></span>
   </footer>
 </div>
 
 <script>
-
-// ===== Shared helpers (settings + calendars) =====
 const $ = (id)=>document.getElementById(id);
 const fmt = (n)=> Number.isFinite(n) ? n.toLocaleString('ar-SA') : '—';
 
-function setName(name){
-  const appName = document.getElementById('appName');
-  const footerName = document.getElementById('footerName');
-  if(appName) appName.textContent = name || '—';
-  if(footerName) footerName.textContent = name || '—';
+function setTheme(t){
+  if(!t) t='dark';
+  const root = document.documentElement;
+  if(t==='light') root.setAttribute('data-theme','light');
+  else if(t==='amoled') root.setAttribute('data-theme','amoled');
+  else { root.setAttribute('data-theme','dark'); }
+  localStorage.setItem('ageTheme', t);
 }
-
-const prefsKey = 'ageCalcPrefsV2';
-function savePrefs(){
-  const p = {
-    name: $('displayName').value.trim(),
-    accent: getComputedStyle(document.documentElement).getPropertyValue('--accent').trim(),
-    breathsPerDay: +$('breathsPerDay').value,
-    bpm: +$('bpm').value,
-    laughsPerDay: +$('laughsPerDay').value,
-    sleepHours: +$('sleepHours').value,
-    eatMinutes: +$('eatMinutes').value
-  };
-  localStorage.setItem(prefsKey, JSON.stringify(p));
-  setName(p.name);
-  alert('تم حفظ التخصيص ✅');
+function loadTheme(){
+  const t = localStorage.getItem('ageTheme') || 'dark';
+  setTheme(t);
 }
-function loadPrefs(){
-  const txt = localStorage.getItem(prefsKey);
-  // defaults
-  let p = {
-    name: 'عبدالمجيد الثويني',
-    accent: '#49c5b6',
-    breathsPerDay: 20000,
-    bpm: 80,
-    laughsPerDay: 10,
-    sleepHours: 8,
-    eatMinutes: 80
-  };
-  if(txt){
-    try{ p = Object.assign(p, JSON.parse(txt)); }catch(e){}
-  }
-  $('displayName').value = p.name;
-  document.documentElement.style.setProperty('--accent', p.accent);
-  document.documentElement.style.setProperty('--accent-2', p.accent);
-  $('breathsPerDay').value = p.breathsPerDay;
-  $('bpm').value = p.bpm;
-  $('laughsPerDay').value = p.laughsPerDay;
-  $('sleepHours').value = p.sleepHours;
-  $('eatMinutes').value = p.eatMinutes;
-  setName(p.name);
-}
-function attachColorPickers(){
-  document.querySelectorAll('.color-dot').forEach(d=>{
-    d.addEventListener('click', ()=>{
-      const c = d.getAttribute('data-color');
-      document.documentElement.style.setProperty('--accent', c);
-      document.documentElement.style.setProperty('--accent-2', c);
-    });
+function setupThemeButtons(){
+  document.querySelectorAll('.theme-btn').forEach(b=>{
+    b.addEventListener('click', ()=> setTheme(b.getAttribute('data-theme')) );
   });
 }
 function setupSettings(){
   const btn = document.getElementById('openCustomize');
   const p = document.getElementById('customizePanel');
-  if(!btn || !p) return;
-  btn.onclick = ()=>{ p.style.display = (p.style.display === 'block') ? 'none' : 'block'; };
-  const saveBtn = document.getElementById('savePrefs');
-  if(saveBtn) saveBtn.onclick = savePrefs;
-  attachColorPickers();
-  loadPrefs();
+  if(btn && p){
+    btn.onclick = ()=>{ p.style.display = (p.style.display === 'block') ? 'none' : 'block'; };
+  }
+  setupThemeButtons();
+  loadTheme();
 }
-
-// Calendars & date math
+// Calendars
 function gregToJDN(y,m,d){
   if(m <= 2){ y -= 1; m += 12; }
   const A = Math.floor(y/100);
@@ -344,7 +294,6 @@ function lifeStage(years){
 }
 
 
-// Confetti (pure JS, no libraries)
 function launchConfetti(){
   for(let i=0;i<120;i++){
     const c = document.createElement('div');
@@ -428,13 +377,11 @@ function calcAndRender(){
   $('hijriInfo').innerHTML = `تاريخ الميلاد: <b>${birthH.day}-${birthH.month}-${birthH.year} هـ</b><br>
   العمر: <b>${fmt(hYears)}</b> سنة و <b>${fmt(hMonths)}</b> شهر و <b>${fmt(hDays)}</b> يوم (حساب تقريبي)`;
 
-  // Facts using prefs
-  const p = JSON.parse(localStorage.getItem('ageCalcPrefsV2') || '{}');
-  const breathsPerDay = p.breathsPerDay || 20000;
-  const bpm = p.bpm || 80;
-  const laughsPerDay = p.laughsPerDay || 10;
-  const sleepHours = p.sleepHours || 8;
-  const eatMinutes = p.eatMinutes || 80;
+  const breathsPerDay = 20000;
+  const bpm = 80;
+  const laughsPerDay = 10;
+  const sleepHours = 8;
+  const eatMinutes = 80;
 
   $('breaths').textContent = fmt(breathsPerDay * days);
   $('heartbeats').textContent = fmt(Math.round(bpm*60*24 * days));
@@ -445,10 +392,8 @@ function calcAndRender(){
   $('slept').textContent = `${fmt(s.y)} سنة و ${fmt(s.mo)} شهر و ${fmt(s.d)} يوم`;
   $('eaten').textContent = `${fmt(e.y)} سنة و ${fmt(e.mo)} شهر و ${fmt(e.d)} يوم`;
 
-  // Show content
   $('contentArea').style.display='grid';
 
-  // Birthday design if today is same day & month
   if(now.getDate()===gD && (now.getMonth()+1)===gM){
     document.body.classList.add('birthday');
     launchConfetti();
