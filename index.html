@@ -14,7 +14,7 @@
   --card:#151a22;
   --text:#e9eef6;
   --muted:#a8b3c7;
-  --accent:#2ed3c6; /* fixed accent */
+  --accent:#2ed3c6; /* default accent (buttons) */
   --accent-2:#2ed3c6;
   --radius:14px;
   --shadow: 0 10px 30px rgba(0,0,0,.25);
@@ -96,6 +96,7 @@ button{
 .navbar{
   display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:8px
 }
+.navbar .row{display:flex;gap:10px;flex-wrap:nowrap}
 .badge{
   display:inline-flex;gap:8px;align-items:center;
   padding:6px 10px;border-radius:999px;
@@ -113,8 +114,15 @@ button{
 footer{opacity:.7;padding:20px 6px}
 .panel{display:none;margin-top:10px}
 .row{display:flex;gap:10px;flex-wrap:wrap}
-.theme-btn{padding:8px 12px;border-radius:12px;background:#0c0f14;border:1px solid rgba(255,255,255,.14);cursor:pointer}
-:root[data-theme='light'] .theme-btn{background:#f1f5f9;border:1px solid rgba(0,0,0,.12)}
+.theme-btn{
+  padding:12px 14px;border-radius:12px;background:#0c0f14;border:1px solid rgba(255,255,255,.14);
+  cursor:pointer;color:var(--text)!important;min-width:140px;text-align:center;position:relative;
+}
+:root[data-theme='light'] .theme-btn{background:#f1f5f9;border:1px solid rgba(0,0,0,.12);color:#0b0f14!important}
+.theme-btn.selected{outline:3px solid var(--accent); outline-offset:3px; border-color:var(--accent)}
+.color-dot{width:22px;height:22px;border-radius:50%;border:2px solid rgba(255,255,255,.5);cursor:pointer}
+:root[data-theme='light'] .color-dot{border-color:rgba(0,0,0,.35)}
+.small-btn{min-width:56px}
 
 .inputs{grid-template-columns:repeat(4,1fr)}
 @media(max-width:800px){.inputs{grid-template-columns:1fr}}
@@ -163,11 +171,21 @@ footer{opacity:.7;padding:20px 6px}
 <div id="customizePanel" class="panel notice">
   <h3>الخلفية</h3>
   <div class="row">
-    <button class="theme-btn" data-theme="light">فاتح</button>
-    <button class="theme-btn" data-theme="dark">داكن</button>
-    <button class="theme-btn" data-theme="amoled">أسود خالص (AMOLED)</button>
+    <div class="theme-btn" data-theme="light">فاتح</div>
+    <div class="theme-btn" data-theme="dark">داكن</div>
+    <div class="theme-btn" data-theme="amoled">أسود خالص (AMOLED)</div>
   </div>
-  <div class="muted" style="margin-top:8px">الخلفية لا تغيّر ألوان الأزرار.</div>
+  <hr/>
+  <h3>لون الأزرار</h3>
+  <div class="row" id="accentRow">
+    <div class="color-dot" data-accent="#2ed3c6" style="background:#2ed3c6"></div>
+    <div class="color-dot" data-accent="#7c5cff" style="background:#7c5cff"></div>
+    <div class="color-dot" data-accent="#f97316" style="background:#f97316"></div>
+    <div class="color-dot" data-accent="#22c55e" style="background:#22c55e"></div>
+    <div class="color-dot" data-accent="#06b6d4" style="background:#06b6d4"></div>
+    <div class="color-dot" data-accent="#ef4444" style="background:#ef4444"></div>
+  </div>
+  <div class="muted" style="margin-top:8px">الخلفية لا تغيّر ألوان الأزرار — اختر اللون هنا.</div>
 </div>
 
 
@@ -180,31 +198,39 @@ footer{opacity:.7;padding:20px 6px}
 const $ = (id)=>document.getElementById(id);
 const fmt = (n)=> Number.isFinite(n) ? n.toLocaleString('ar-SA') : '—';
 
+function markSelectedTheme(t){
+  document.querySelectorAll('.theme-btn').forEach(b=>{
+    if(b.getAttribute('data-theme')===t) b.classList.add('selected');
+    else b.classList.remove('selected');
+  });
+}
 function setTheme(t){
   if(!t) t='dark';
   const root = document.documentElement;
   if(t==='light') root.setAttribute('data-theme','light');
   else if(t==='amoled') root.setAttribute('data-theme','amoled');
-  else { root.setAttribute('data-theme','dark'); }
+  else { root.setAttribute('data-theme','dark'); t='dark'; }
   localStorage.setItem('ageTheme', t);
+  markSelectedTheme(t);
 }
-function loadTheme(){
+function setAccent(c){
+  document.documentElement.style.setProperty('--accent', c);
+  document.documentElement.style.setProperty('--accent-2', c);
+  localStorage.setItem('ageAccent', c);
+}
+function loadPrefs(){
   const t = localStorage.getItem('ageTheme') || 'dark';
+  const c = localStorage.getItem('ageAccent') || '#2ed3c6';
+  setAccent(c);
   setTheme(t);
-}
-function setupThemeButtons(){
-  document.querySelectorAll('.theme-btn').forEach(b=>{
-    b.addEventListener('click', ()=> setTheme(b.getAttribute('data-theme')) );
-  });
 }
 function setupSettings(){
   const btn = document.getElementById('openCustomize');
   const p = document.getElementById('customizePanel');
-  if(btn && p){
-    btn.onclick = ()=>{ p.style.display = (p.style.display === 'block') ? 'none' : 'block'; };
-  }
-  setupThemeButtons();
-  loadTheme();
+  if(btn && p){ btn.onclick = ()=>{ p.style.display = (p.style.display === 'block') ? 'none' : 'block'; }; }
+  document.querySelectorAll('.theme-btn').forEach(b=> b.addEventListener('click', ()=> setTheme(b.getAttribute('data-theme')) ));
+  document.querySelectorAll('.color-dot').forEach(d=> d.addEventListener('click', ()=> setAccent(d.getAttribute('data-accent')) ));
+  loadPrefs();
 }
 // Calendars
 function gregToJDN(y,m,d){
