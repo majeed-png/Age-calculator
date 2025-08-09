@@ -134,8 +134,7 @@ footer{opacity:.7;padding:20px 6px}
 .count-box{min-width:110px;text-align:center;background:#0c0f14;border:1px solid rgba(255,255,255,.08);padding:10px 12px;border-radius:12px}
 :root[data-theme='light'] .count-box{background:#e9edf4;border:1px solid rgba(0,0,0,.08)}
 .count-num{font-weight:900;font-size:1.5rem}
-.fact-line{margin:14px 0}
-.ver{opacity:.6;font-weight:700}
+.fact-line{margin:10px 0}
 
 .bento{display:grid;grid-template-columns:1.2fr 1fr;gap:16px}
 @media(max-width:1100px){.bento{grid-template-columns:1fr}}
@@ -147,7 +146,6 @@ footer{opacity:.7;padding:20px 6px}
 .birthday .birthday-banner{ display:block; }
 :root[data-theme='light'] .birthday-banner{ color:#0b0f14 !important; text-shadow:none !important; }
 .copy-toast{position:fixed;bottom:22px;right:22px;background:var(--card);border:1px solid rgba(255,255,255,.14);padding:10px 14px;border-radius:12px;display:none}
-.fact-line{margin:14px 0}
 </style>
 </head>
 <body dir="rtl" lang="ar">
@@ -258,12 +256,11 @@ footer{opacity:.7;padding:20px 6px}
   </div>
 
   <footer class="container">
-    صُنِع لـ <b>عبدالمجيد الثويني</b> · <span class="ver">v9.7</span> · يعمل دون إنترنت · © <span id="yearNow"></span>
+    صُنِع لـ <b>عبدالمجيد الثويني</b> · يعمل دون إنترنت · © <span id="yearNow"></span>
   </footer>
 </div>
 
 <script>
-const VERSION = 'v9.7';
 const $ = (id)=>document.getElementById(id);
 const fmt = (n, lang='ar')=> Number.isFinite(n) ? n.toLocaleString(lang==='ar'?'ar-SA':'en') : '—';
 const QR_DATA_URL = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHwAAAB8AQAAAACDZekTAAABA0lEQVR4nK2VsW3FQAxDn4z01AZ//7G8ATUBU9hN/k/hCFF1R0CETkdRFX7EHLzFA2Cqiu6heqrqSconkHiGF4LEO44pFLtPM/Us5Vdgqk/qTynvwAiQthw4cSLfRy84yg2+Lw0bDpIkEKEkWXHYdqJYxNGOg8iRkIlW/cABGUPAy37IUoTlZPuW4CALE63qOFTRBAjAal4IMUTRvg7UisYNKrTTOtiXPrys4xKWJRLCUh8OBuOILOsAJTeJ9vq4hGbYzdwhIhfgjmflyRhILrl79y9fhKFIjzVktV+YYiROqHavPVkn3ekwy/0CTDO0mtfsfV3CoLV/ABbCWDud1j/s/W+JBsl7A5OQ/gAAAABJRU5ErkJggg==';
@@ -329,12 +326,6 @@ const TZ_LIST = [
  {v:'Asia/Tokyo', ar:'طوكيو (اليابان)', en:'Tokyo (JP)'},
  {v:'Asia/Istanbul', ar:'إسطنبول (تركيا)', en:'Istanbul (TR)'}
 ];
-
-function tzLabel(tz, lang){
-  const e = TZ_LIST.find(x=>x.v===tz);
-  if(e) return lang==='ar'?e.ar:e.en;
-  return tz.replaceAll('_',' ').replace('/',' – ');
-}
 
 function populateTZSelect(){
   const sel = document.getElementById('tzSelect'); if(!sel) return;
@@ -428,22 +419,22 @@ function shareImageSquare(data, lang){
   ctx.globalAlpha=0.25; ctx.fillStyle='#fff'; ctx.beginPath(); ctx.arc(160,160,130,0,Math.PI*2); ctx.fill(); ctx.beginPath(); ctx.arc(S-140,S-140,160,0,Math.PI*2); ctx.fill(); ctx.globalAlpha=1;
   roundedRect(ctx,40,40,S-80,S-80,30); ctx.fillStyle='rgba(255,255,255,0.10)'; ctx.fill(); ctx.strokeStyle='rgba(255,255,255,0.35)'; ctx.lineWidth=2; ctx.stroke();
   const dict=I18N[lang]; const name=(lang==='ar')?NAME_AR:NAME_EN;
-  ctx.fillStyle='#fff'; ctx.textAlign='center'; ctx.font='900 56px Tajawal, sans-serif'; ctx.fillText(lang==='ar'?'تفاصيل عمرك':'Your Age Details', S/2, 118);
+  ctx.fillStyle='#fff'; ctx.textAlign='center'; ctx.font='900 58px Tajawal, sans-serif'; ctx.fillText(lang==='ar'?'تفاصيل عمرك':'Your Age Details', S/2, 120);
   ctx.font='700 30px Tajawal, sans-serif'; ctx.fillText(name, S/2, 160);
-  ctx.font='900 120px Tajawal, sans-serif'; ctx.fillText(fmt(data.years,lang), S/2, 252);
-  ctx.font='700 28px Tajawal, sans-serif'; ctx.fillText(lang==='ar'?'سنة':'years', S/2, 292);
+  ctx.font='900 120px Tajawal, sans-serif'; ctx.fillText(fmt(data.years,lang), S/2, 250);
+  ctx.font='700 30px Tajawal, sans-serif'; ctx.fillText(lang==='ar'?'سنة':'years', S/2, 292);
   const labels=(lang==='ar'?['أشهر','أسابيع','أيام','ساعات']:['Months','Weeks','Days','Hours']); const values=[fmt(data.months,lang), fmt(data.weeks,lang), fmt(data.days,lang), fmt(data.hours,lang)];
-  for(let i=0;i<4;i++){ const x=80+i*((S-160)/4); const y=320; const w=(S-200)/4; const h=118; roundedRect(ctx,x,y,w,h,20); ctx.fillStyle='rgba(255,255,255,0.16)'; ctx.fill(); ctx.strokeStyle='rgba(255,255,255,0.35)'; ctx.lineWidth=2; ctx.stroke(); ctx.fillStyle='#fff'; ctx.font='700 24px Tajawal, sans-serif'; ctx.textAlign='center'; ctx.fillText(labels[i], x+w/2, y+42); ctx.font='900 38px Tajawal, sans-serif'; ctx.fillText(values[i], x+w/2, y+90); }
-  ctx.textAlign='center'; ctx.fillStyle='#fff'; ctx.font='700 28px Tajawal, sans-serif'; ctx.fillText((lang==='ar'?'القادم: ':'Next: ')+data.nextStr, S/2, 520);
-  // facts with larger spacing
+  for(let i=0;i<4;i++){ const x=80+i*((S-160)/4); const y=320; const w=(S-200)/4; const h=120; roundedRect(ctx,x,y,w,h,20); ctx.fillStyle='rgba(255,255,255,0.16)'; ctx.fill(); ctx.strokeStyle='rgba(255,255,255,0.35)'; ctx.lineWidth=2; ctx.stroke(); ctx.fillStyle='#fff'; ctx.font='700 26px Tajawal, sans-serif'; ctx.textAlign='center'; ctx.fillText(labels[i], x+w/2, y+42); ctx.font='900 40px Tajawal, sans-serif'; ctx.fillText(values[i], x+w/2, y+90); }
+  ctx.textAlign='center'; ctx.fillStyle='#fff'; ctx.font='700 30px Tajawal, sans-serif'; ctx.fillText((lang==='ar'?'القادم: ':'Next: ')+data.nextStr, S/2, 520);
+  // facts with spacing
   const factsL=[dict.breaths,dict.heartbeats,dict.laughs,dict.slept,dict.eaten];
   const factsV=[fmt(data.breaths,lang)+' '+(lang==='ar'?dict.times_word:dict.times_word),
                 fmt(data.heartbeats,lang)+' '+(lang==='ar'?dict.beats_word:dict.beats_word),
                 fmt(data.laughs,lang)+' '+(lang==='ar'?dict.times_word:dict.times_word),
                 data.sleepStr,
                 data.eatStr];
-  const startY=580; const rowH=115;
-  for(let i=0;i<5;i++){ const y=startY+i*rowH; if(y > S-105) break; const pad=85; roundedRect(ctx, pad, y-52, S-2*pad, 96, 18); ctx.fillStyle='rgba(255,255,255,0.14)'; ctx.fill(); ctx.strokeStyle='rgba(255,255,255,0.28)'; ctx.stroke(); ctx.fillStyle='#fff'; ctx.textAlign='center'; ctx.font='700 24px Tajawal, sans-serif'; ctx.fillText(factsL[i]+' '+factsV[i], S/2, y); }
+  const startY=570; const rowH=95;
+  for(let i=0;i<5;i++){ const y=startY+i*rowH; if(y > S-90) break; const pad=70; roundedRect(ctx, pad, y-46, S-2*pad, 82, 18); ctx.fillStyle='rgba(255,255,255,0.14)'; ctx.fill(); ctx.strokeStyle='rgba(255,255,255,0.28)'; ctx.stroke(); ctx.fillStyle='#fff'; ctx.textAlign='center'; ctx.font='700 24px Tajawal, sans-serif'; ctx.fillText(factsL[i]+' '+factsV[i], S/2, y); }
   drawQR(ctx, S-170, S-170, 110);
   const u=c.toDataURL('image/png'); const a=document.createElement('a'); a.href=u; a.download='age-square.png'; document.body.appendChild(a); a.click(); a.remove();
 }
@@ -546,19 +537,16 @@ function calcAndRender(){
   const nextStr = `${nextBDayName} ${nextTarget.getDate()}-${nextTarget.getMonth()+1}-${nextTarget.getFullYear()}`;
   startCountdown(nextTarget, tz, lang);
 
-  // TZ label localized
-  const tzText = tzLabel(tz, lang);
-
   // Gregorian info
   document.getElementById('gregInfo').innerHTML = (lang==='ar'
     ? `تاريخ الميلاد: <b>${gD}-${gM}-${gY}</b><br>
        العمر: <b>${fmt(years,lang)}</b> سنة و <b>${fmt(months%12,lang)}</b> شهر و <b>${fmt((days%30),lang)}</b> يوم<br>
        باقي لعيد ميلادك القادم: <b>${fmt(rDays,lang)}</b> يوم و <b>${fmt(rHours,lang)}</b> ساعة<br>
-       سيكون عيد ميلادك يوم <b>${nextBDayName}</b> الموافق <b>${nextTarget.getDate()}-${nextTarget.getMonth()+1}-${nextTarget.getFullYear()}</b> (المنطقة الزمنية: ${tzText})`
+       سيكون عيد ميلادك يوم <b>${nextBDayName}</b> الموافق <b>${nextTarget.getDate()}-${nextTarget.getMonth()+1}-${nextTarget.getFullYear()}</b> (المنطقة الزمنية: ${tz})`
     : `Birthdate: <b>${gD}-${gM}-${gY}</b><br>
        Age: <b>${fmt(years,lang)}</b> years, <b>${fmt(months%12,lang)}</b> months, <b>${fmt((days%30),lang)}</b> days<br>
        Until next birthday: <b>${fmt(rDays,lang)}</b> days and <b>${fmt(rHours,lang)}</b> hours<br>
-       Next birthday on <b>${nextBDayName}</b> <b>${nextTarget.getDate()}-${nextTarget.getMonth()+1}-${nextTarget.getFullYear()}</b> (Time Zone: ${tzText})`);
+       Next birthday on <b>${nextBDayName}</b> <b>${nextTarget.getDate()}-${nextTarget.getMonth()+1}-${nextTarget.getFullYear()}</b> (TZ: ${tz})`);
 
   // Facts
   const breathsPerDay = 20000, bpm = 80, laughsPerDay = 10, sleepHours = 8, eatMinutes = 80;
@@ -583,32 +571,30 @@ function calcAndRender(){
     document.getElementById('eatenLine').textContent = `You ate ${fmt(e.y,'en')} years, ${fmt(e.mo,'en')} months, and ${fmt(e.d,'en')} days`;
   }
 
-  // Share actions — pick current lang at click time
+  // Share actions (respect selected type)
   document.getElementById('shareBtn').onclick = ()=>{
-    const L = getLang();
     const yearsS = useHijri ? hy : years;
     const monthsS = useHijri ? (hy*12 + hm) : months;
     shareImagePortrait({
       years: yearsS, months: monthsS, weeks, days, hours, nextStr,
       breaths, heartbeats, laughs,
-      sleepStr: (L==='ar'?`${fmt(s.y,'ar')} سنة ${fmt(s.mo,'ar')} شهر ${fmt(s.d,'ar')} يوم`
-                           :`${fmt(s.y,'en')} years, ${fmt(s.mo,'en')} months, and ${fmt(s.d,'en')} days`),
-      eatStr: (L==='ar'?`${fmt(e.y,'ar')} سنة ${fmt(e.mo,'ar')} شهر ${fmt(e.d,'ar')} يوم`
-                         :`${fmt(e.y,'en')} years, ${fmt(e.mo,'en')} months, and ${fmt(e.d,'en')} days`)
-    }, L);
+      sleepStr: (lang==='ar'?`${fmt(s.y,'ar')} سنة ${fmt(s.mo,'ar')} شهر ${fmt(s.d,'ar')} يوم`
+                            :`${fmt(s.y,'en')} years, ${fmt(s.mo,'en')} months, and ${fmt(s.d,'en')} days`),
+      eatStr: (lang==='ar'?`${fmt(e.y,'ar')} سنة ${fmt(e.mo,'ar')} شهر ${fmt(e.d,'ar')} يوم`
+                          :`${fmt(e.y,'en')} years, ${fmt(e.mo,'en')} months, and ${fmt(e.d,'en')} days`)
+    }, lang);
   };
   document.getElementById('shareSquareBtn').onclick = ()=>{
-    const L = getLang();
     const yearsS2 = useHijri ? hy : years;
     const monthsS2 = useHijri ? (hy*12 + hm) : months;
     shareImageSquare({
       years: yearsS2, months: monthsS2, weeks, days, hours, nextStr,
       breaths, heartbeats, laughs,
-      sleepStr: (L==='ar'?`${fmt(s.y,'ar')} سنة ${fmt(s.mo,'ar')} شهر ${fmt(s.d,'ar')} يوم`
-                           :`${fmt(s.y,'en')} years, ${fmt(s.mo,'en')} months, and ${fmt(s.d,'en')} days`),
-      eatStr: (L==='ar'?`${fmt(e.y,'ar')} سنة ${fmt(e.mo,'ar')} شهر ${fmt(e.d,'ar')} يوم`
-                         :`${fmt(e.y,'en')} years, ${fmt(e.mo,'en')} months, and ${fmt(e.d,'en')} days`)
-    }, L);
+      sleepStr: (lang==='ar'?`${fmt(s.y,'ar')} سنة ${fmt(s.mo,'ar')} شهر ${fmt(s.d,'ar')} يوم`
+                            :`${fmt(s.y,'en')} years, ${fmt(s.mo,'en')} months, and ${fmt(s.d,'en')} days`),
+      eatStr: (lang==='ar'?`${fmt(e.y,'ar')} سنة ${fmt(e.mo,'ar')} شهر ${fmt(e.d,'ar')} يوم`
+                          :`${fmt(e.y,'en')} years, ${fmt(e.mo,'en')} months, and ${fmt(e.d,'en')} days`)
+    }, lang);
   };
   document.getElementById('copyLinkBtn').onclick = ()=>{ copyText(buildShareLink(b)); };
 
