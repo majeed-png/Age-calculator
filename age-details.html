@@ -631,17 +631,29 @@ function calcAndRender(){
   const s = toYMD((sleepHours/24) * days);
   const e = toYMD((eatMinutes/60/24) * days);
 
-  // Healthy sleep tag (fixed range) + banner (approximate rate)
+  // Healthy sleep tag — age‑based range (NSF-like bands)
+  function sleepRangeByAge(ageY){
+    if(ageY < 0.25) return [14,17];      // 0–3 mo
+    if(ageY < 1)    return [12,15];      // 4–11 mo
+    if(ageY < 3)    return [11,14];      // 1–2 y
+    if(ageY < 6)    return [10,13];      // 3–5 y
+    if(ageY < 14)   return [9,11];       // 6–13 y
+    if(ageY < 18)   return [8,10];       // 14–17 y
+    if(ageY < 65)   return [7,9];        // 18–64 y
+    return [7,8];                        // 65+
+  }
   const sleepTag = document.getElementById('sleepTag');
   const sleepBanner = document.getElementById('sleepBanner');
+  const [srMin, srMax] = sleepRangeByAge(years);
   if(lang==='ar'){
-    sleepTag.textContent = 'نومك الصحي: من 7 إلى 9 ساعات يوميًا';
-    sleepBanner.textContent = 'معدل تقريبي ثابت: ٨ ساعات/يوم.';
+    sleepTag.textContent = 'نومك الصحي: من ' + fmt(srMin,'ar') + ' إلى ' + fmt(srMax,'ar') + ' ساعات';
+    sleepBanner.textContent = 'قيمة تقديرية مبنية على العمر (إرشادات عامة).';
   }else{
-    sleepTag.textContent = 'Healthy sleep: 7–9 hours/day';
-    sleepBanner.textContent = 'Approximate fixed rate: 8 hours/day.';
+    sleepTag.textContent = 'Healthy sleep: from ' + fmt(srMin,'en') + ' to ' + fmt(srMax,'en') + ' hours';
+    sleepBanner.textContent = 'Approximate age-based range (general guidelines).';
   }
   sleepBanner.style.display='block';
+
 
 
   if(lang==='ar') {
