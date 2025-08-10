@@ -4,8 +4,8 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>حاسبة العمر – تفاصيل عمرك | عبدالمجيد الثويني</title>
-<meta name="description" content="تفاصيل دقيقة لعُمرك بالعربي: سنوات وشهور وأسابيع وأيام وساعات، مع معلومات اليوم والفصل ووقت عيد ميلادك القادم وحقائق ممتعة.">
-<meta name="keywords" content="تفاصيل العمر, عمر بالاشهر, عمر بالايام, حساب العمر بالهجري, حساب العمر بالميلادي, متى عيد ميلادي, كم باقي على عيد ميلادي, احسب عمري, حاسبة العمر, أم القرى">
+<meta name="description" content="تفاصيل دقيقة لعُمرك بالعربي: سنوات وشهور وأسابيع وأيام وساعات، مع معلومات اليوم والفصل ووقت يوم ميلادك القادم وحقائق ممتعة.">
+<meta name="keywords" content="تفاصيل العمر, عمر بالاشهر, عمر بالايام, حساب العمر بالهجري, حساب العمر بالميلادي, متى يوم ميلادي, كم باقي على يوم ميلادي, احسب عمري, حاسبة العمر, أم القرى">
 <meta property="og:title" content="تفاصيل عمرك">
 <meta property="og:description" content="تفاصيل دقيقة لعُمرك بالعربي + حقائق ممتعة.">
 <style>
@@ -229,7 +229,7 @@ footer{opacity:.7;padding:20px 6px}
       </div>
 
       <div class="notice" style="margin-top:12px">
-        <b data-i18n="countdown_title">العد التنازلي لعيد ميلادك القادم</b>
+        <b data-i18n="countdown_title">العد التنازلي ليوم ميلادك القادم</b>
         <div id="countdown" class="countdown" style="margin-top:8px">
           <div class="count-box"><div class="count-num" id="cdDays">—</div><div class="muted" data-i18n="cd_days">أيام</div></div>
           <div class="count-box"><div class="count-num" id="cdHours">—</div><div class="muted" data-i18n="cd_hours">ساعات</div></div>
@@ -432,7 +432,7 @@ function shareImagePortrait(data, lang){
   ctx.font='700 32px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.fillText(lang==='ar'?'سنة':'years', W/2, 370);
   const labels=(lang==='ar'?['أشهر','أسابيع','أيام','ساعات']:['Months','Weeks','Days','Hours']); const values=[fmt(data.months,lang), fmt(data.weeks,lang), fmt(data.days,lang), fmt(data.hours,lang)];
   for(let i=0;i<4;i++){ const x=100+i*((W-200)/4); const y=440; const w=(W-240)/4; const h=150; roundedRect(ctx,x,y,w,h,24); ctx.fillStyle='rgba(255,255,255,0.16)'; ctx.fill(); ctx.strokeStyle='rgba(255,255,255,0.35)'; ctx.lineWidth=2; ctx.stroke(); ctx.fillStyle='#fff'; ctx.font='700 28px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.textAlign='center'; ctx.fillText(labels[i], x+w/2, y+48); ctx.font='900 46px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.fillText(values[i], x+w/2, y+105); }
-  ctx.textAlign='center'; ctx.fillStyle='#fff'; ctx.font='670 34px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.fillText((lang==='ar'?'عيد ميلادك القادم: ':'Next birthday: ')+data.nextStr, W/2, 670);
+  ctx.textAlign='center'; ctx.fillStyle='#fff'; ctx.font='670 34px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.fillText((lang==='ar'?'يوم ميلادك القادم: ':'Next birthday: ')+data.nextStr, W/2, 670);
   const factsL=[dict.breaths,dict.heartbeats,dict.laughs,dict.slept,dict.eaten]; 
   const factsV=[fmt(data.breaths,lang)+' '+(lang==='ar'?dict.times_word:dict.times_word),
                 fmt(data.heartbeats,lang)+' '+(lang==='ar'?dict.beats_word:dict.beats_word),
@@ -459,7 +459,7 @@ function shareImageSquare(data, lang){
   for(let i=0;i<4;i++){ const x=80+i*((S-160)/4); const y=320; const w=(S-200)/4; const h=118; roundedRect(ctx,x,y,w,h,20); ctx.fillStyle='rgba(255,255,255,0.16)'; ctx.fill(); ctx.strokeStyle='rgba(255,255,255,0.35)'; ctx.lineWidth=2; ctx.stroke(); ctx.fillStyle='#fff'; ctx.font='700 24px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.textAlign='center'; ctx.fillText(labels[i], x+w/2, y+42); ctx.font='900 38px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.fillText(values[i], x+w/2, y+90); }
   ctx.textAlign='center'; ctx.fillStyle='#fff'; ctx.font='700 28px ' + (lang==='ar'?FONT_AR:FONT_EN); 
   // raise "next" line
-  ctx.fillText((lang==='ar'?'عيد ميلادك القادم: ':'Next: ')+data.nextStr, S/2, 500);
+  ctx.fillText((lang==='ar'?'يوم ميلادك القادم: ':'Next: ')+data.nextStr, S/2, 500);
   // facts with larger spacing
   const factsL=[dict.breaths,dict.heartbeats,dict.laughs,dict.slept,dict.eaten];
   const factsV=[fmt(data.breaths,lang)+' '+(lang==='ar'?dict.times_word:dict.times_word),
