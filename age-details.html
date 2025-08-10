@@ -14,8 +14,8 @@
   --card:#151a22;
   --text:#e9eef6;
   --muted:#a8b3c7;
-  --accent:#6d62ff;
-  --accent-2:#6d62ff;
+  --accent:#ef4444;
+  --accent-2:#ef4444;
   --radius:14px;
   --shadow: 0 10px 30px rgba(0,0,0,.25);
   --font: "Tajawal", system-ui, -apple-system, "Segoe UI", Roboto, "Noto Kufi Arabic", "Noto Sans Arabic", Arial, "Apple Color Emoji","Segoe UI Emoji";
@@ -66,7 +66,8 @@ h2{margin:22px 0 10px 0;font-weight:800}
 h3{margin:14px 0 10px 0;font-weight:800}
 a{color:var(--accent)}
 label{display:block;font-weight:700;margin-bottom:6px}
-input, select, button{
+
+input, select{
   width:100%;
   border-radius:12px;
   padding:12px 14px;
@@ -78,8 +79,7 @@ input, select, button{
   transition: box-shadow .2s, border-color .2s;
 }
 :root[data-theme='light'] input,
-:root[data-theme='light'] select,
-:root[data-theme='light'] button{
+:root[data-theme='light'] select{
   background:#e9edf4;
   border:1px solid rgba(0,0,0,.10);
   color:#0b0f14;
@@ -88,13 +88,31 @@ input:focus, select:focus{
   box-shadow:0 0 0 3px color-mix(in oklab, var(--accent) 38%, transparent);
   border-color: var(--accent);
 }
+
+/* Accent buttons stay accent in all themes */
 button{
   cursor:pointer;
   border:none;
+  border-radius:12px;
+  padding:12px 14px;
+  height:52px;
   background:linear-gradient(135deg, var(--accent), var(--accent-2));
   color:white;
   font-weight:800;
 }
+
+/* Ghost button (copy link) adapts to theme */
+.ghost-btn{
+  background:#0c0f14;
+  color:var(--text);
+  border:1px solid rgba(255,255,255,.15);
+}
+:root[data-theme='light'] .ghost-btn{
+  background:#eef3fa;
+  color:#0b0f14;
+  border:1px solid rgba(0,0,0,.12);
+}
+
 .muted{color:var(--muted)}
 .notice{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px;margin-top:10px}
 :root[data-theme='light'] .notice{background:#eef3fa;border:1px dashed rgba(0,0,0,.12)}
@@ -134,17 +152,16 @@ footer{opacity:.7;padding:20px 6px}
 .count-box{min-width:110px;text-align:center;background:#0c0f14;border:1px solid rgba(255,255,255,.08);padding:10px 12px;border-radius:12px}
 :root[data-theme='light'] .count-box{background:#e9edf4;border:1px solid rgba(0,0,0,.08)}
 .count-num{font-weight:900;font-size:1.5rem}
-.fact-line{margin:14px 0}
+.fact-line{margin:14px 0; font-weight:800} /* thicker facts text on page */
 .ver{opacity:.6;font-weight:700}
-/* thicker title for facts */
 .facts-title{font-weight:900; letter-spacing:.1px}
 
 .bento{display:grid;grid-template-columns:1.2fr 1fr;gap:16px}
 @media(max-width:1100px){.bento{grid-template-columns:1fr}}
-.birthday .card, .birthday body{{ 
+.birthday .card, .birthday body{ 
   background: radial-gradient(1000px 600px at 0% 0%, rgba(255,215,0,.12), transparent 60%), 
               radial-gradient(1000px 600px at 100% 100%, rgba(255,105,180,.12), transparent 60%), var(--bg);
-}}
+}
 .birthday-banner{ display:none; background:linear-gradient(135deg, #ffd700, #ff69b4); color:#ffffff; border:0; text-align:center; padding:18px; border-radius:16px; font-weight:900; font-size:1.4rem; box-shadow:0 10px 40px rgba(0,0,0,.35), inset 0 0 60px rgba(255,255,255,.5); }
 .birthday .birthday-banner{ display:block; }
 :root[data-theme='light'] .birthday-banner{ color:#0b0f14 !important; text-shadow:none !important; }
@@ -222,7 +239,7 @@ footer{opacity:.7;padding:20px 6px}
       <div class="share-row">
         <button id="shareBtn" class="share-btn" data-i18n="share_image">مشاركة كصورة (طولي)</button>
         <button id="shareSquareBtn" class="share-btn" data-i18n="share_square">مشاركة إنستا (مربّع)</button>
-        <button id="copyLinkBtn" class="share-btn" style="background:#0c0f14;color:var(--text);border:1px solid rgba(255,255,255,.15)" data-i18n="copy_link">نسخ الرابط</button>
+        <button id="copyLinkBtn" class="share-btn" class="ghost-btn share-btn" data-i18n="copy_link">نسخ الرابط</button>
       </div>
       <div class="copy-toast"></div>
       <hr/>
@@ -260,7 +277,7 @@ footer{opacity:.7;padding:20px 6px}
   </div>
 
   <footer class="container">
-    صُنِع لـ <b>عبدالمجيد الثويني</b> · <span class="ver">v9.8b</span> · يعمل دون إنترنت · © <span id="yearNow"></span>
+    صُنِع لـ <b>عبدالمجيد الثويني</b> · <span class="ver">v9.8c</span> · يعمل دون إنترنت · © <span id="yearNow"></span>
   </footer>
 </div>
 
@@ -409,7 +426,7 @@ function shareImagePortrait(data, lang){
   const dict=I18N[lang]; const name = (lang==='ar')?NAME_AR:NAME_EN;
   ctx.fillStyle='#fff'; ctx.textAlign='center'; ctx.font='900 64px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.fillText(lang==='ar'?'تفاصيل عمرك':'Your Age Details', W/2, 150);
   ctx.font='700 36px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.fillText(name, W/2, 200);
-  ctx.font='900 120px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.fillText(fmt(data.years,lang), W/2, 330);
+  ctx.font='900 108px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.fillText(fmt(data.years,lang), W/2, 330);
   ctx.font='700 32px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.fillText(lang==='ar'?'سنة':'years', W/2, 370);
   const labels=(lang==='ar'?['أشهر','أسابيع','أيام','ساعات']:['Months','Weeks','Days','Hours']); const values=[fmt(data.months,lang), fmt(data.weeks,lang), fmt(data.days,lang), fmt(data.hours,lang)];
   for(let i=0;i<4;i++){ const x=100+i*((W-200)/4); const y=440; const w=(W-240)/4; const h=150; roundedRect(ctx,x,y,w,h,24); ctx.fillStyle='rgba(255,255,255,0.16)'; ctx.fill(); ctx.strokeStyle='rgba(255,255,255,0.35)'; ctx.lineWidth=2; ctx.stroke(); ctx.fillStyle='#fff'; ctx.font='700 28px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.textAlign='center'; ctx.fillText(labels[i], x+w/2, y+48); ctx.font='900 46px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.fillText(values[i], x+w/2, y+105); }
