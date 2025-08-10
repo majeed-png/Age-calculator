@@ -239,7 +239,7 @@ footer{opacity:.7;padding:20px 6px}
       <div class="share-row">
         <button id="shareBtn" class="share-btn" data-i18n="share_image">مشاركة كصورة (طولي)</button>
         <button id="shareSquareBtn" class="share-btn" data-i18n="share_square">مشاركة إنستا (مربّع)</button>
-        <button id="copyLinkBtn" class="share-btn" class="ghost-btn share-btn" data-i18n="copy_link">نسخ الرابط</button>
+        <button id="copyLinkBtn" class="ghost-btn share-btn" class="ghost-btn share-btn" data-i18n="copy_link">نسخ الرابط</button>
       </div>
       <div class="copy-toast"></div>
       <hr/>
@@ -277,7 +277,7 @@ footer{opacity:.7;padding:20px 6px}
   </div>
 
   <footer class="container">
-    صُنِع لـ <b>عبدالمجيد الثويني</b> · <span class="ver">v9.8c</span> · يعمل دون إنترنت · © <span id="yearNow"></span>
+    صُنِع لـ <b>عبدالمجيد الثويني</b> · <span class="ver">v9.8d</span> · يعمل دون إنترنت · © <span id="yearNow"></span>
   </footer>
 </div>
 
@@ -430,7 +430,7 @@ function shareImagePortrait(data, lang){
   ctx.font='700 32px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.fillText(lang==='ar'?'سنة':'years', W/2, 370);
   const labels=(lang==='ar'?['أشهر','أسابيع','أيام','ساعات']:['Months','Weeks','Days','Hours']); const values=[fmt(data.months,lang), fmt(data.weeks,lang), fmt(data.days,lang), fmt(data.hours,lang)];
   for(let i=0;i<4;i++){ const x=100+i*((W-200)/4); const y=440; const w=(W-240)/4; const h=150; roundedRect(ctx,x,y,w,h,24); ctx.fillStyle='rgba(255,255,255,0.16)'; ctx.fill(); ctx.strokeStyle='rgba(255,255,255,0.35)'; ctx.lineWidth=2; ctx.stroke(); ctx.fillStyle='#fff'; ctx.font='700 28px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.textAlign='center'; ctx.fillText(labels[i], x+w/2, y+48); ctx.font='900 46px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.fillText(values[i], x+w/2, y+105); }
-  ctx.textAlign='center'; ctx.fillStyle='#fff'; ctx.font='700 34px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.fillText((lang==='ar'?'عيد ميلادك القادم: ':'Next birthday: ')+data.nextStr, W/2, 640);
+  ctx.textAlign='center'; ctx.fillStyle='#fff'; ctx.font='700 34px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.fillText((lang==='ar'?'عيد ميلادك القادم: ':'Next birthday: ')+data.nextStr, W/2, 620);
   const factsL=[dict.breaths,dict.heartbeats,dict.laughs,dict.slept,dict.eaten]; 
   const factsV=[fmt(data.breaths,lang)+' '+(lang==='ar'?dict.times_word:dict.times_word),
                 fmt(data.heartbeats,lang)+' '+(lang==='ar'?dict.beats_word:dict.beats_word),
