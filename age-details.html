@@ -279,11 +279,13 @@ footer{opacity:.7;padding:20px 6px}
   </div>
 
   <footer class="container">
-    صُنِع لـ <b>عبدالمجيد الثويني</b> · <span class="ver">v9.8g</span> · يعمل دون إنترنت · © <span id="yearNow"></span>
+    صُنِع لـ <b>عبدالمجيد الثويني</b> · <span class="ver">v9.8h</span> · يعمل دون إنترنت · © <span id="yearNow"></span>
   </footer>
 </div>
 
 <script>
+const SITE_DOMAIN='https://age.majeedpng.online';
+
 const VERSION = "v9.8a";
 const FONT_AR = "Tajawal, 'Noto Kufi Arabic', 'Noto Sans Arabic', system-ui, -apple-system, 'Segoe UI', sans-serif";
 const FONT_EN = "system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif";
@@ -432,7 +434,7 @@ function shareImagePortrait(data, lang){
   ctx.font='700 32px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.fillText(lang==='ar'?'سنة':'years', W/2, 370);
   const labels=(lang==='ar'?['أشهر','أسابيع','أيام','ساعات']:['Months','Weeks','Days','Hours']); const values=[fmt(data.months,lang), fmt(data.weeks,lang), fmt(data.days,lang), fmt(data.hours,lang)];
   for(let i=0;i<4;i++){ const x=100+i*((W-200)/4); const y=440; const w=(W-240)/4; const h=150; roundedRect(ctx,x,y,w,h,24); ctx.fillStyle='rgba(255,255,255,0.16)'; ctx.fill(); ctx.strokeStyle='rgba(255,255,255,0.35)'; ctx.lineWidth=2; ctx.stroke(); ctx.fillStyle='#fff'; ctx.font='700 28px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.textAlign='center'; ctx.fillText(labels[i], x+w/2, y+48); ctx.font='900 46px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.fillText(values[i], x+w/2, y+105); }
-  ctx.textAlign='center'; ctx.fillStyle='#fff'; ctx.font='700 34px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.fillText((lang==='ar'?'عيد ميلادك القادم: ':'Next birthday: ')+data.nextStr, W/2, 620);
+  ctx.textAlign='center'; ctx.fillStyle='#fff'; ctx.font='700 34px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.fillText((lang==='ar'?'عيد ميلادك القادم: ':'Next birthday: ')+data.nextStr, W/2, 648);
   const factsL=[dict.breaths,dict.heartbeats,dict.laughs,dict.slept,dict.eaten]; 
   const factsV=[fmt(data.breaths,lang)+' '+(lang==='ar'?dict.times_word:dict.times_word),
                 fmt(data.heartbeats,lang)+' '+(lang==='ar'?dict.beats_word:dict.beats_word),
@@ -441,7 +443,7 @@ function shareImagePortrait(data, lang){
                 data.eatStr];
   const startY=740; for(let i=0;i<5;i++){ const y=startY+i*120; roundedRect(ctx,100,y-60,W-200,100,22); ctx.fillStyle='rgba(255,255,255,0.14)'; ctx.fill(); ctx.strokeStyle='rgba(255,255,255,0.28)'; ctx.stroke(); ctx.fillStyle='#fff'; ctx.textAlign='center'; ctx.font='700 28px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.fillText(factsL[i]+' '+factsV[i], W/2, y); }
   drawQR(ctx, W-180, H-220, 120);
-  const urlText = dict.site_label + 'majeed-png.github.io'; ctx.font='24px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.globalAlpha=0.9; ctx.fillText(urlText, W/2, H-100);
+  const urlText = dict.site_label + 'age.majeedpng.online'; ctx.font='24px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.globalAlpha=0.9; ctx.fillText(urlText, W/2, H-100);
   const u=c.toDataURL('image/png'); const a=document.createElement('a'); a.href=u; a.download='age-share.png'; document.body.appendChild(a); a.click(); a.remove();
 }
 function shareImageSquare(data, lang){
