@@ -631,17 +631,18 @@ function calcAndRender(){
   const s = toYMD((sleepHours/24) * days);
   const e = toYMD((eatMinutes/60/24) * days);
 
-  // Healthy sleep tag (estimated) + banner
+  // Healthy sleep tag (fixed range) + banner (approximate rate)
   const sleepTag = document.getElementById('sleepTag');
   const sleepBanner = document.getElementById('sleepBanner');
   if(lang==='ar'){
-    sleepTag.textContent = `نومك (تقديريًا): ٨ ساعات/يوم ≈ ${fmt(s.y,'ar')} سنة و ${fmt(s.mo,'ar')} شهر و ${fmt(s.d,'ar')} يوم`;
-    sleepBanner.textContent = 'حساب تقديري ثابت (٨ ساعات يوميًا)';
+    sleepTag.textContent = 'نومك الصحي: من 7 إلى 9 ساعات يوميًا';
+    sleepBanner.textContent = 'معدل تقريبي ثابت: ٨ ساعات/يوم.';
   }else{
-    sleepTag.textContent = `Your sleep (estimated): 8 h/day ≈ ${fmt(s.y,'en')} years, ${fmt(s.mo,'en')} months, ${fmt(s.d,'en')} days`;
-    sleepBanner.textContent = 'Approximate calculation (8 hours per day).';
+    sleepTag.textContent = 'Healthy sleep: 7–9 hours/day';
+    sleepBanner.textContent = 'Approximate fixed rate: 8 hours/day.';
   }
   sleepBanner.style.display='block';
+
 
   if(lang==='ar') {
     document.getElementById('breathsLine').textContent = `تَنَفَّستَ حوالي ${fmt(breaths,'ar')} مرة`;
