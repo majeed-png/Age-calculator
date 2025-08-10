@@ -303,7 +303,7 @@ const I18N = {
         hijri_notice:"التحويل <b>الهجري</b> هنا وفق <b>تقويم أم القرى</b> للفترة 1937–2077 (قد يختلف قبل/بعد هذا النطاق).",
         type_label:"نوع التاريخ", gregorian:"ميلادي", hijri:"هجري (أم القرى)",
         day:"اليوم", month:"الشهر", year:"السنة", calc:"احسب",
-        details_badge:"تفاصيل عمرك", birthday_today:"اليوم عيد ميلادك! كل عام وأنت بخير 🎉",
+        details_badge:"تفاصيل عمرك", birthday_today:"اليوم هو يوم ميلادك! كل عام وأنت بخير 🎉",
         metrics_title:"عمرك بصيغ وأشكال مختلفة", years:"بالسنوات", months:"بالأشهر", weeks:"بالأسابيع", days:"بالأيام", hours:"بالساعات",
         more_info:"معلومات أكثر عن عمرك", born_day:"ولدت يوم: ", born_season:"ولدت في فصل: ", life_stage:"مرحلة حياتك: ",
         sleep:"نومك الصحي: من 7 إلى 9 ساعات يوميًا", greg_age:"العمر بالميلادي", hijri_age:"العمر بالهجري (أم القرى)",
@@ -314,7 +314,7 @@ const I18N = {
         share_image:"مشاركة كصورة (طولي)", share_square:"مشاركة إنستا (مربّع)", copy_link:"نسخ الرابط",
         ph_year:"مثال: 1410 أو 1998", ph_day:"مثال: 1", ph_month:"مثال: 1",
         copied:"تم نسخ الرابط ✅",
-        countdown_title:"العد التنازلي لعيد ميلادك القادم",
+        countdown_title:"العد التنازلي ليوم ميلادك القادم",
         cd_days:"أيام", cd_hours:"ساعات", cd_minutes:"دقائق", cd_seconds:"ثواني",
         site_label:"الموقع: " },
   en: { app_badge:"Age Calculator", settings:"Settings", settings_title:"Settings", background:"Background",
@@ -577,8 +577,8 @@ function calcAndRender(){
   document.getElementById('gregInfo').innerHTML = (lang==='ar'
     ? `تاريخ الميلاد: <b>${gD}-${gM}-${gY}</b><br>
        العمر: <b>${fmt(years,lang)}</b> سنة و <b>${fmt(months%12,lang)}</b> شهر و <b>${fmt((days%30),lang)}</b> يوم<br>
-       باقي لعيد ميلادك القادم: <b>${fmt(rDays,lang)}</b> يوم و <b>${fmt(rHours,lang)}</b> ساعة<br>
-       سيكون عيد ميلادك يوم <b>${nextBDayName}</b> الموافق <b>${nextTarget.getDate()}-${nextTarget.getMonth()+1}-${nextTarget.getFullYear()}</b> (المنطقة الزمنية: ${tzText})`
+       باقي ليوم ميلادك القادم: <b>${fmt(rDays,lang)}</b> يوم و <b>${fmt(rHours,lang)}</b> ساعة<br>
+       سيكون يوم ميلادك بيوم <b>${nextBDayName}</b> الموافق <b>${nextTarget.getDate()}-${nextTarget.getMonth()+1}-${nextTarget.getFullYear()}</b> (المنطقة الزمنية: ${tzText})`
     : `Birthdate: <b>${gD}-${gM}-${gY}</b><br>
        Age: <b>${fmt(years,lang)}</b> years, <b>${fmt(months%12,lang)}</b> months, <b>${fmt((days%30),lang)}</b> days<br>
        Until next birthday: <b>${fmt(rDays,lang)}</b> days and <b>${fmt(rHours,lang)}</b> hours<br>
