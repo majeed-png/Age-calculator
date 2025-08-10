@@ -168,6 +168,8 @@ footer{opacity:.7;padding:20px 6px}
 .copy-toast{position:fixed;bottom:22px;right:22px;background:var(--card);border:1px solid rgba(255,255,255,.14);padding:10px 14px;border-radius:12px;display:none}
 .fact-line{margin:14px 0; font-weight:800}
 </style>
+
+<link rel="icon" type="image/png" href="favicon.png">
 </head>
 <body dir="rtl" lang="ar">
 <div class="container">
@@ -277,7 +279,7 @@ footer{opacity:.7;padding:20px 6px}
   </div>
 
   <footer class="container">
-    صُنِع لـ <b>عبدالمجيد الثويني</b> · <span class="ver">v9.8e</span> · يعمل دون إنترنت · © <span id="yearNow"></span>
+    صُنِع لـ <b>عبدالمجيد الثويني</b> · <span class="ver">v9.8g</span> · يعمل دون إنترنت · © <span id="yearNow"></span>
   </footer>
 </div>
 
@@ -451,8 +453,8 @@ function shareImageSquare(data, lang){
   ctx.fillStyle='#fff'; ctx.textAlign='center'; ctx.font='900 54px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.fillText(lang==='ar'?'تفاصيل عمرك':'Your Age Details', S/2, 118);
   ctx.font='700 30px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.fillText(name, S/2, 160);
   // smaller age number (was 120)
-  ctx.font='900 112px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.fillText(fmt(data.years,lang), S/2, 252);
-  ctx.font='700 26px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.fillText(lang==='ar'?'سنة':'years', S/2, 292);
+  ctx.font='900 112px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.fillText(fmt(data.years,lang), S/2, 280);
+  ctx.font='700 26px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.fillText(lang==='ar'?'سنة':'years', S/2, 310);
   const labels=(lang==='ar'?['أشهر','أسابيع','أيام','ساعات']:['Months','Weeks','Days','Hours']); const values=[fmt(data.months,lang), fmt(data.weeks,lang), fmt(data.days,lang), fmt(data.hours,lang)];
   for(let i=0;i<4;i++){ const x=80+i*((S-160)/4); const y=320; const w=(S-200)/4; const h=118; roundedRect(ctx,x,y,w,h,20); ctx.fillStyle='rgba(255,255,255,0.16)'; ctx.fill(); ctx.strokeStyle='rgba(255,255,255,0.35)'; ctx.lineWidth=2; ctx.stroke(); ctx.fillStyle='#fff'; ctx.font='700 24px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.textAlign='center'; ctx.fillText(labels[i], x+w/2, y+42); ctx.font='900 38px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.fillText(values[i], x+w/2, y+90); }
   ctx.textAlign='center'; ctx.fillStyle='#fff'; ctx.font='700 28px ' + (lang==='ar'?FONT_AR:FONT_EN); 
