@@ -1,270 +1,705 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html>
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>تفاصيل عمرك – حاسبة العمر | عبدالمجيد الثويني</title>
-<meta name="description" content="حاسبة العمر: تفاصيل دقيقة لعُمرك بالميلادي والهجري (أم القرى)، عدّ تنازلي لعيد الميلاد، حقائق تقريبية عن حياتك، ومشاركة النتائج كصور. صنع لـ عبدالمجيد الثويني." />
-<meta name="keywords" content="حاسبة العمر, حساب العمر, حساب العمر بالميلادي, حساب العمر بالهجري, أم القرى, تحويل التاريخ الهجري, تحويل التاريخ الميلادي, Age Calculator, Hijri, Gregorian, Arabic, عبدالمجيد الثويني, Abdulmajeed Althuwaini" />
-<meta property="og:title" content="تفاصيل عمرك – حاسبة العمر" />
-<meta property="og:description" content="حساب العمر بالميلادي والهجري، العد التنازلي، ومشاركة النتائج كصورة." />
-<meta property="og:site_name" content="age.majeedpng.online" />
-<link rel="icon" type="image/png" href="favicon.png" />
+<title>حاسبة العمر – تفاصيل عمرك | عبدالمجيد الثويني</title>
+<meta name="description" content="تفاصيل دقيقة لعُمرك بالعربي: سنوات، أشهر، أسابيع، أيام، ساعات، مع معلومات اليوم والفصل والعد التنازلي وحقائق ممتعة.">
+<link rel="icon" type="image/png" href="favicon.png">
 <style>
-:root{ --bg:#0e1117; --card:#151a22; --text:#e9eef6; --muted:#a8b3c7;
-  --accent:#6d5cff; --accent-2:#22d3ee; --shadow:0 10px 40px rgba(0,0,0,.25);
-  --radius:16px; --chip:#0b0f14; --chip-border:rgba(255,255,255,.10); --grid-gap:14px;
-  --font:"Tajawal", system-ui, -apple-system, "Segoe UI", Roboto, "Noto Kufi Arabic", "Noto Sans Arabic", Arial;}
-:root[data-theme='light']{ --bg:#e9eef6; --card:#f7f9fc; --text:#0b0f14; --muted:#4b5565; --chip:#eef3fa; --chip-border:rgba(0,0,0,.10);}
-:root[data-theme='amoled']{ --bg:#000; --card:#0a0a0a; --text:#e9eef6; --muted:#a8b3c7; --chip:#0c0f14;}
-*{box-sizing:border-box} html,body{height:100%}
-body{ margin:0; color:var(--text); font-family:var(--font); line-height:1.75;
+:root{
+  --bg:#0f1115;
+  --card:#151a22;
+  --text:#e9eef6;
+  --muted:#a8b3c7;
+  --accent:#6366f1; /* default indigo */
+  --accent-2:#8b5cf6;
+  --radius:14px;
+  --shadow: 0 10px 30px rgba(0,0,0,.25);
+  --font: "Tajawal", system-ui, -apple-system, "Segoe UI", Roboto, "Noto Kufi Arabic", "Noto Sans Arabic", Arial, "Apple Color Emoji","Segoe UI Emoji";
+}
+:root[data-theme='light']{
+  --bg:#e7ecf3;
+  --card:#f1f4f9;
+  --text:#0b0f14;
+  --muted:#4b5565;
+}
+:root[data-theme='amoled']{
+  --bg:#000000;
+  --card:#0a0a0a;
+  --text:#e9eef6;
+  --muted:#a8b3c7;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
   background:
-    radial-gradient(1200px 600px at 100% -10%, rgba(124,92,255,.10), transparent 60%),
-    radial-gradient(1200px 600px at -30% 110%, rgba(34,211,238,.08), transparent 60%),
-    var(--bg);}
-:root[data-theme='light'] body{background:
-    radial-gradient(1200px 600px at 100% -10%, rgba(124,92,255,.06), transparent 60%),
-    radial-gradient(1200px 600px at -30% 110%, rgba(34,211,238,.06), transparent 60%),
-    var(--bg);}
-.container{max-width:1060px; margin:20px auto; padding:0 16px}
-.navbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-button{cursor:pointer;border:none;border-radius:14px;padding:12px 14px;height:48px;
-  background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;font-weight:900}
-button.ghost{background:var(--chip);color:var(--text);border:1px solid var(--chip-border)}
-:root[data-theme='light'] button.ghost{background:var(--chip);border-color:var(--chip-border)}
-.card{background:var(--card);border-radius:16px;padding:18px;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.08)}
-:root[data-theme='light'] .card{border:1px solid rgba(0,0,0,.08)}
-.badge{display:inline-flex;gap:8px;align-items:center;background:rgba(255,255,255,.08);padding:8px 12px;border-radius:999px;font-weight:800}
-:root[data-theme='light'] .badge{background:#eef3fa}
-h1,h2,h3{margin:0 0 10px 0;font-weight:900} h2{margin-top:14px}
-.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+     radial-gradient(1200px 600px at 100% -10%, rgba(124,92,255,.10), transparent 60%),
+     radial-gradient(1200px 600px at -30% 110%, rgba(46,211,198,.08), transparent 60%),
+     var(--bg);
+  color:var(--text);
+  font-family:var(--font);
+  line-height:1.7;
+}
+:root[data-theme='light'] body,
+:root[data-theme='light']{
+  background:
+     radial-gradient(1200px 600px at 100% -10%, rgba(124,92,255,.06), transparent 60%),
+     radial-gradient(1200px 600px at -30% 110%, rgba(46,211,198,.06), transparent 60%),
+     var(--bg);
+}
+.container{max-width:1000px;margin:24px auto;padding:16px}
+.card{
+  background:var(--card);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius: var(--radius);
+  padding:18px;
+  box-shadow: var(--shadow);
+  margin-top:16px;
+}
+:root[data-theme='light'] .card{border:1px solid rgba(10,10,10,.08)}
+h1{margin:0 0 8px 0;font-weight:800;letter-spacing:.2px}
+h2{margin:22px 0 10px 0;font-weight:800}
+h3{margin:14px 0 10px 0;font-weight:800}
+a{color:var(--accent)}
+label{display:block;font-weight:700;margin-bottom:6px}
+
+input, select{
+  width:100%;
+  border-radius:12px;
+  padding:12px 14px;
+  height:52px;
+  background:#0c0f14;
+  color:var(--text);
+  border:1px solid rgba(255,255,255,.08);
+  outline:none;
+  transition: box-shadow .2s, border-color .2s;
+}
+:root[data-theme='light'] input,
+:root[data-theme='light'] select{
+  background:#e9edf4;
+  border:1px solid rgba(0,0,0,.10);
+  color:#0b0f14;
+}
+input:focus, select:focus{
+  box-shadow:0 0 0 3px color-mix(in oklab, var(--accent) 38%, transparent);
+  border-color: var(--accent);
+}
+
+/* Accent buttons stay accent in all themes */
+button{
+  cursor:pointer;
+  border:none;
+  border-radius:12px;
+  padding:12px 14px;
+  height:52px;
+  background:linear-gradient(135deg, var(--accent), var(--accent-2));
+  color:white;
+  font-weight:800;
+}
+button:disabled{opacity:.6;cursor:not-allowed}
+
+/* Ghost button (copy link) adapts to theme */
+.ghost-btn{
+  background:#0c0f14;
+  color:var(--text);
+  border:1px solid rgba(255,255,255,.15);
+}
+:root[data-theme='light'] .ghost-btn{
+  background:#eef3fa;
+  color:#0b0f14;
+  border:1px solid rgba(0,0,0,.12);
+}
+
+.muted{color:var(--muted)}
+.notice{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px;margin-top:10px}
+:root[data-theme='light'] .notice{background:#eef3fa;border:1px dashed rgba(0,0,0,.12)}
+.navbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:8px}
+.navbar .row{display:flex;gap:10px;flex-wrap:nowrap}
+.badge{display:inline-flex;gap:8px;align-items:center;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.06);font-weight:700}
+.inputs{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:end}
+@media(max-width:800px){.inputs{grid-template-columns:1fr}}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
 @media(max-width:900px){.kpis{grid-template-columns:repeat(2,1fr)}}
-.kpi{background:var(--chip);border:1px solid var(--chip-border);border-radius:14px;padding:14px}
-:root[data-theme='light'] .kpi{background:var(--chip)}
-.kpi .num{font-weight:900;font-size:1.6rem}
-.notice{margin-top:10px;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.16);border-radius:12px;padding:12px}
-:root[data-theme='light'] .notice{background:#eef3fa;border-color:rgba(0,0,0,.18)}
-.tag{background:var(--chip);border:1px solid var(--chip-border);padding:8px 12px;border-radius:12px;font-weight:800}
-.share-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-.copy-toast{position:fixed;bottom:22px;right:22px;background:var(--card);border:1px solid rgba(255,255,255,.14);padding:10px 14px;border-radius:12px;display:none}
-.bento{display:grid;grid-template-columns:1.2fr 1fr;gap:16px;margin-top:12px}
+.kpi{background:#0c0f14;border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:14px}
+:root[data-theme='light'] .kpi{background:#e9edf4;border:1px solid rgba(0,0,0,.08)}
+.kpi .num{font-size:1.6rem;font-weight:900}
+.tag{padding:6px 10px;border-radius:12px;background:rgba(255,255,255,.08);font-weight:700}
+:root[data-theme='light'] .tag{background:#e9edf4}
+footer{opacity:.85;padding:20px 6px;text-align:center}
+.panel{display:none;margin-top:10px}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.theme-btn{padding:12px 14px;border-radius:12px;background:#0c0f14;border:1px solid rgba(255,255,255,.14);cursor:pointer;color:var(--text)!important;min-width:140px;text-align:center;position:relative}
+:root[data-theme='light'] .theme-btn{background:#e9edf4;border:1px solid rgba(0,0,0,.12);color:#0b0f14!important}
+.theme-btn.selected{outline:3px solid var(--accent); outline-offset:3px; border-color:var(--accent)}
+.color-dot{width:26px;height:26px;border-radius:50%;border:2px solid rgba(255,255,255,.5);cursor:pointer;position:relative}
+:root[data-theme='light'] .color-dot{border-color:rgba(0,0,0,.35)}
+.color-dot.selected::after{content:"✓"; position:absolute; inset:0; display:flex; align-items:center; justify-content:center;font-weight:900; color:#000; mix-blend-mode:screen}
+.small-btn{min-width:56px}
+.select-wrap{position:relative}
+.select-wrap select{appearance:none;-webkit-appearance:none;padding-inline-start:14px;padding-inline-end:40px}
+.select-wrap .caret{position:absolute; left:12px; top:50%; transform:translateY(-50%); pointer-events:none; opacity:.7}
+.lang-chip{padding:8px 12px;border-radius:12px;background:#0c0f14;border:1px solid rgba(255,255,255,.14);cursor:pointer;opacity:.55}
+:root[data-theme='light'] .lang-chip{background:#e9edf4;border:1px solid rgba(0,0,0,.12)}
+.lang-chip.selected{outline:3px solid var(--accent); outline-offset:3px; opacity:1}
+.share-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.share-btn{max-width:260px}
+.bento{display:grid;grid-template-columns:1.2fr 1fr;gap:16px}
 @media(max-width:1100px){.bento{grid-template-columns:1fr}}
-.countdown{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:center;margin-top:8px}
-.count-box{min-width:120px;text-align:center;background:var(--chip);border:1px solid var(--chip-border);padding:12px;border-radius:12px}
+.birthday .card, .birthday body{ 
+  background: radial-gradient(1000px 600px at 0% 0%, rgba(255,215,0,.12), transparent 60%), 
+              radial-gradient(1000px 600px at 100% 100%, rgba(255,105,180,.12), transparent 60%), var(--bg);
+}
+.birthday-banner{ display:none; background:linear-gradient(135deg, #ffd700, #ff69b4); color:#ffffff; border:0; text-align:center; padding:18px; border-radius:16px; font-weight:900; font-size:1.4rem; box-shadow:0 10px 40px rgba(0,0,0,.35), inset 0 0 60px rgba(255,255,255,.5); }
+.birthday .birthday-banner{ display:block; }
+:root[data-theme='light'] .birthday-banner{ color:#0b0f14 !important; text-shadow:none !important; }
+.copy-toast{position:fixed;bottom:22px;right:22px;background:var(--card);border:1px solid rgba(255,255,255,.14);padding:10px 14px;border-radius:12px;display:none}
+.countdown{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:center;margin-top:10px}
+.count-box{min-width:110px;text-align:center;background:#0c0f14;border:1px solid rgba(255,255,255,.08);padding:10px 12px;border-radius:12px}
+:root[data-theme='light'] .count-box{background:#e9edf4;border:1px solid rgba(0,0,0,.08)}
 .count-num{font-weight:900;font-size:1.5rem}
-.facts-title{font-weight:900}
-.hint{margin-top:6px;padding:8px 10px;border-radius:10px;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.16);font-weight:700;color:var(--muted)}
-:root[data-theme='light'] .hint{background:#eef3fa;border-color:rgba(0,0,0,.18);color:#4b5565}
-.birthday .card, .birthday body{ background:radial-gradient(1000px 600px at 0% 0%, rgba(255,215,0,.12), transparent 60%), radial-gradient(1000px 600px at 100% 100%, rgba(255,105,180,.12), transparent 60%), var(--bg);}
-.birthday-banner{display:none;background:linear-gradient(135deg,#ffd700,#ff69b4);color:#fff;padding:16px;border-radius:16px;font-weight:900;font-size:1.3rem;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,.35), inset 0 0 60px rgba(255,255,255,.5);}
-.birthday .birthday-banner{display:block}
-:root[data-theme='light'] .birthday-banner{color:#0b0f14 !important}
-.ltr{direction:ltr; text-align:left; unicode-bidi:plaintext}
-footer{text-align:center;opacity:.9;margin:18px 0}
-.selected{outline:3px solid var(--accent)}
+.fact-line{margin:14px 0; font-weight:800}
+.hint-banner{margin-top:6px;padding:8px 10px;border-radius:10px;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.16);font-weight:700;color:var(--muted)}
+:root[data-theme='light'] .hint-banner{background:#eef3fa;border-color:rgba(0,0,0,.18);color:#4b5565}
+.facts-title{font-weight:900; letter-spacing:.1px}
 </style>
 </head>
-<body>
-  <div class="container">
-    <div class="navbar">
-      <div class="badge" data-i18n="details_badge">🎯 تفاصيل عمرك</div>
-      <div class="row">
-        <button id="openCustomize" data-i18n="settings">الإعدادات</button>
-        <a href="index.html" title="رجوع"><button class="ghost" style="min-width:56px">⬅️</button></a>
-      </div>
+<body dir="rtl" lang="ar">
+<div class="container">
+  <div class="navbar">
+    <div class="badge" data-i18n="details_badge">🎯 تفاصيل عمرك</div>
+    <div class="row">
+      <button id="openCustomize" style="max-width:140px" data-i18n="settings">الإعدادات</button>
+      <a href="index.html" title="رجوع"><button class="small-btn ghost-btn">⬅️</button></a>
     </div>
-
-    <div id="settings" class="card" style="display:none">
-      <h2 data-i18n="settings">الإعدادات</h2>
-      <div class="row" style="margin:6px 0">
-        <div class="tag" id="th-light" data-theme="light">فاتح</div>
-        <div class="tag" id="th-dark" data-theme="dark">داكن</div>
-        <div class="tag" id="th-amoled" data-theme="amoled">أسود خالص (AMOLED)</div>
-      </div>
-      <h3 data-i18n="btn_color">لون الأزرار</h3>
-      <div class="row" id="colorRow">
-        <div class="tag" data-accent="#6d5cff,#22d3ee" style="background:#6d5cff">●</div>
-        <div class="tag" data-accent="#06b6d4,#22d3ee" style="background:#06b6d4">●</div>
-        <div class="tag" data-accent="#10b981,#34d399" style="background:#10b981">●</div>
-        <div class="tag" data-accent="#f59e0b,#f97316" style="background:#f59e0b">●</div>
-        <div class="tag" data-accent="#ef4444,#f43f5e" style="background:#ef4444">●</div>
-      </div>
-      <h3 data-i18n="language">اللغة</h3>
-      <div class="row">
-        <div class="tag" data-lang="ar">العربية</div>
-        <div class="tag" data-lang="en">English</div>
-      </div>
-      <h3 data-i18n="timezone">المنطقة الزمنية</h3>
-      <div class="row"><select id="tzSelect" style="min-width:280px;height:44px;border-radius:12px;border:1px solid var(--chip-border);background:var(--chip);color:var(--text)"></select></div>
-    </div>
-
-    <div class="card birthday-banner" data-i18n="birthday_today">اليوم عيد ميلادك! كل عام وأنت بخير 🎉</div>
-
-    <div id="contentArea" class="bento" style="display:none">
-      <div class="card">
-        <h2 data-i18n="metrics_title">عمرك بصيغ وأشكال مختلفة</h2>
-        <div class="kpis">
-          <div class="kpi"><div class="muted" data-i18n="years">بالسنوات</div><div class="num" id="yearsAge">—</div></div>
-          <div class="kpi"><div class="muted" data-i18n="months">بالأشهر</div><div class="num" id="monthsAge">—</div></div>
-          <div class="kpi"><div class="muted" data-i18n="weeks">بالأسابيع</div><div class="num" id="weeksAge">—</div></div>
-          <div class="kpi"><div class="muted" data-i18n="days">بالأيام</div><div class="num" id="daysAge">—</div></div>
-          <div class="kpi"><div class="muted" data-i18n="hours">بالساعات</div><div class="num" id="hoursAge">—</div></div>
-        </div>
-
-        <div class="notice">
-          <b data-i18n="countdown_title">العد التنازلي لعيد ميلادك القادم</b>
-          <div id="countdown" class="countdown">
-            <div class="count-box"><div class="count-num" id="cdDays">—</div><div class="muted" data-i18n="cd_days">أيام</div></div>
-            <div class="count-box"><div class="count-num" id="cdHours">—</div><div class="muted" data-i18n="cd_hours">ساعات</div></div>
-            <div class="count-box"><div class="count-num" id="cdMin">—</div><div class="muted" data-i18n="cd_minutes">دقائق</div></div>
-            <div class="count-box"><div class="count-num" id="cdSec">—</div><div class="muted" data-i18n="cd_seconds">ثواني</div></div>
-          </div>
-        </div>
-
-        <div class="share-row">
-          <button id="shareBtn" data-i18n="share_image">مشاركة كصورة (طولي)</button>
-          <button id="shareSquareBtn" data-i18n="share_square">مشاركة إنستا (مربّع)</button>
-          <button id="copyLinkBtn" class="ghost" data-i18n="copy_link">نسخ الرابط</button>
-        </div>
-
-        <hr/>
-        <h3 data-i18n="more_info">معلومات أكثر عن عمرك</h3>
-        <div class="row">
-          <span class="tag" id="bornTag"><span data-i18n="born_day">ولدت يوم: </span><b id="weekday">—</b></span>
-          <span class="tag" id="seasonTag"><span data-i18n="born_season">ولدت في فصل: </span><b id="season">—</b></span>
-          <span class="tag" id="stageTag"><span data-i18n="life_stage">مرحلة حياتك: </span><b id="lifeStage">—</b></span>
-          <span class="tag" id="sleepTag">—</span>
-        </div>
-        <div id="sleepHint" class="hint" style="display:none"></div>
-
-        <hr/>
-        <h3 data-i18n="greg_age">العمر بالميلادي</h3>
-        <div id="gregInfo" class="muted">—</div>
-        <hr/>
-        <h3 data-i18n="hijri_age">العمر بالهجري (أم القرى)</h3>
-        <div id="hijriInfo" class="muted">—</div>
-      </div>
-
-      <div class="card">
-        <h2 class="facts-title" data-i18n="facts">حقائق حصلت في حياتك</h2>
-        <div id="breathsLine">—</div>
-        <div id="heartbeatsLine">—</div>
-        <div id="laughsLine">—</div>
-        <div id="sleptLine">—</div>
-        <div id="eatenLine">—</div>
-        <div class="notice" data-i18n="clarify">معدلات تقريبية ثابتة: ٢٠ ألف نَفَس/يوم، ٨٠ نبضة/دقيقة، ١٠ ضحكات/يوم، ٨ ساعات نوم/يوم، ٨٠ دقيقة طعام/يوم.</div>
-      </div>
-    </div>
-
-    <div id="noData" class="card notice" style="display:none">
-      <span>لا يوجد تاريخ ميلاد محفوظ.</span> · <a href="index.html">الرجوع للصفحة الأولى</a>
-    </div>
-
-    <footer>Made By Abdulmajeed Althuwaini · v1.0 · Made With Love 💚 · © 2025</footer>
   </div>
 
+  
+<div id="settings" class="panel card" style="display:none">
+  <h2 data-i18n="settings">الإعدادات</h2>
+  <div class="row">
+    <div class="theme-btn" data-theme="light" id="th-light">فاتح</div>
+    <div class="theme-btn" data-theme="dark" id="th-dark">داكن</div>
+    <div class="theme-btn" data-theme="amoled" id="th-amoled">أسود خالص (AMOLED)</div>
+  </div>
+  <h3 data-i18n="btn_color">لون الزر</h3>
+  <div class="row" id="colorRow">
+    <div class="color-dot" data-accent="#6366f1,#8b5cf6" style="background:#6366f1"></div>
+    <div class="color-dot" data-accent="#06b6d4,#22d3ee" style="background:#06b6d4"></div>
+    <div class="color-dot" data-accent="#10b981,#34d399" style="background:#10b981"></div>
+    <div class="color-dot" data-accent="#f59e0b,#f97316" style="background:#f59e0b"></div>
+    <div class="color-dot" data-accent="#ef4444,#f43f5e" style="background:#ef4444"></div>
+  </div>
+  <h3 data-i18n="language">اللغة</h3>
+  <div class="row">
+    <div class="lang-chip" data-lang="ar">العربية</div>
+    <div class="lang-chip" data-lang="en">English</div>
+  </div>
+  <h3 data-i18n="timezone">المنطقة الزمنية</h3>
+  <div class="select-wrap" style="max-width:420px">
+    <select id="tzSelect"></select>
+    <div class="caret">▾</div>
+  </div>
+  <div class="muted" style="margin-top:8px" data-i18n="bg_note">الخلفية لا تغيّر ألوان الأزرار — اختر لونًا أعلاه. يتم حفظ تفضيلاتك تلقائيًا.</div>
+</div>
+
+
+  <div class="card birthday-banner" data-i18n="birthday_today">اليوم عيد ميلادك! كل عام وأنت بخير 🎉</div>
+
+  <div id="contentArea" class="bento" style="display:none">
+    <div class="card">
+      <h2 data-i18n="metrics_title">عمرك بصيغ وأشكال مختلفة</h2>
+      <div class="kpis">
+        <div class="kpi"><div class="muted" data-i18n="years">بالسنوات</div><div class="num" id="yearsAge">—</div></div>
+        <div class="kpi"><div class="muted" data-i18n="months">بالأشهر</div><div class="num" id="monthsAge">—</div></div>
+        <div class="kpi"><div class="muted" data-i18n="weeks">بالأسابيع</div><div class="num" id="weeksAge">—</div></div>
+        <div class="kpi"><div class="muted" data-i18n="days">بالأيام</div><div class="num" id="daysAge">—</div></div>
+        <div class="kpi"><div class="muted" data-i18n="hours">بالساعات</div><div class="num" id="hoursAge">—</div></div>
+      </div>
+
+      <div class="notice" style="margin-top:12px">
+        <b data-i18n="countdown_title">العد التنازلي لعيد ميلادك القادم</b>
+        <div id="countdown" class="countdown" style="margin-top:8px">
+          <div class="count-box"><div class="count-num" id="cdDays">—</div><div class="muted" data-i18n="cd_days">أيام</div></div>
+          <div class="count-box"><div class="count-num" id="cdHours">—</div><div class="muted" data-i18n="cd_hours">ساعات</div></div>
+          <div class="count-box"><div class="count-num" id="cdMin">—</div><div class="muted" data-i18n="cd_minutes">دقائق</div></div>
+          <div class="count-box"><div class="count-num" id="cdSec">—</div><div class="muted" data-i18n="cd_seconds">ثواني</div></div>
+        </div>
+      </div>
+
+      <div class="share-row">
+        <button id="shareBtn" class="share-btn" data-i18n="share_image">مشاركة كصورة (طولي)</button>
+        <button id="shareSquareBtn" class="share-btn" data-i18n="share_square">مشاركة إنستا (مربّع)</button>
+        <button id="copyLinkBtn" class="ghost-btn share-btn" data-i18n="copy_link">نسخ الرابط</button>
+      </div>
+      <div class="copy-toast"></div>
+      <hr/>
+      <h3 data-i18n="more_info">معلومات أكثر عن عمرك</h3>
+      <div class="row">
+        <span class="tag"><span data-i18n="born_day">ولدت يوم: </span><b id="weekday">—</b></span>
+        <span class="tag"><span data-i18n="born_season">ولدت في فصل: </span><b id="season">—</b></span>
+        <span class="tag"><span data-i18n="life_stage">مرحلة حياتك: </span><b id="lifeStage">—</b></span>
+        <span class="tag" id="sleepTag" data-i18n="sleep">نومك الصحي: من 7 إلى 9 ساعات يوميًا</span>
+      </div>
+      <div id="sleepBanner" class="hint-banner" style="display:none"></div>
+      <hr/>
+      <h3 data-i18n="greg_age">العمر بالميلادي</h3>
+      <div id="gregInfo" class="muted">—</div>
+      <hr/>
+      <h3 data-i18n="hijri_age">العمر بالهجري (أم القرى)</h3>
+      <div id="hijriInfo" class="muted">—</div>
+    </div>
+
+    <div class="card">
+      <h2 class="facts-title" data-i18n="facts">حقائق حصلت في حياتك</h2>
+      <div id="breathsLine" class="fact-line">—</div>
+      <div id="heartbeatsLine" class="fact-line">—</div>
+      <div id="laughsLine" class="fact-line">—</div>
+      <div id="sleptLine" class="fact-line">—</div>
+      <div id="eatenLine" class="fact-line">—</div>
+      <div class="notice" data-i18n="clarify">
+        معدلات تقريبية ثابتة: ٢٠ ألف نَفَس/يوم، ٨٠ نبضة/دقيقة، ١٠ ضحكات/يوم، ٨ ساعات نوم/يوم، ٨٠ دقيقة طعام/يوم.
+      </div>
+    </div>
+  </div>
+
+  <div class="card notice" id="noData" style="display:none">
+    <span data-i18n="no_birth">لم يتم إدخال تاريخ ميلاد بعد.</span>
+    <a href="index.html" data-i18n="go_input">اذهب لصفحة الإدخال</a>.
+  </div>
+
+  <footer class="container">
+    Made By Abdulmajeed Althuwaini · v1.0 · Made With Love 💚 · © 2025
+  </footer>
+</div>
+
 <script>
+// ---------- i18n ----------
 const TEXTS = {
-  ar:{details_badge:"🎯 تفاصيل عمرك",settings:"الإعدادات",btn_color:"لون الأزرار",
-       metrics_title:"عمرك بصيغ وأشكال مختلفة",years:"بالسنوات",months:"بالأشهر",weeks:"بالأسابيع",days:"بالأيام",hours:"بالساعات",
-       share_image:"مشاركة كصورة (طولي)",share_square:"مشاركة إنستا (مربّع)",copy_link:"نسخ الرابط",
-       more_info:"معلومات أكثر عن عمرك",born_day:"ولدت يوم: ",born_season:"ولدت في فصل: ",life_stage:"مرحلة حياتك: ",
-       greg_age:"العمر بالميلادي",hijri_age:"العمر بالهجري (أم القرى)",
-       facts:"حقائق حصلت في حياتك",clarify:"Approximate averages: 20k breaths/day, 80 bpm, 10 laughs/day, 8 h sleep/day, 80 min eating/day.",
-       timezone:"المنطقة الزمنية",cd_days:"أيام",cd_hours:"ساعات",cd_minutes:"دقائق",cd_seconds:"ثواني",
-       countdown_title:"العد التنازلي لعيد ميلادك القادم",birthday_today:"اليوم عيد ميلادك! كل عام وأنت بخير 🎉"},
-  en:{details_badge:"🎯 Your Age Details",settings:"Settings",btn_color:"Button Color",
-       metrics_title:"Your Age in Many Ways",years:"Years",months:"Months",weeks:"Weeks",days:"Days",hours:"Hours",
-       share_image:"Share as Image (Portrait)",share_square:"Share as Image (Square)",copy_link:"Copy link",
-       more_info:"More about your age",born_day:"Born on: ",born_season:"Season: ",life_stage:"Life stage: ",
-       greg_age:"Age (Gregorian)",hijri_age:"Age (Hijri – Umm al-Qura)",
-       facts:"Facts from your life",clarify:"Approximate averages: 20k breaths/day, 80 bpm, 10 laughs/day, 8 h sleep/day, 80 min eating/day.",
-       timezone:"Time Zone",cd_days:"Days",cd_hours:"Hours",cd_minutes:"Minutes",cd_seconds:"Seconds",
-       countdown_title:"Countdown to your next birthday",birthday_today:"It's your birthday today! Happy Birthday 🎉"}
+  ar:{
+    app_badge:"⚡ آلة حساب العمر",
+    details_badge:"🎯 تفاصيل عمرك",
+    settings:"الإعدادات",
+    input_title:"أدخل تاريخ ميلادك",
+    input_hint:"اختر نوع التاريخ، ثم اكتب اليوم والشهر والسنة.",
+    hijri_notice:"التحويل الهجري هنا حسابي (Tabular Islamic) وقد يختلف يومًا واحدًا عن أم القرى.",
+    type_label:"نوع التاريخ",
+    gregorian:"ميلادي",
+    hijri:"هجري (أم القرى)",
+    day:"اليوم", month:"الشهر", year:"السنة", calc:"احسب",
+    metrics_title:"عمرك بصيغ وأشكال مختلفة",
+    years:"بالسنوات", months:"بالأشهر", weeks:"بالأسابيع", days:"بالأيام", hours:"بالساعات",
+    share_image:"مشاركة كصورة (طولي)", share_square:"مشاركة إنستا (مربّع)", copy_link:"نسخ الرابط",
+    more_info:"معلومات أكثر عن عمرك", born_day:"ولدت يوم: ", born_season:"ولدت في فصل: ", life_stage:"مرحلة حياتك: ", sleep:"نومك الصحي: من 7 إلى 9 ساعات يوميًا",
+    greg_age:"العمر بالميلادي", hijri_age:"العمر بالهجري (أم القرى)",
+    no_birth:"لم يتم إدخال تاريخ ميلاد بعد", go_input:"اذهب لصفحة الإدخال",
+    facts:"حقائق حصلت في حياتك",
+    clarify:"معدلات تقريبية ثابتة: ٢٠ ألف نَفَس/يوم، ٨٠ نبضة/دقيقة، ١٠ ضحكات/يوم، ٨ ساعات نوم/يوم، ٨٠ دقيقة طعام/يوم.",
+    countdown_title:"العد التنازلي لعيد ميلادك القادم",
+    cd_days:"أيام", cd_hours:"ساعات", cd_minutes:"دقائق", cd_seconds:"ثواني",
+    birthday_today:"اليوم عيد ميلادك! كل عام وأنت بخير 🎉"
+  },
+  en:{
+    app_badge:"⚡ Age Calculator",
+    details_badge:"🎯 Your Age Details",
+    settings:"Settings",
+    input_title:"Enter your birth date",
+    input_hint:"Choose date type, then fill the day, month, and year.",
+    hijri_notice:"Hijri conversion here uses a tabular method (may differ a day from Umm al-Qura).",
+    type_label:"Date type",
+    gregorian:"Gregorian", hijri:"Hijri (Umm al-Qura)",
+    day:"Day", month:"Month", year:"Year", calc:"Calculate",
+    metrics_title:"Your Age in Many Ways",
+    years:"Years", months:"Months", weeks:"Weeks", days:"Days", hours:"Hours",
+    share_image:"Share as Image (Portrait)", share_square:"Share as Image (Square)", copy_link:"Copy link",
+    more_info:"More about your age", born_day:"Born on: ", born_season:"Season: ", life_stage:"Life stage: ", sleep:"Healthy sleep: 7–9 hours/day",
+    greg_age:"Age (Gregorian)", hijri_age:"Age (Hijri – Umm al-Qura)",
+    no_birth:"No birthdate yet", go_input:"Go to input page",
+    facts:"Facts from your life",
+    clarify:"Approximate averages: 20k breaths/day, 80 bpm, 10 laughs/day, 8 h sleep/day, 80 min eating/day.",
+    countdown_title:"Countdown to your next birthday",
+    cd_days:"Days", cd_hours:"Hours", cd_minutes:"Minutes", cd_seconds:"Seconds",
+    birthday_today:"It's your birthday today! Happy Birthday 🎉"
+  }
 };
-function getLang(){return localStorage.getItem('ageLang')||'ar'}
-function setLang(L){localStorage.setItem('ageLang',L); location.reload();}
+function getLang(){ return localStorage.getItem('ageLang') || 'ar'; }
+function setLang(l){ localStorage.setItem('ageLang', l); location.reload(); }
 function applyI18n(){
-  const L=getLang();
-  document.querySelectorAll('[data-i18n]').forEach(el=>{ const k=el.getAttribute('data-i18n'); if(TEXTS[L]&&TEXTS[L][k]) el.textContent = TEXTS[L][k]; if(L==='en') el.classList.add('ltr'); else el.classList.remove('ltr'); });
+  const L = getLang();
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k = el.getAttribute('data-i18n'); if(TEXTS[L][k]) el.textContent = TEXTS[L][k];
+  });
   document.body.setAttribute('lang', L);
-  document.body.setAttribute('dir', 'rtl');
+  document.body.setAttribute('dir', L==='ar'?'rtl':'ltr');
 }
-function setTheme(t){ localStorage.setItem('ageTheme',t); if(t==='dark'){document.documentElement.removeAttribute('data-theme');} else {document.documentElement.dataset.theme=t;} }
-function setAccent(p){ const a=p.split(','); localStorage.setItem('ageAccent',p); document.documentElement.style.setProperty('--accent',a[0]); document.documentElement.style.setProperty('--accent-2',a[1]||a[0]); }
+
+// ---------- Theme / Accent ----------
+function setTheme(t){ localStorage.setItem('ageTheme', t); document.documentElement.dataset.theme = (t==='dark'?'':t); if(t==='dark') delete document.documentElement.dataset.theme; }
+function setAccent(hexPair){ const [a,b]=hexPair.split(','); localStorage.setItem('ageAccent', hexPair); document.documentElement.style.setProperty('--accent', a); document.documentElement.style.setProperty('--accent-2', b||a); }
 function setupSettings(){
-  const t=localStorage.getItem('ageTheme')||'dark'; setTheme(t);
-  ['th-light','th-dark','th-amoled'].forEach(id=>{const el=document.getElementById(id); if(!el) return; const v=el.dataset.theme; el.classList.toggle('selected', (t===v || (t==='dark' && v==='dark'))); el.onclick=()=>{ setTheme(v); document.querySelectorAll('.tag[data-theme]').forEach(x=>x.classList.remove('selected')); el.classList.add('selected'); };});
-  const acc=localStorage.getItem('ageAccent')||'#6d5cff,#22d3ee'; setAccent(acc);
-  document.querySelectorAll('#colorRow .tag').forEach(dot=>{ dot.onclick=()=>{ setAccent(dot.dataset.accent); }; });
-  const L=getLang(); document.querySelectorAll('.row .tag[data-lang]').forEach(ch=>{ ch.classList.toggle('selected', ch.dataset.lang===L); ch.onclick=()=> setLang(ch.dataset.lang); });
-  const zones=['Asia/Riyadh','Asia/Kuwait','Asia/Dubai','Asia/Qatar','Asia/Bahrain','Asia/Muscat','Africa/Cairo','Europe/Istanbul','Europe/London','Europe/Paris','America/Los_Angeles','America/New_York','Asia/Karachi','Asia/Dhaka','Asia/Tokyo'];
-  const AR={'Asia/Riyadh':'الرياض (السعودية)','Asia/Kuwait':'الكويت','Asia/Dubai':'دبي (الإمارات)','Asia/Qatar':'الدوحة (قطر)','Asia/Bahrain':'المنامة (البحرين)','Asia/Muscat':'مسقط (عُمان)','Africa/Cairo':'القاهرة (مصر)','Europe/Istanbul':'إسطنبول (تركيا)','Europe/London':'لندن (المملكة المتحدة)','Europe/Paris':'باريس (فرنسا)','America/Los_Angeles':'لوس أنجلِس (أمريكا)','America/New_York':'نيويورك (أمريكا)','Asia/Karachi':'كراتشي (باكستان)','Asia/Dhaka':'دكا (بنغلاديش)','Asia/Tokyo':'طوكيو (اليابان)'};
-  const EN={'Asia/Riyadh':'Riyadh (KSA)','Asia/Kuwait':'Kuwait','Asia/Dubai':'Dubai (UAE)','Asia/Qatar':'Doha (Qatar)','Asia/Bahrain':'Manama (Bahrain)','Asia/Muscat':'Muscat (Oman)','Africa/Cairo':'Cairo (Egypt)','Europe/Istanbul':'Istanbul (Türkiye)','Europe/London':'London (UK)','Europe/Paris':'Paris (France)','America/Los_Angeles':'Los Angeles (USA)','America/New_York':'New York (USA)','Asia/Karachi':'Karachi (Pakistan)','Asia/Dhaka':'Dhaka (Bangladesh)','Asia/Tokyo':'Tokyo (Japan)'};
-  const sel=document.getElementById('tzSelect'); sel.innerHTML=''; (getLang()==='ar'?Object.entries(AR):Object.entries(EN)).forEach(([v,txt])=>{ const o=document.createElement('option'); o.value=v; o.textContent=txt; sel.appendChild(o); });
-  sel.value = localStorage.getItem('ageTZ')||'Asia/Riyadh';
-  sel.onchange = ()=>{ localStorage.setItem('ageTZ', sel.value); location.reload(); };
+  const t = localStorage.getItem('ageTheme')||'dark'; setTheme(t);
+  ['th-light','th-dark','th-amoled'].forEach(id=>{ const el=document.getElementById(id); if(!el) return; const val=el.dataset.theme; el.classList.toggle('selected', t=== (val==='dark'?'dark':val)); el.onclick=()=>{ setTheme(val); document.querySelectorAll('.theme-btn').forEach(x=>x.classList.remove('selected')); el.classList.add('selected'); }; });
+  const acc=localStorage.getItem('ageAccent')||'#6366f1,#8b5cf6'; setAccent(acc);
+  document.querySelectorAll('.color-dot').forEach(dot=>{ dot.classList.toggle('selected', dot.dataset.accent===acc); dot.onclick=()=>{ setAccent(dot.dataset.accent); document.querySelectorAll('.color-dot').forEach(x=>x.classList.remove('selected')); dot.classList.add('selected'); }; });
+  const L=getLang(); document.querySelectorAll('.lang-chip').forEach(ch=>{ ch.classList.toggle('selected', ch.dataset.lang===L); ch.onclick=()=> setLang(ch.dataset.lang); });
+
+  // Time zones
+  const zones=[
+    'Asia/Riyadh','Asia/Kuwait','Asia/Dubai','Asia/Qatar','Asia/Bahrain','Asia/Muscat',
+    'Africa/Cairo','Europe/Istanbul','Europe/London','Europe/Paris',
+    'America/Los_Angeles','America/New_York','Asia/Karachi','Asia/Dhaka','Asia/Tokyo'
+  ];
+  const TZ_NAMES_AR={
+    'Asia/Riyadh':'الرياض (السعودية)','Asia/Kuwait':'الكويت','Asia/Dubai':'دبي (الإمارات)',
+    'Asia/Qatar':'الدوحة (قطر)','Asia/Bahrain':'المنامة (البحرين)','Asia/Muscat':'مسقط (عُمان)',
+    'Africa/Cairo':'القاهرة (مصر)','Europe/Istanbul':'إسطنبول (تركيا)',
+    'Europe/London':'لندن (المملكة المتحدة)','Europe/Paris':'باريس (فرنسا)',
+    'America/Los_Angeles':'لوس أنجلِس (أمريكا)','America/New_York':'نيويورك (أمريكا)',
+    'Asia/Karachi':'كراتشي (باكستان)','Asia/Dhaka':'دكا (بنغلاديش)','Asia/Tokyo':'طوكيو (اليابان)'
+  };
+  const TZ_NAMES_EN={
+    'Asia/Riyadh':'Riyadh (KSA)','Asia/Kuwait':'Kuwait','Asia/Dubai':'Dubai (UAE)',
+    'Asia/Qatar':'Doha (Qatar)','Asia/Bahrain':'Manama (Bahrain)','Asia/Muscat':'Muscat (Oman)',
+    'Africa/Cairo':'Cairo (Egypt)','Europe/Istanbul':'Istanbul (Türkiye)',
+    'Europe/London':'London (UK)','Europe/Paris':'Paris (France)',
+    'America/Los_Angeles':'Los Angeles (USA)','America/New_York':'New York (USA)',
+    'Asia/Karachi':'Karachi (Pakistan)','Asia/Dhaka':'Dhaka (Bangladesh)','Asia/Tokyo':'Tokyo (Japan)'
+  };
+  const LBL = (getLang()==='ar'?TZ_NAMES_AR:TZ_NAMES_EN);
+  const sel=document.getElementById('tzSelect'); if(sel){ sel.innerHTML=''; zones.forEach(z=>{ const opt=document.createElement('option'); opt.value=z; opt.textContent=LBL[z]||z; sel.appendChild(opt); }); const cur=localStorage.getItem('ageTZ')||'Asia/Riyadh'; sel.value=cur; sel.onchange=()=>{ localStorage.setItem('ageTZ', sel.value); location.reload(); }; }
 }
+
 function nowInTZ(tz){ return new Date(new Date().toLocaleString('en-US',{timeZone:tz})); }
-function fmt(n,lang){ try{return n.toLocaleString(lang==='ar'?'ar-EG':'en-US');}catch(e){return ''+n;} }
-function weekdayName(date,lang){ const ar=['الأحد','الإثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت']; const en=['Sun','Mon','Tue','Wed','Thu','Fri','Sat']; return (lang==='ar'?ar:en)[date.getDay()]; }
-function seasonName(m,lang){ const ar={winter:'الشتاء',spring:'الربيع',summer:'الصيف',autumn:'الخريف'}; const en={winter:'Winter',spring:'Spring',summer:'Summer',autumn:'Autumn'}; const s=[12,1,2].includes(m)?'winter':[3,4,5].includes(m)?'spring':[6,7,8].includes(m)?'summer':'autumn'; return (lang==='ar'?ar:en)[s]; }
-function lifeStage(y,lang){ if(lang==='en'){ if(y<13)return'Childhood'; if(y<20)return'Adolescence'; if(y<36)return'Young adult'; if(y<60)return'Middle age'; return'Senior'; } else { if(y<13)return'طفولة'; if(y<20)return'مراهقة'; if(y<36)return'شباب'; if(y<60)return'متوسط العمر'; return'كبير سن'; } }
-function islamicToJD(y,m,d){ return d + Math.ceil(29.5*(m-1)) + (y-1)*354 + Math.floor((3+11*y)/30) + 1948439.5; }
-function jdToGregorian(jd){ const j=Math.floor(jd+0.5); const f=j+1401+Math.floor((Math.floor((4*j+274277)/146097)*3)/4)-38; const e=4*f+3; const g=Math.floor((e%1461)/4); const h=5*g+2; const D=Math.floor((h%153)/5)+1; const M=((Math.floor(h/153)+2)%12)+1; const Y=Math.floor(e/1461)-4716+Math.floor((12+2-M)/12); return {year:Y,month:M,day:D}; }
-function gregorianToJD(y,m,d){ if(m<=2){y-=1;m+=12;} const A=Math.floor(y/100); const B=2-A+Math.floor(A/4); return Math.floor(365.25*(y+4716))+Math.floor(30.6001*(m+1))+d+B-1524.5; }
-function jdToIslamic(jd){ const jd2=Math.floor(jd)+0.5; const days=jd2-1948439.5; let y=Math.floor((30*days+10646)/10631); let m=Math.min(12, Math.ceil((days-(29+islamicToJD(y,1,1)-1948439.5))/29.5)+1); let d=Math.floor(jd2-islamicToJD(y,m,1))+1; if(d<=0){ m-=1; if(m<1){ m=12; y-=1; } d=Math.floor(jd2-islamicToJD(y,m,1))+1; } return {year:y,month:m,day:d}; }
-function hijriToGreg(y,m,d){ return jdToGregorian(islamicToJD(y,m,d)); }
-function gregToHijri(dt){ const jd=gregorianToJD(dt.getFullYear(), dt.getMonth()+1, dt.getDate()); return jdToIslamic(jd); }
-const SITE_DOMAIN="age.majeedpng.online", NAME_AR="عبدالمجيد الثويني", NAME_EN="Abdulmajeed Althuwaini";
-let cdTimer=null;
-function startCountdown(target, tz, lang){ if(cdTimer) clearInterval(cdTimer); const upd=()=>{ const now=new Date(); let diff=target-now; if(diff<0) diff=0; const s=Math.floor(diff/1000); const d=Math.floor(s/86400); const h=Math.floor((s%86400)/3600); const m=Math.floor((s%3600)/60); const sec=s%60;
-  document.getElementById('cdDays').textContent=d; document.getElementById('cdHours').textContent=h; document.getElementById('cdMin').textContent=m; document.getElementById('cdSec').textContent=sec; }; upd(); cdTimer=setInterval(upd,1000);}
-function enforceLTRDynamic(){ const L=getLang(); const ids=['gregInfo','hijriInfo','sleepTag','sleepHint']; ids.forEach(id=>{ const el=document.getElementById(id); if(!el) return; if(L==='en') el.classList.add('ltr'); else el.classList.remove('ltr'); }); }
-function toYMD(dd){ const y=Math.floor(dd/365.25); dd-=y*365.25; const mo=Math.floor(dd/30.4375); dd-=mo*30.4375; const d=Math.round(dd); return {y,mo,d}; }
-function calcAndRender(){
-  const lang=getLang(); const tz=localStorage.getItem('ageTZ')||'Asia/Riyadh';
-  // seed example if none
-  if(!localStorage.getItem('birthInfo')){ localStorage.setItem('birthInfo', JSON.stringify({type:'greg', greg:{gD:2,gM:2,gY:1999}})); }
-  const b=JSON.parse(localStorage.getItem('birthInfo'));
-  let gY, gM, gD;
-  if(b.type==='hijri'){ const g=hijriToGreg(b.hijri.hY,b.hijri.hM,b.hijri.hD); gY=g.year; gM=g.month; gD=g.day; }
-  else { gY=b.greg.gY; gM=b.greg.gM; gD=b.greg.gD; }
-  const birth=new Date(gY,gM-1,gD); const nowTZ=new Date();
-  const ageMs=nowTZ-birth; const dayMs=86400000; const days=Math.floor(ageMs/dayMs); const hours=Math.floor(ageMs/3600000);
-  const years=(nowTZ.getFullYear()-gY)-(((nowTZ.getMonth()+1)<gM)||((nowTZ.getMonth()+1===gM)&&(nowTZ.getDate()<gD))?1:0);
-  let months=years*12+(nowTZ.getMonth()+1)-gM; if(nowTZ.getDate()<gD) months-=1; const weeks=Math.floor(days/7);
-  const birthH=gregToHijri(new Date(gY,gM-1,gD)); const nowH=gregToHijri(nowTZ);
-  let hy=nowH.year-birthH.year, hm=nowH.month-birthH.month, hd=nowH.day-birthH.day; if(hd<0){hd+=30;hm-=1;} if(hm<0){hm+=12;hy-=1;}
-  const useHijri=(b.type==='hijri'); const yearsTop=useHijri?hy:years; const monthsTop=useHijri?(hy*12+hm):months;
-  document.getElementById('yearsAge').textContent=yearsTop; document.getElementById('monthsAge').textContent=monthsTop; document.getElementById('weeksAge').textContent=weeks; document.getElementById('daysAge').textContent=days; document.getElementById('hoursAge').textContent=hours;
-  // info
-  document.getElementById('gregInfo').innerHTML=(lang==='ar'?'تاريخ الميلاد: <b>'+gD+'-'+gM+'-'+gY+'</b>':'Birthdate: <b>'+gD+'-'+gM+'-'+gY+'</b>');
-  document.getElementById('hijriInfo').innerHTML=(lang==='ar'?'تاريخ الميلاد: <b>'+birthH.day+'-'+birthH.month+'-'+birthH.year+' هـ</b>':'Birth (Hijri): <b>'+birthH.day+'-'+birthH.month+'-'+birthH.year+' AH</b>');
-  // banners
-  const today=new Date(); if(today.getDate()===gD && (today.getMonth()+1)===gM) document.body.classList.add('birthday');
-  // sleep healthy
-  function sleepRange(ageY){ if(ageY<0.25) return [14,17]; if(ageY<1) return [12,15]; if(ageY<3) return [11,14]; if(ageY<6) return [10,13]; if(ageY<14) return [9,11]; if(ageY<18) return [8,10]; if(ageY<65) return [7,9]; return [7,8]; }
-  const sr=sleepRange(years);
-  const sTag=document.getElementById('sleepTag'); const sHint=document.getElementById('sleepHint');
-  if(lang==='ar'){ sTag.textContent='نومك الصحي: من '+sr[0]+' إلى '+sr[1]+' ساعات'; sHint.textContent='قيمة تقديرية ثابتة حسب العمر (إرشادات عامة).'; } else { sTag.textContent='Healthy sleep: from '+sr[0]+' to '+sr[1]+' hours'; sHint.textContent='Approximate age-based range (general guidelines).'; } sHint.style.display='block';
-  // facts
-  const breaths=20000*days; const bpm=80; const heartbeats=Math.round(bpm*60*24*days); const laughs=10*days;
-  const s=toYMD((8/24)*days); const e=toYMD((80/60/24)*days);
-  document.getElementById('breathsLine').textContent=(lang==='ar'?'تَنَفَّستَ حوالي ':'You breathed about ')+breaths.toLocaleString(lang==='ar'?'ar-EG':'en-US')+(lang==='ar'?' مرة':' times');
-  document.getElementById('heartbeatsLine').textContent=(lang==='ar'?'نَبَضَ قلبك حوالي ':'Your heart beat about ')+heartbeats.toLocaleString(lang==='ar'?'ar-EG':'en-US')+(lang==='ar'?' نبضة':' times');
-  document.getElementById('laughsLine').textContent=(lang==='ar'?'ضَحِكتَ حوالي ':'You laughed about ')+laughs.toLocaleString(lang==='ar'?'ar-EG':'en-US')+(lang==='ar'?' مرة':' times');
-  document.getElementById('sleptLine').textContent=(lang==='ar'?'نِمتَ حوالي ':'You slept about ')+s.y+(lang==='ar'?' سنة و ':' years, ')+s.mo+(lang==='ar'?' شهر و ':' months, and ')+s.d+(lang==='ar'?' يوم':' days');
-  document.getElementById('eatenLine').textContent=(lang==='ar'?'أمضيت في تناول الطعام ':'You ate ')+e.y+(lang==='ar'?' سنة و ':' years, ')+e.mo+(lang==='ar'?' شهر و ':' months, and ')+e.d+(lang==='ar'?' يوم':' days');
-  // countdown target
-  const next=new Date(nowTZ.getFullYear() + ((nowTZ.getMonth()+1>gM || ((nowTZ.getMonth()+1===gM)&& nowTZ.getDate()>gD))?1:0), gM-1, gD);
-  startCountdown(next, tz, lang);
-  document.getElementById('contentArea').style.display='grid'; enforceLTRDynamic();
+function fmt(n, lang){ try{return n.toLocaleString(lang==='ar'?'ar-EG':'en-US');}catch(e){return String(n);} }
+function tzLabel(tz, lang){
+  const mapAr={'Asia/Riyadh':'الرياض (السعودية)','Asia/Kuwait':'الكويت','Asia/Dubai':'دبي (الإمارات)','Asia/Qatar':'الدوحة (قطر)','Asia/Bahrain':'المنامة (البحرين)','Asia/Muscat':'مسقط (عُمان)','Africa/Cairo':'القاهرة (مصر)','Europe/Istanbul':'إسطنبول (تركيا)','Europe/London':'لندن (المملكة المتحدة)','Europe/Paris':'باريس (فرنسا)','America/Los_Angeles':'لوس أنجلِس (أمريكا)','America/New_York':'نيويورك (أمريكا)','Asia/Karachi':'كراتشي (باكستان)','Asia/Dhaka':'دكا (بنغلاديش)','Asia/Tokyo':'طوكيو (اليابان)'};
+  const mapEn={'Asia/Riyadh':'Riyadh (KSA)','Asia/Kuwait':'Kuwait','Asia/Dubai':'Dubai (UAE)','Asia/Qatar':'Doha (Qatar)','Asia/Bahrain':'Manama (Bahrain)','Asia/Muscat':'Muscat (Oman)','Africa/Cairo':'Cairo (Egypt)','Europe/Istanbul':'Istanbul (Türkiye)','Europe/London':'London (UK)','Europe/Paris':'Paris (France)','America/Los_Angeles':'Los Angeles (USA)','America/New_York':'New York (USA)','Asia/Karachi':'Karachi (Pakistan)','Asia/Dhaka':'Dhaka (Bangladesh)','Asia/Tokyo':'Tokyo (Japan)'};
+  return (lang==='ar'?mapAr:mapEn)[tz]||tz;
 }
-document.getElementById('openCustomize').onclick=()=>{ const p=document.getElementById('settings'); p.style.display = (p.style.display==='none'?'block':'none'); };
-applyI18n(); setupSettings(); enforceLTRDynamic(); calcAndRender();
+
+// ---------- Hijri (tabular) conversion (±1 day from Umm al-Qura) ----------
+function islamicToJD(y,m,d){ return d + Math.ceil(29.5*(m-1)) + (y-1)*354 + Math.floor((3+11*y)/30) + 1948439.5; }
+function jdToGregorian(jd){
+  const j = Math.floor(jd + 0.5);
+  const f = j + 1401 + Math.floor((Math.floor((4*j + 274277)/146097)*3)/4) - 38;
+  const e = 4*f + 3;
+  const g = Math.floor((e % 1461) / 4);
+  const h = 5*g + 2;
+  const D = Math.floor((h % 153) / 5) + 1;
+  const M = ((Math.floor(h/153) + 2) % 12) + 1;
+  const Y = Math.floor(e/1461) - 4716 + Math.floor((12 + 2 - M)/12);
+  return {year:Y, month:M, day:D};
+}
+function gregorianToJD(y,m,d){
+  if(m<=2){ y-=1; m+=12; }
+  const A = Math.floor(y/100);
+  const B = 2 - A + Math.floor(A/4);
+  return Math.floor(365.25*(y+4716)) + Math.floor(30.6001*(m+1)) + d + B - 1524.5;
+}
+function jdToIslamic(jd){
+  const jd2 = Math.floor(jd) + 0.5;
+  const days = jd2 - 1948439.5;
+  let y = Math.floor((30*days + 10646)/10631);
+  let m = Math.min(12, Math.ceil((days - (29 + islamicToJD(y,1,1) - 1948439.5))/29.5) + 1);
+  let d = Math.floor(jd2 - islamicToJD(y,m,1)) + 1;
+  if(d<=0){ m -= 1; if(m<1){ m=12; y-=1; } d = Math.floor(jd2 - islamicToJD(y,m,1)) + 1; }
+  return {year:y, month:m, day:d};
+}
+function hijriToGreg(y,m,d){ return jdToGregorian(islamicToJD(y,m,d)); }
+function gregToHijri(dt){ const jd = gregorianToJD(dt.getFullYear(), dt.getMonth()+1, dt.getDate()); return jdToIslamic(jd); }
+
+// ---------- Misc helpers ----------
+function copyText(t){ navigator.clipboard?.writeText(t); const toast=document.querySelector('.copy-toast'); if(!toast) return; toast.textContent = (getLang()==='ar'?'تم النسخ ✅':'Copied ✅'); toast.style.display='block'; setTimeout(()=>toast.style.display='none',1500); }
+function buildShareLink(b){ const q=new URLSearchParams(); q.set('type', b.type); q.set('d', b.input.d); q.set('m', b.input.m); q.set('y', b.input.y); q.set('lang', getLang()); q.set('theme', localStorage.getItem('ageTheme')||'dark'); q.set('accent', encodeURIComponent(localStorage.getItem('ageAccent')||'#6366f1,#8b5cf6')); q.set('go','1'); return `index.html?${q.toString()}`; }
+
+// ---------- Seasons, weekdays, life stage ----------
+function seasonName(m, lang){ const ar={winter:'الشتاء',spring:'الربيع',summer:'الصيف',autumn:'الخريف'}; const en={winter:'Winter',spring:'Spring',summer:'Summer',autumn:'Autumn'}; const s=[12,1,2].includes(m)?'winter':[3,4,5].includes(m)?'spring':[6,7,8].includes(m)?'summer':'autumn'; return (lang==='ar'?ar:en)[s]; }
+function weekdayName(date, lang){ const ar=['الأحد','الإثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت']; const en=['Sun','Mon','Tue','Wed','Thu','Fri','Sat']; return (lang==='ar'?ar:en)[date.getDay()]; }
+function lifeStage(y, lang){ if(lang==='en'){ if(y<13)return'Childhood'; if(y<20)return'Adolescence'; if(y<36)return'Young adult'; if(y<60)return'Middle age'; return'Senior'; } else { if(y<13)return'طفولة'; if(y<20)return'مراهقة'; if(y<36)return'شباب'; if(y<60)return'متوسط العمر'; return'كبير سن'; } }
+
+// ---------- Share images (portrait & square) ----------
+const SITE_DOMAIN='age.majeedpng.online';
+const NAME_AR='عبدالمجيد الثويني', NAME_EN='Abdulmajeed Althuwaini';
+const FONT_AR="'Tajawal', 'Noto Kufi Arabic', 'Noto Sans Arabic', Arial, sans-serif";
+const FONT_EN="system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif";
+
+function roundRect(ctx, x, y, w, h, r){ ctx.beginPath(); ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r); ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath(); }
+function pill(ctx,x,y,w,h){ const r = h/2; roundRect(ctx,x,y,w,h,r); }
+
+function shareImagePortrait(data, lang){
+  const W=1024,H=1536, canvas=document.createElement('canvas'); canvas.width=W; canvas.height=H; const ctx=canvas.getContext('2d');
+  const g=ctx.createLinearGradient(0,0,W,H); g.addColorStop(0,'#0ea5e9'); g.addColorStop(1,'#22c55e'); ctx.fillStyle=g; roundRect(ctx,24,24,W-48,H-48,28); ctx.fill();
+
+  ctx.strokeStyle='rgba(255,255,255,.55)'; ctx.lineWidth=3; roundRect(ctx,24,24,W-48,H-48,28); ctx.stroke();
+
+  ctx.fillStyle='#fff'; ctx.textAlign='center';
+  ctx.font='900 56px '+(lang==='ar'?FONT_AR:FONT_EN); ctx.fillText(lang==='ar'?'تفاصيل عمرك':'Your Age Details', W/2, 120);
+  ctx.font='700 34px '+(lang==='ar'?FONT_AR:FONT_EN); ctx.fillText(lang==='ar'?NAME_AR:NAME_EN, W/2, 170);
+
+  // big number
+  ctx.font='900 108px '+(lang==='ar'?FONT_AR:FONT_EN); ctx.fillText(data.years.toLocaleString(lang==='ar'?'ar-EG':'en-US'), W/2, 280);
+  ctx.font='700 28px '+(lang==='ar'?FONT_AR:FONT_EN); ctx.fillText(lang==='ar'?'سنة':'years', W/2, 318);
+
+  // KPIs
+  const kY=360, boxW=210, boxH=120, gap=28, startX=(W-(boxW*4+gap*3))/2;
+  const items=[
+    [lang==='ar'?'أشهر':'Months', data.months],
+    [lang==='ar'?'أسابيع':'Weeks', data.weeks],
+    [lang==='ar'?'أيام':'Days', data.days],
+    [lang==='ar'?'ساعات':'Hours', data.hours]
+  ];
+  for(let i=0;i<4;i++){
+    const x=startX+i*(boxW+gap); ctx.globalAlpha=.9; ctx.fillStyle='rgba(255,255,255,.14)'; pill(ctx,x,kY,boxW,boxH); ctx.fill(); ctx.globalAlpha=1;
+    ctx.fillStyle='#fff'; ctx.font='700 26px '+(lang==='ar'?FONT_AR:FONT_EN); ctx.fillText(items[i][0], x+boxW/2, kY+42);
+    ctx.font='900 38px '+(lang==='ar'?FONT_AR:FONT_EN); ctx.fillText(items[i][1].toLocaleString(lang==='ar'?'ar-EG':'en-US'), x+boxW/2, kY+88);
+  }
+
+  // Next birthday (lowered)
+  ctx.font='800 30px '+(lang==='ar'?FONT_AR:FONT_EN);
+  ctx.fillText((lang==='ar'?'عيد ميلادك القادم: ':'Next birthday: ')+data.nextStr, W/2, 646);
+
+  // Facts tiles
+  const fx=100, fw=W-200, fh=80, fyStart=700, fgap=24; const facts=[
+    (lang==='ar'?'تَنَفَّستَ حوالي ':'You breathed about ')+data.breaths.toLocaleString(lang==='ar'?'ar-EG':'en-US')+(lang==='ar'?' مرة':' times'),
+    (lang==='ar'?'نَبَضَ قلبك حوالي ':'Your heart beat about ')+data.heartbeats.toLocaleString(lang==='ar'?'ar-EG':'en-US')+(lang==='ar'?' نبضة':' times'),
+    (lang==='ar'?'ضَحِكتَ حوالي ':'You laughed about ')+data.laughs.toLocaleString(lang==='ar'?'ar-EG':'en-US')+(lang==='ar'?' مرة':' times'),
+    (lang==='ar'?'نِمتَ حوالي ':'You slept about ')+data.sleepStr,
+    (lang==='ar'?'أكلت ':'You ate ')+data.eatStr
+  ];
+  ctx.font='700 26px '+(lang==='ar'?FONT_AR:FONT_EN);
+  for(let i=0;i<facts.length;i++){ ctx.globalAlpha=.85; ctx.fillStyle='rgba(255,255,255,.14)'; pill(ctx,fx,fyStart+i*(fh+fgap),fw,fh); ctx.fill(); ctx.globalAlpha=1; ctx.fillStyle='#fff'; ctx.fillText(facts[i], W/2, fyStart+i*(fh+fgap)+52); }
+
+  // Site domain
+  ctx.font='700 20px '+(lang==='ar'?FONT_AR:FONT_EN); ctx.fillText('Site: '+SITE_DOMAIN, W/2, H-40);
+
+  canvas.toBlob(b=>{ const url=URL.createObjectURL(b); const a=document.createElement('a'); a.href=url; a.download='age-portrait.png'; a.click(); setTimeout(()=>URL.revokeObjectURL(url),1000); });
+}
+
+function shareImageSquare(data, lang){
+  const S=1024, canvas=document.createElement('canvas'); canvas.width=S; canvas.height=S; const ctx=canvas.getContext('2d');
+  const g=ctx.createLinearGradient(0,0,S,S); g.addColorStop(0,'#0ea5e9'); g.addColorStop(1,'#22c55e'); ctx.fillStyle=g; roundRect(ctx,24,24,S-48,S-48,28); ctx.fill();
+  ctx.strokeStyle='rgba(255,255,255,.55)'; ctx.lineWidth=3; roundRect(ctx,24,24,S-48,S-48,28); ctx.stroke();
+
+  ctx.fillStyle='#fff'; ctx.textAlign='center';
+  ctx.font='900 56px '+(lang==='ar'?FONT_AR:FONT_EN); ctx.fillText(lang==='ar'?'تفاصيل عمرك':'Your Age Details', S/2, 110);
+  ctx.font='700 34px '+(lang==='ar'?FONT_AR:FONT_EN); ctx.fillText(lang==='ar'?NAME_AR:NAME_EN, S/2, 158);
+
+  ctx.font='900 74px '+(lang==='ar'?FONT_AR:FONT_EN); ctx.fillText(data.years.toLocaleString(lang==='ar'?'ar-EG':'en-US'), S/2, 280);
+  ctx.font='700 26px '+(lang==='ar'?FONT_AR:FONT_EN); ctx.fillText(lang==='ar'?'سنة':'years', S/2, 310);
+
+  const kY=360, boxW=190, boxH=110, gap=26, startX=(S-(boxW*4+gap*3))/2;
+  const items=[
+    [lang==='ar'?'أشهر':'Months', data.months],
+    [lang==='ar'?'أسابيع':'Weeks', data.weeks],
+    [lang==='ar'?'أيام':'Days', data.days],
+    [lang==='ar'?'ساعات':'Hours', data.hours]
+  ];
+  for(let i=0;i<4;i++){
+    const x=startX+i*(boxW+gap); ctx.globalAlpha=.9; ctx.fillStyle='rgba(255,255,255,.14)'; pill(ctx,x,kY,boxW,boxH); ctx.fill(); ctx.globalAlpha=1;
+    ctx.fillStyle='#fff'; ctx.font='700 24px '+(lang==='ar'?FONT_AR:FONT_EN); ctx.fillText(items[i][0], x+boxW/2, kY+40);
+    ctx.font='900 34px '+(lang==='ar'?FONT_AR:FONT_EN); ctx.fillText(items[i][1].toLocaleString(lang==='ar'?'ar-EG':'en-US'), x+boxW/2, kY+84);
+  }
+
+  ctx.font='800 28px '+(lang==='ar'?FONT_AR:FONT_EN);
+  ctx.fillText((lang==='ar'?'عيد ميلادك القادم: ':'Next birthday: ')+data.nextStr, S/2, 470);
+
+  const fx=80, fw=S-160, fh=76, fyStart=520, fgap=18; const facts=[
+    (lang==='ar'?'تَنَفَّستَ حوالي ':'You breathed about ')+data.breaths.toLocaleString(lang==='ar'?'ar-EG':'en-US')+(lang==='ar'?' مرة':' times'),
+    (lang==='ar'?'نَبَضَ قلبك حوالي ':'Your heart beat about ')+data.heartbeats.toLocaleString(lang==='ar'?'ar-EG':'en-US')+(lang==='ar'?' نبضة':' times'),
+    (lang==='ar'?'ضَحِكتَ حوالي ':'You laughed about ')+data.laughs.toLocaleString(lang==='ar'?'ar-EG':'en-US')+(lang==='ar'?' مرة':' times'),
+    (lang==='ar'?'نِمتَ حوالي ':'You slept about ')+data.sleepStr,
+    (lang==='ar'?'أكلت ':'You ate ')+data.eatStr
+  ];
+  ctx.font='700 24px '+(lang==='ar'?FONT_AR:FONT_EN);
+  for(let i=0;i<facts.length;i++){ ctx.globalAlpha=.85; ctx.fillStyle='rgba(255,255,255,.14)'; pill(ctx,fx,fyStart+i*(fh+fgap),fw,fh); ctx.fill(); ctx.globalAlpha=1; ctx.fillStyle='#fff'; ctx.fillText(facts[i], S/2, fyStart+i*(fh+fgap)+50); }
+
+  ctx.font='700 18px '+(lang==='ar'?FONT_AR:FONT_EN); ctx.fillText('Site: '+SITE_DOMAIN, S/2, S-38);
+
+  canvas.toBlob(b=>{ const url=URL.createObjectURL(b); const a=document.createElement('a'); a.href=url; a.download='age-square.png'; a.click(); setTimeout(()=>URL.revokeObjectURL(url),1000); });
+}
+
+let cdTimer=null;
+function startCountdown(target, tz, lang){
+  if(cdTimer) clearInterval(cdTimer);
+  const update=()=>{
+    const now = nowInTZ(tz);
+    let diff = target - now;
+    if(diff < 0) diff = 0;
+    const s = Math.floor(diff/1000);
+    const d = Math.floor(s / 86400);
+    const h = Math.floor((s % 86400)/3600);
+    const m = Math.floor((s % 3600)/60);
+    const sec = s % 60;
+    document.getElementById('cdDays').textContent = fmt(d, lang);
+    document.getElementById('cdHours').textContent = fmt(h, lang);
+    document.getElementById('cdMin').textContent = fmt(m, lang);
+    document.getElementById('cdSec').textContent = fmt(sec, lang);
+  };
+  update(); cdTimer = setInterval(update, 1000);
+}
+
+function calcAndRender(){ 
+  const raw = localStorage.getItem('birthInfo');
+  if(!raw) { document.getElementById('noData').style.display='block'; return; }
+  const b = JSON.parse(raw);
+  const gY=b.greg.gY, gM=b.greg.gM, gD=b.greg.gD;
+  const lang = getLang();
+  const tz = localStorage.getItem('ageTZ') || 'Asia/Riyadh';
+
+  const birth = new Date(gY, gM-1, gD);
+  const nowTZ = nowInTZ(tz);
+  const ageMs = nowTZ - birth;
+  if(ageMs < 0) { document.getElementById('noData').style.display='block'; document.getElementById('noData').textContent = (lang==='ar'?'تاريخ الميلاد في المستقبل':'Birthdate is in the future'); return;}
+
+  const dayMs = 24*60*60*1000;
+  const days = Math.floor(ageMs / dayMs);
+  const hours = Math.floor(ageMs / (60*60*1000));
+  const years = (nowTZ.getFullYear() - gY) - ( (nowTZ.getMonth()+1 < gM || (nowTZ.getMonth()+1 === gM && nowTZ.getDate() < gD)) ? 1 : 0 );
+  let months = years*12 + (nowTZ.getMonth()+1) - gM;
+  if(nowTZ.getDate() < gD) months -= 1;
+  const weeks = Math.floor(days/7);
+
+  const weekName = weekdayName(new Date(gY, gM-1, gD), lang);
+  document.getElementById('weekday').textContent = weekName;
+  document.getElementById('season').textContent = seasonName(gM, lang);
+  document.getElementById('lifeStage').textContent = lifeStage(years, lang);
+
+  // Hijri age
+  const birthH = gregToHijri(new Date(gY, gM-1, gD));
+  const nowH = gregToHijri(nowTZ);
+  let hy = nowH.year - birthH.year;
+  let hm = nowH.month - birthH.month;
+  let hd = nowH.day - birthH.day;
+  if(hd<0){ hd += 30; hm -= 1; } // rough
+  if(hm<0){ hy -= 1; hm += 12; }
+  document.getElementById('hijriInfo').innerHTML = (lang==='ar'
+    ? `تاريخ الميلاد: <b>${birthH.day}-${birthH.month}-${birthH.year} هـ</b><br>
+       العمر: <b>${fmt(hy,lang)}</b> سنة و <b>${fmt(hm,lang)}</b> شهر و <b>${fmt(hd,lang)}</b> يوم (حساب تقريبي)`
+    : `Birth Hijri: <b>${birthH.day}-${birthH.month}-${birthH.year} AH</b><br>
+       Age: <b>${fmt(hy,lang)}</b> years, <b>${fmt(hm,lang)}</b> months, <b>${fmt(hd,lang)}</b> days (approx.)`);
+
+  // Top KPIs respect selected input type
+  const useHijri = (b.type === 'hijri');
+  const yearsTop = useHijri ? hy : years;
+  const monthsTop = useHijri ? (hy*12 + hm) : months;
+  document.getElementById('yearsAge').textContent = fmt(yearsTop, lang);
+  document.getElementById('monthsAge').textContent = fmt(monthsTop, lang);
+  document.getElementById('weeksAge').textContent = fmt(weeks, lang);
+  document.getElementById('daysAge').textContent = fmt(days, lang);
+  document.getElementById('hoursAge').textContent = fmt(hours, lang);
+
+  // Next birthday (Hijri-aware-ish: by selected type)
+  let nextTarget;
+  if(useHijri){
+    // Next birthday by Hijri repeating month/day -> convert to Gregorian for current/next Hijri year (approx)
+    let nHy = nowH.year;
+    if(nowH.month > birthH.month || (nowH.month === birthH.month && nowH.day >= birthH.day)) nHy += 1;
+    const gNext = hijriToGreg(nHy, birthH.month, birthH.day);
+    nextTarget = new Date(gNext.year, gNext.month-1, gNext.day);
+  } else {
+    nextTarget = new Date(nowTZ.getFullYear(), gM-1, gD);
+    if(nextTarget < nowTZ) nextTarget = new Date(nowTZ.getFullYear()+1, gM-1, gD);
+  }
+  const remMs = nextTarget - nowTZ;
+  const rDays = Math.floor(remMs/dayMs);
+  const rHours = Math.floor( (remMs - rDays*dayMs) / (60*60*1000) );
+  const nextBDayName = weekdayName(nextTarget, lang);
+  const nextStr = `${nextBDayName} ${nextTarget.getDate()}-${nextTarget.getMonth()+1}-${nextTarget.getFullYear()}`;
+  startCountdown(nextTarget, tz, lang);
+
+  // TZ label localized
+  const tzText = tzLabel(tz, lang);
+
+  // Gregorian info
+  document.getElementById('gregInfo').innerHTML = (lang==='ar'
+    ? `تاريخ الميلاد: <b>${gD}-${gM}-${gY}</b><br>
+       العمر: <b>${fmt(years,lang)}</b> سنة و <b>${fmt(months%12,lang)}</b> شهر و <b>${fmt((days%30),lang)}</b> يوم<br>
+       باقي لعيد ميلادك القادم: <b>${fmt(rDays,lang)}</b> يوم و <b>${fmt(rHours,lang)}</b> ساعة<br>
+       سيكون عيد ميلادك يوم <b>${nextBDayName}</b> الموافق <b>${nextTarget.getDate()}-${nextTarget.getMonth()+1}-${nextTarget.getFullYear()}</b> (المنطقة الزمنية: ${tzText})`
+    : `Birthdate: <b>${gD}-${gM}-${gY}</b><br>
+       Age: <b>${fmt(years,lang)}</b> years, <b>${fmt(months%12,lang)}</b> months, <b>${fmt((days%30),lang)}</b> days<br>
+       Until next birthday: <b>${fmt(rDays,lang)}</b> days and <b>${fmt(rHours,lang)}</b> hours<br>
+       Next birthday on <b>${nextBDayName}</b> <b>${nextTarget.getDate()}-${nextTarget.getMonth()+1}-${nextTarget.getFullYear()}</b> (Time Zone: ${tzText})`);
+
+  // Facts
+  const breathsPerDay = 20000, bpm = 80, laughsPerDay = 10, sleepHours = 8, eatMinutes = 80;
+  const breaths = breathsPerDay * days;
+  const heartbeats = Math.round(bpm*60*24 * days);
+  const laughs = laughsPerDay * days;
+  const toYMD = (dd)=>{ const y=Math.floor(dd/365.25); dd -= y*365.25; const mo=Math.floor(dd/30.4375); dd -= mo*30.4375; const d=Math.round(dd); return {y,mo,d}; };
+  const s = toYMD((sleepHours/24) * days);
+  const e = toYMD((eatMinutes/60/24) * days);
+
+  // Healthy sleep tag (fixed range) + banner (approximate rate)
+  const sleepTag = document.getElementById('sleepTag');
+  const sleepBanner = document.getElementById('sleepBanner');
+  if(lang==='ar'){
+    sleepTag.textContent = 'نومك الصحي: من 7 إلى 9 ساعات يوميًا';
+    sleepBanner.textContent = 'معدل تقريبي ثابت: ٨ ساعات/يوم.';
+  }else{
+    sleepTag.textContent = 'Healthy sleep: 7–9 hours/day';
+    sleepBanner.textContent = 'Approximate fixed rate: 8 hours/day.';
+  }
+  sleepBanner.style.display='block';
+
+
+  if(lang==='ar') {
+    document.getElementById('breathsLine').textContent = `تَنَفَّستَ حوالي ${fmt(breaths,'ar')} مرة`;
+    document.getElementById('heartbeatsLine').textContent = `نَبَضَ قلبك حوالي ${fmt(heartbeats,'ar')} نبضة`;
+    document.getElementById('laughsLine').textContent = `ضَحِكتَ حوالي ${fmt(laughs,'ar')} مرة`;
+    document.getElementById('sleptLine').textContent = `نِمتَ حوالي ${fmt(s.y,'ar')} سنة و ${fmt(s.mo,'ar')} شهر و ${fmt(s.d,'ar')} يوم`;
+    document.getElementById('eatenLine').textContent = `أمضيت في تناول الطعام ${fmt(e.y,'ar')} سنة و ${fmt(e.mo,'ar')} شهر و ${fmt(e.d,'ar')} يوم`;
+  } else {
+    document.getElementById('breathsLine').textContent = `You breathed about ${fmt(breaths,'en')} times`;
+    document.getElementById('heartbeatsLine').textContent = `Your heart beat about ${fmt(heartbeats,'en')} times`;
+    document.getElementById('laughsLine').textContent = `You laughed about ${fmt(laughs,'en')} times`;
+    document.getElementById('sleptLine').textContent = `You slept about ${fmt(s.y,'en')} years, ${fmt(s.mo,'en')} months, and ${fmt(s.d,'en')} days`;
+    document.getElementById('eatenLine').textContent = `You ate ${fmt(e.y,'en')} years, ${fmt(e.mo,'en')} months, and ${fmt(e.d,'en')} days`;
+  }
+
+  // Share actions — pick current lang at click time
+  document.getElementById('shareBtn').onclick = ()=>{
+    const L = getLang();
+    const yearsS = useHijri ? hy : years;
+    const monthsS = useHijri ? (hy*12 + hm) : months;
+    shareImagePortrait({
+      years: yearsS, months: monthsS, weeks, days, hours, nextStr,
+      breaths, heartbeats, laughs,
+      sleepStr: (L==='ar'?`${fmt(s.y,'ar')} سنة ${fmt(s.mo,'ar')} شهر ${fmt(s.d,'ar')} يوم`
+                           :`${fmt(s.y,'en')} years, ${fmt(s.mo,'en')} months, and ${fmt(s.d,'en')} days`),
+      eatStr: (L==='ar'?`${fmt(e.y,'ar')} سنة ${fmt(e.mo,'ar')} شهر ${fmt(e.d,'ar')} يوم`
+                         :`${fmt(e.y,'en')} years, ${fmt(e.mo,'en')} months, and ${fmt(e.d,'en')} days`)
+    }, L);
+  };
+  document.getElementById('shareSquareBtn').onclick = ()=>{
+    const L = getLang();
+    const yearsS2 = useHijri ? hy : years;
+    const monthsS2 = useHijri ? (hy*12 + hm) : months;
+    shareImageSquare({
+      years: yearsS2, months: monthsS2, weeks, days, hours, nextStr,
+      breaths, heartbeats, laughs,
+      sleepStr: (L==='ar'?`${fmt(s.y,'ar')} سنة ${fmt(s.mo,'ar')} شهر ${fmt(s.d,'ar')} يوم`
+                           :`${fmt(s.y,'en')} years, ${fmt(s.mo,'en')} months, and ${fmt(s.d,'en')} days`),
+      eatStr: (L==='ar'?`${fmt(e.y,'ar')} سنة ${fmt(e.mo,'ar')} شهر ${fmt(e.d,'ar')} يوم`
+                         :`${fmt(e.y,'en')} years, ${fmt(e.mo,'en')} months, and ${fmt(e.d,'en')} days`)
+    }, L);
+  };
+  document.getElementById('copyLinkBtn').onclick = ()=>{ copyText(buildShareLink(b)); };
+
+  document.getElementById('contentArea').style.display='grid';
+
+  // Special birthday style (Gregorian)
+  if(nowTZ.getDate()===gD && (nowTZ.getMonth()+1)===gM){
+    document.body.classList.add('birthday');
+  }
+}
+
+document.getElementById('openCustomize').onclick=()=>{
+  const p=document.getElementById('settings'); p.style.display=p.style.display==='none'?'block':'none';
+};
+
+setupSettings(); applyI18n(); calcAndRender();
 </script>
 </body>
 </html>
