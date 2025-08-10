@@ -631,25 +631,74 @@ function calcAndRender(){
   const s = toYMD((sleepHours/24) * days);
   const e = toYMD((eatMinutes/60/24) * days);
 
-  // Healthy sleep tag (estimated from recommendations) + banner
-  // Recommended ranges by age (years):
-  // 6–12: 9–12 h, 13–18: 8–10 h, 19–64: 7–9 h, 65+: 7–8 h
-  let recMin=7, recMax=9;
-  if(years<=12){ recMin=9; recMax=12; }
-  else if(years<=18){ recMin=8; recMax=10; }
-  else if(years<=64){ recMin=7; recMax=9; }
-  else { recMin=7; recMax=8; }
-  const recMid = (recMin+recMax)/2; // fixed estimate used for accumulation
-  const hs = toYMD((recMid/24) * days);
-
+  // Healthy sleep tag (estimated) + banner
   const sleepTag = document.getElementById('sleepTag');
   const sleepBanner = document.getElementById('sleepBanner');
   if(lang==='ar'){
-    sleepTag.textContent = `نومك الصحي (تقديريًا: ${recMid.toFixed(1).replace('.', '٫')} ساعات/يوم) ≈ ${fmt(hs.y,'ar')} سنة و ${fmt(hs.mo,'ar')} شهر و ${fmt(hs.d,'ar')} يوم`;
-    sleepBanner.textContent = `حساب تقديري حسب التوصيات لعُمرك (${recMin}–${recMax} ساعة/يوم)`;
+    sleepTag.textContent = `نومك (تقديريًا): ٨ ساعات/يوم ≈ ${fmt(s.y,'ar')} سنة و ${fmt(s.mo,'ar')} شهر و ${fmt(s.d,'ar')} يوم`;
+    sleepBanner.textContent = 'حساب تقديري ثابت (٨ ساعات يوميًا)';
   }else{
-    sleepTag.textContent = `Healthy sleep (estimated: ${recMid.toFixed(1)} h/day) ≈ ${fmt(hs.y,'en')} years, ${fmt(hs.mo,'en')} months, ${fmt(hs.d,'en')} days`;
-    sleepBanner.textContent = `Approximation based on your age recommendations (${recMin}–${recMax} h/day)`;
+    sleepTag.textContent = `Your sleep (estimated): 8 h/day ≈ ${fmt(s.y,'en')} years, ${fmt(s.mo,'en')} months, ${fmt(s.d,'en')} days`;
+    sleepBanner.textContent = 'Approximate calculation (8 hours per day).';
   }
   sleepBanner.style.display='block';
 
+  if(lang==='ar') {
+    document.getElementById('breathsLine').textContent = `تَنَفَّستَ حوالي ${fmt(breaths,'ar')} مرة`;
+    document.getElementById('heartbeatsLine').textContent = `نَبَضَ قلبك حوالي ${fmt(heartbeats,'ar')} نبضة`;
+    document.getElementById('laughsLine').textContent = `ضَحِكتَ حوالي ${fmt(laughs,'ar')} مرة`;
+    document.getElementById('sleptLine').textContent = `نِمتَ حوالي ${fmt(s.y,'ar')} سنة و ${fmt(s.mo,'ar')} شهر و ${fmt(s.d,'ar')} يوم`;
+    document.getElementById('eatenLine').textContent = `أمضيت في تناول الطعام ${fmt(e.y,'ar')} سنة و ${fmt(e.mo,'ar')} شهر و ${fmt(e.d,'ar')} يوم`;
+  } else {
+    document.getElementById('breathsLine').textContent = `You breathed about ${fmt(breaths,'en')} times`;
+    document.getElementById('heartbeatsLine').textContent = `Your heart beat about ${fmt(heartbeats,'en')} times`;
+    document.getElementById('laughsLine').textContent = `You laughed about ${fmt(laughs,'en')} times`;
+    document.getElementById('sleptLine').textContent = `You slept about ${fmt(s.y,'en')} years, ${fmt(s.mo,'en')} months, and ${fmt(s.d,'en')} days`;
+    document.getElementById('eatenLine').textContent = `You ate ${fmt(e.y,'en')} years, ${fmt(e.mo,'en')} months, and ${fmt(e.d,'en')} days`;
+  }
+
+  // Share actions — pick current lang at click time
+  document.getElementById('shareBtn').onclick = ()=>{
+    const L = getLang();
+    const yearsS = useHijri ? hy : years;
+    const monthsS = useHijri ? (hy*12 + hm) : months;
+    shareImagePortrait({
+      years: yearsS, months: monthsS, weeks, days, hours, nextStr,
+      breaths, heartbeats, laughs,
+      sleepStr: (L==='ar'?`${fmt(s.y,'ar')} سنة ${fmt(s.mo,'ar')} شهر ${fmt(s.d,'ar')} يوم`
+                           :`${fmt(s.y,'en')} years, ${fmt(s.mo,'en')} months, and ${fmt(s.d,'en')} days`),
+      eatStr: (L==='ar'?`${fmt(e.y,'ar')} سنة ${fmt(e.mo,'ar')} شهر ${fmt(e.d,'ar')} يوم`
+                         :`${fmt(e.y,'en')} years, ${fmt(e.mo,'en')} months, and ${fmt(e.d,'en')} days`)
+    }, L);
+  };
+  document.getElementById('shareSquareBtn').onclick = ()=>{
+    const L = getLang();
+    const yearsS2 = useHijri ? hy : years;
+    const monthsS2 = useHijri ? (hy*12 + hm) : months;
+    shareImageSquare({
+      years: yearsS2, months: monthsS2, weeks, days, hours, nextStr,
+      breaths, heartbeats, laughs,
+      sleepStr: (L==='ar'?`${fmt(s.y,'ar')} سنة ${fmt(s.mo,'ar')} شهر ${fmt(s.d,'ar')} يوم`
+                           :`${fmt(s.y,'en')} years, ${fmt(s.mo,'en')} months, and ${fmt(s.d,'en')} days`),
+      eatStr: (L==='ar'?`${fmt(e.y,'ar')} سنة ${fmt(e.mo,'ar')} شهر ${fmt(e.d,'ar')} يوم`
+                         :`${fmt(e.y,'en')} years, ${fmt(e.mo,'en')} months, and ${fmt(e.d,'en')} days`)
+    }, L);
+  };
+  document.getElementById('copyLinkBtn').onclick = ()=>{ copyText(buildShareLink(b)); };
+
+  document.getElementById('contentArea').style.display='grid';
+
+  // Special birthday style (Gregorian)
+  if(nowTZ.getDate()===gD && (nowTZ.getMonth()+1)===gM){
+    document.body.classList.add('birthday');
+  }
+}
+
+document.getElementById('openCustomize').onclick=()=>{
+  const p=document.getElementById('settings'); p.style.display=p.style.display==='none'?'block':'none';
+};
+
+setupSettings(); applyI18n(); calcAndRender();
+</script>
+</body>
+</html>
