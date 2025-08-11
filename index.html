@@ -212,10 +212,11 @@ footer{opacity:.7;padding:20px 6px}
     <div class="inputs" style="margin-top:10px">
       <div class="select-wrap">
         <label data-i18n="type_label">نوع التاريخ</label>
-        <select id="calType">
-          <option value="greg" data-i18n="gregorian">ميلادي</option>
-          <option value="hijri" data-i18n="hijri">هجري (أم القرى)</option>
-        </select>
+        <label for="calType" class="visually-hidden">اختر نوع التاريخ</label>
+<select id="calType">
+  <option value="greg" data-i18n="gregorian">ميلادي</option>
+  <option value="hijri" data-i18n="hijri">هجري (أم القرى)</option>
+</select>
         <div class="caret">▾</div>
       </div>
       <div>
