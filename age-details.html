@@ -4,8 +4,8 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>حاسبة العمر – تفاصيل عمرك | عبدالمجيد الثويني</title>
-<meta name="description" content="تفاصيل دقيقة لعُمرك بالعربي: سنوات وشهور وأسابيع وأيام وساعات، مع معلومات اليوم والفصل ووقت يوم ميلادك القادم وحقائق ممتعة.">
-<meta name="keywords" content="تفاصيل العمر, عمر بالاشهر, عمر بالايام, حساب العمر بالهجري, حساب العمر بالميلادي, متى يوم ميلادي, كم باقي على يوم ميلادي, احسب عمري, حاسبة العمر, أم القرى">
+<meta name="description" content="تفاصيل دقيقة لعُمرك بالعربي: سنوات وشهور وأسابيع وأيام وساعات، مع معلومات اليوم والفصل ووقت عيد ميلادك القادم وحقائق ممتعة.">
+<meta name="keywords" content="تفاصيل العمر, عمر بالاشهر, عمر بالايام, حساب العمر بالهجري, حساب العمر بالميلادي, متى عيد ميلادي, كم باقي على عيد ميلادي, احسب عمري, حاسبة العمر, أم القرى">
 <meta property="og:title" content="تفاصيل عمرك">
 <meta property="og:description" content="تفاصيل دقيقة لعُمرك بالعربي + حقائق ممتعة.">
 <style>
@@ -170,6 +170,17 @@ footer{opacity:.7;padding:20px 6px}
 </style>
 
 <link rel="icon" type="image/png" href="favicon.png">
+
+<!-- PWA -->
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="حاسبة العمر">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0f1115">
+<link rel="icon" href="favicon.ico">
+
 </head>
 <body dir="rtl" lang="ar">
 <div class="container">
@@ -229,7 +240,7 @@ footer{opacity:.7;padding:20px 6px}
       </div>
 
       <div class="notice" style="margin-top:12px">
-        <b data-i18n="countdown_title">العد التنازلي ليوم ميلادك القادم</b>
+        <b data-i18n="countdown_title">العد التنازلي لعيد ميلادك القادم</b>
         <div id="countdown" class="countdown" style="margin-top:8px">
           <div class="count-box"><div class="count-num" id="cdDays">—</div><div class="muted" data-i18n="cd_days">أيام</div></div>
           <div class="count-box"><div class="count-num" id="cdHours">—</div><div class="muted" data-i18n="cd_hours">ساعات</div></div>
@@ -303,18 +314,18 @@ const I18N = {
         hijri_notice:"التحويل <b>الهجري</b> هنا وفق <b>تقويم أم القرى</b> للفترة 1937–2077 (قد يختلف قبل/بعد هذا النطاق).",
         type_label:"نوع التاريخ", gregorian:"ميلادي", hijri:"هجري (أم القرى)",
         day:"اليوم", month:"الشهر", year:"السنة", calc:"احسب",
-        details_badge:"تفاصيل عمرك", birthday_today:"اليوم هو يوم ميلادك! كل عام وأنت بخير 🎉",
+        details_badge:"تفاصيل عمرك", birthday_today:"اليوم عيد ميلادك! كل عام وأنت بخير 🎉",
         metrics_title:"عمرك بصيغ وأشكال مختلفة", years:"بالسنوات", months:"بالأشهر", weeks:"بالأسابيع", days:"بالأيام", hours:"بالساعات",
         more_info:"معلومات أكثر عن عمرك", born_day:"ولدت يوم: ", born_season:"ولدت في فصل: ", life_stage:"مرحلة حياتك: ",
         sleep:"نومك الصحي: من 7 إلى 9 ساعات يوميًا", greg_age:"العمر بالميلادي", hijri_age:"العمر بالهجري (أم القرى)",
-        facts:"حقائق حصلت في حياتك", breaths:"تَنَفَّستَ حوالي", heartbeats:"نَبَضَ قلبك حوالي", laughs:"ضَحِكتَ حوالي", slept:"نِمتَ حوالي", eaten:"أمضيت في تناول الطعام",
+        facts:"حقائق حصلت في حياتك", breaths:"تَنَفَّستَ حوالي", heartbeats:"نَبَضَ قلبك حوالي", laughs:"ضَحِكتَ حوالي", slept:"نِمتَ حوالي", eaten:"أمضيت في تناول الطعام",
         times_word:"مرة", beats_word:"نبضة",
         clarify:"معدلات تقريبية ثابتة: ٢٠ ألف نَفَس/يوم، ٨٠ نبضة/دقيقة، ١٠ ضحكات/يوم، ٨ ساعات نوم/يوم، ٨٠ دقيقة طعام/يوم.",
         no_birth:"لم يتم إدخال تاريخ ميلاد بعد.", go_input:"اذهب لصفحة الإدخال",
         share_image:"مشاركة كصورة (طولي)", share_square:"مشاركة إنستا (مربّع)", copy_link:"نسخ الرابط",
         ph_year:"مثال: 1410 أو 1998", ph_day:"مثال: 1", ph_month:"مثال: 1",
         copied:"تم نسخ الرابط ✅",
-        countdown_title:"العد التنازلي ليوم ميلادك القادم",
+        countdown_title:"العد التنازلي لعيد ميلادك القادم",
         cd_days:"أيام", cd_hours:"ساعات", cd_minutes:"دقائق", cd_seconds:"ثواني",
         site_label:"الموقع: " },
   en: { app_badge:"Age Calculator", settings:"Settings", settings_title:"Settings", background:"Background",
@@ -432,7 +443,7 @@ function shareImagePortrait(data, lang){
   ctx.font='700 32px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.fillText(lang==='ar'?'سنة':'years', W/2, 370);
   const labels=(lang==='ar'?['أشهر','أسابيع','أيام','ساعات']:['Months','Weeks','Days','Hours']); const values=[fmt(data.months,lang), fmt(data.weeks,lang), fmt(data.days,lang), fmt(data.hours,lang)];
   for(let i=0;i<4;i++){ const x=100+i*((W-200)/4); const y=440; const w=(W-240)/4; const h=150; roundedRect(ctx,x,y,w,h,24); ctx.fillStyle='rgba(255,255,255,0.16)'; ctx.fill(); ctx.strokeStyle='rgba(255,255,255,0.35)'; ctx.lineWidth=2; ctx.stroke(); ctx.fillStyle='#fff'; ctx.font='700 28px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.textAlign='center'; ctx.fillText(labels[i], x+w/2, y+48); ctx.font='900 46px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.fillText(values[i], x+w/2, y+105); }
-  ctx.textAlign='center'; ctx.fillStyle='#fff'; ctx.font='670 34px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.fillText((lang==='ar'?'يوم ميلادك القادم: ':'Next birthday: ')+data.nextStr, W/2, 670);
+  ctx.textAlign='center'; ctx.fillStyle='#fff'; ctx.font='670 34px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.fillText((lang==='ar'?'عيد ميلادك القادم: ':'Next birthday: ')+data.nextStr, W/2, 670);
   const factsL=[dict.breaths,dict.heartbeats,dict.laughs,dict.slept,dict.eaten]; 
   const factsV=[fmt(data.breaths,lang)+' '+(lang==='ar'?dict.times_word:dict.times_word),
                 fmt(data.heartbeats,lang)+' '+(lang==='ar'?dict.beats_word:dict.beats_word),
@@ -459,7 +470,7 @@ function shareImageSquare(data, lang){
   for(let i=0;i<4;i++){ const x=80+i*((S-160)/4); const y=320; const w=(S-200)/4; const h=118; roundedRect(ctx,x,y,w,h,20); ctx.fillStyle='rgba(255,255,255,0.16)'; ctx.fill(); ctx.strokeStyle='rgba(255,255,255,0.35)'; ctx.lineWidth=2; ctx.stroke(); ctx.fillStyle='#fff'; ctx.font='700 24px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.textAlign='center'; ctx.fillText(labels[i], x+w/2, y+42); ctx.font='900 38px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.fillText(values[i], x+w/2, y+90); }
   ctx.textAlign='center'; ctx.fillStyle='#fff'; ctx.font='700 28px ' + (lang==='ar'?FONT_AR:FONT_EN); 
   // raise "next" line
-  ctx.fillText((lang==='ar'?'يوم ميلادك القادم: ':'Next: ')+data.nextStr, S/2, 500);
+  ctx.fillText((lang==='ar'?'عيد ميلادك القادم: ':'Next: ')+data.nextStr, S/2, 500);
   // facts with larger spacing
   const factsL=[dict.breaths,dict.heartbeats,dict.laughs,dict.slept,dict.eaten];
   const factsV=[fmt(data.breaths,lang)+' '+(lang==='ar'?dict.times_word:dict.times_word),
@@ -577,8 +588,8 @@ function calcAndRender(){
   document.getElementById('gregInfo').innerHTML = (lang==='ar'
     ? `تاريخ الميلاد: <b>${gD}-${gM}-${gY}</b><br>
        العمر: <b>${fmt(years,lang)}</b> سنة و <b>${fmt(months%12,lang)}</b> شهر و <b>${fmt((days%30),lang)}</b> يوم<br>
-       باقي ليوم ميلادك القادم: <b>${fmt(rDays,lang)}</b> يوم و <b>${fmt(rHours,lang)}</b> ساعة<br>
-       سيكون يوم ميلادك بيوم <b>${nextBDayName}</b> الموافق <b>${nextTarget.getDate()}-${nextTarget.getMonth()+1}-${nextTarget.getFullYear()}</b> (المنطقة الزمنية: ${tzText})`
+       باقي لعيد ميلادك القادم: <b>${fmt(rDays,lang)}</b> يوم و <b>${fmt(rHours,lang)}</b> ساعة<br>
+       سيكون عيد ميلادك يوم <b>${nextBDayName}</b> الموافق <b>${nextTarget.getDate()}-${nextTarget.getMonth()+1}-${nextTarget.getFullYear()}</b> (المنطقة الزمنية: ${tzText})`
     : `Birthdate: <b>${gD}-${gM}-${gY}</b><br>
        Age: <b>${fmt(years,lang)}</b> years, <b>${fmt(months%12,lang)}</b> months, <b>${fmt((days%30),lang)}</b> days<br>
        Until next birthday: <b>${fmt(rDays,lang)}</b> days and <b>${fmt(rHours,lang)}</b> hours<br>
@@ -594,7 +605,7 @@ function calcAndRender(){
   const e = toYMD((eatMinutes/60/24) * days);
 
   if(lang==='ar') {
-    document.getElementById('breathsLine').textContent = `تَنَفَّستَ حوالي ${fmt(breaths,'ar')} مرة`;
+    document.getElementById('breathsLine').textContent = `تَنَفَّستَ حوالي ${fmt(breaths,'ar')} مرة`;
     document.getElementById('heartbeatsLine').textContent = `نَبَضَ قلبك حوالي ${fmt(heartbeats,'ar')} نبضة`;
     document.getElementById('laughsLine').textContent = `ضَحِكتَ حوالي ${fmt(laughs,'ar')} مرة`;
     document.getElementById('sleptLine').textContent = `نِمتَ حوالي ${fmt(s.y,'ar')} سنة و ${fmt(s.mo,'ar')} شهر و ${fmt(s.d,'ar')} يوم`;
@@ -647,5 +658,14 @@ function calcAndRender(){
 document.getElementById('yearNow').textContent = new Date().getFullYear();
 setupSettings(); applyI18n(); calcAndRender();
 </script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(console.error);
+  });
+}
+</script>
+
 </body>
 </html>
