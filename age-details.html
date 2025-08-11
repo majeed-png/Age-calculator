@@ -1,13 +1,14 @@
 <!DOCTYPE html>
+
 <html>
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>حاسبة العمر – تفاصيل عمرك | عبدالمجيد الثويني</title>
-<meta name="description" content="تفاصيل دقيقة لعُمرك بالعربي: سنوات وشهور وأسابيع وأيام وساعات، مع معلومات اليوم والفصل ووقت عيد ميلادك القادم وحقائق ممتعة.">
-<meta name="keywords" content="تفاصيل العمر, عمر بالاشهر, عمر بالايام, حساب العمر بالهجري, حساب العمر بالميلادي, متى عيد ميلادي, كم باقي على عيد ميلادي, احسب عمري, حاسبة العمر, أم القرى">
-<meta property="og:title" content="تفاصيل عمرك">
-<meta property="og:description" content="تفاصيل دقيقة لعُمرك بالعربي + حقائق ممتعة.">
+<meta content="تفاصيل دقيقة لعُمرك بالعربي: سنوات وشهور وأسابيع وأيام وساعات، مع معلومات اليوم والفصل ووقت عيد ميلادك القادم وحقائق ممتعة." name="description"/>
+<meta content="تفاصيل العمر, عمر بالاشهر, عمر بالايام, حساب العمر بالهجري, حساب العمر بالميلادي, متى عيد ميلادي, كم باقي على عيد ميلادي, احسب عمري, حاسبة العمر, أم القرى" name="keywords"/>
+<meta content="تفاصيل عمرك" property="og:title"/>
+<meta content="تفاصيل دقيقة لعُمرك بالعربي + حقائق ممتعة." property="og:description"/>
 <style>
 :root{
   --bg:#0f1115;
@@ -168,132 +169,118 @@ footer{opacity:.7;padding:20px 6px}
 .copy-toast{position:fixed;bottom:22px;right:22px;background:var(--card);border:1px solid rgba(255,255,255,.14);padding:10px 14px;border-radius:12px;display:none}
 .fact-line{margin:14px 0; font-weight:800}
 </style>
-
-<link rel="icon" type="image/png" href="favicon.png">
-
+<link href="favicon.png" rel="icon" type="image/png"/>
 <!-- PWA -->
-<link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="حاسبة العمر">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="theme-color" content="#0f1115">
-<link rel="icon" href="favicon.ico">
-
+<link href="manifest.json" rel="manifest"/>
+<link href="apple-touch-icon.png" rel="apple-touch-icon"/>
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
+<meta content="حاسبة العمر" name="apple-mobile-web-app-title"/>
+<meta content="yes" name="mobile-web-app-capable"/>
+<meta content="#0f1115" name="theme-color"/>
+<link href="favicon.ico" rel="icon"/>
 </head>
 <body dir="rtl" lang="ar">
 <div class="container">
-  <div class="navbar">
-    <div class="badge" data-i18n="details_badge">تفاصيل عمرك</div>
-    <div class="row">
-      <button id="openCustomize" style="max-width:140px" data-i18n="settings">الإعدادات</button>
-      <a href="index.html" title="رجوع"><button class="small-btn" style="background:#0c0f14;border:1px solid rgba(255,255,255,.15)">⬅️</button></a>
-    </div>
-  </div>
-
-  
-<div id="customizePanel" class="panel card" style="margin-top:8px">
-  <h3 data-i18n="settings_title">الإعدادات</h3>
-  <h4 data-i18n="background">الخلفية</h4>
-  <div class="row">
-    <div class="theme-btn" data-theme="light" data-i18n="theme_light">فاتح</div>
-    <div class="theme-btn" data-theme="dark" data-i18n="theme_dark">داكن</div>
-    <div class="theme-btn" data-theme="amoled" data-i18n="theme_amoled">أسود خالص (AMOLED)</div>
-  </div>
-  <hr/>
-  <h4 data-i18n="button_color">لون الأزرار</h4>
-  <div class="row" id="accentRow">
-    <div class="color-dot" data-accent="#6d62ff" style="background:#6d62ff"></div>
-    <div class="color-dot" data-accent="#2ed3c6" style="background:#2ed3c6"></div>
-    <div class="color-dot" data-accent="#f97316" style="background:#f97316"></div>
-    <div class="color-dot" data-accent="#22c55e" style="background:#22c55e"></div>
-    <div class="color-dot" data-accent="#06b6d4" style="background:#06b6d4"></div>
-    <div class="color-dot" data-accent="#ef4444" style="background:#ef4444"></div>
-  </div>
-  <hr/>
-  <h4 data-i18n="language">اللغة</h4>
-  <div class="row">
-    <div class="lang-chip" data-lang="ar">العربية</div>
-    <div class="lang-chip" data-lang="en">English</div>
-  </div>
-  <hr/>
-  <h4 data-i18n="timezone">المنطقة الزمنية</h4>
-  <div class="row">
-    <select id="tzSelect" style="max-width:420px"></select>
-  </div>
-  <div class="muted" style="margin-top:8px" data-i18n="settings_hint">الخلفية لا تغيّر ألوان الأزرار — اختر اللون أعلاه. يتم حفظ الإعدادات تلقائيًا.</div>
+<div class="navbar">
+<div class="badge" data-i18n="details_badge">تفاصيل عمرك</div>
+<div class="row">
+<button data-i18n="settings" id="openCustomize" style="max-width:140px">الإعدادات</button>
+<a href="index.html" title="رجوع"><button class="small-btn" style="background:#0c0f14;border:1px solid rgba(255,255,255,.15)">⬅️</button></a>
 </div>
-
-
-  <div class="card birthday-banner" data-i18n="birthday_today">اليوم عيد ميلادك! كل عام وأنت بخير 🎉</div>
-
-  <div id="contentArea" class="bento" style="display:none">
-    <div class="card">
-      <h2 data-i18n="metrics_title">عمرك بصيغ وأشكال مختلفة</h2>
-      <div class="kpis">
-        <div class="kpi"><div class="muted" data-i18n="years">بالسنوات</div><div class="num" id="yearsAge">—</div></div>
-        <div class="kpi"><div class="muted" data-i18n="months">بالأشهر</div><div class="num" id="monthsAge">—</div></div>
-        <div class="kpi"><div class="muted" data-i18n="weeks">بالأسابيع</div><div class="num" id="weeksAge">—</div></div>
-        <div class="kpi"><div class="muted" data-i18n="days">بالأيام</div><div class="num" id="daysAge">—</div></div>
-        <div class="kpi"><div class="muted" data-i18n="hours">بالساعات</div><div class="num" id="hoursAge">—</div></div>
-      </div>
-
-      <div class="notice" style="margin-top:12px">
-        <b data-i18n="countdown_title">العد التنازلي لعيد ميلادك القادم</b>
-        <div id="countdown" class="countdown" style="margin-top:8px">
-          <div class="count-box"><div class="count-num" id="cdDays">—</div><div class="muted" data-i18n="cd_days">أيام</div></div>
-          <div class="count-box"><div class="count-num" id="cdHours">—</div><div class="muted" data-i18n="cd_hours">ساعات</div></div>
-          <div class="count-box"><div class="count-num" id="cdMin">—</div><div class="muted" data-i18n="cd_minutes">دقائق</div></div>
-          <div class="count-box"><div class="count-num" id="cdSec">—</div><div class="muted" data-i18n="cd_seconds">ثواني</div></div>
-        </div>
-      </div>
-
-      <div class="share-row">
-        <button id="shareBtn" class="share-btn" data-i18n="share_image">مشاركة كصورة (طولي)</button>
-        <button id="shareSquareBtn" class="share-btn" data-i18n="share_square">مشاركة إنستا (مربّع)</button>
-        <button id="copyLinkBtn" class="ghost-btn share-btn" class="ghost-btn share-btn" data-i18n="copy_link">نسخ الرابط</button>
-      </div>
-      <div class="copy-toast"></div>
-      <hr/>
-      <h3 data-i18n="more_info">معلومات أكثر عن عمرك</h3>
-      <div class="row">
-        <span class="tag"><span data-i18n="born_day">ولدت يوم: </span><b id="weekday">—</b></span>
-        <span class="tag"><span data-i18n="born_season">ولدت في فصل: </span><b id="season">—</b></span>
-        <span class="tag"><span data-i18n="life_stage">مرحلة حياتك: </span><b id="lifeStage">—</b></span>
-        <span class="tag" data-i18n="sleep">نومك الصحي: من 7 إلى 9 ساعات يوميًا</span>
-      </div>
-      <hr/>
-      <h3 data-i18n="greg_age">العمر بالميلادي</h3>
-      <div id="gregInfo" class="muted">—</div>
-      <hr/>
-      <h3 data-i18n="hijri_age">العمر بالهجري (أم القرى)</h3>
-      <div id="hijriInfo" class="muted">—</div>
-    </div>
-
-    <div class="card">
-      <h2 class="facts-title" data-i18n="facts">حقائق حصلت في حياتك</h2>
-      <div id="breathsLine" class="fact-line">—</div>
-      <div id="heartbeatsLine" class="fact-line">—</div>
-      <div id="laughsLine" class="fact-line">—</div>
-      <div id="sleptLine" class="fact-line">—</div>
-      <div id="eatenLine" class="fact-line">—</div>
-      <div class="notice" data-i18n="clarify">
+</div>
+<div class="panel card" id="customizePanel" style="margin-top:8px">
+<h3 data-i18n="settings_title">الإعدادات</h3>
+<h4 data-i18n="background">الخلفية</h4>
+<div class="row">
+<div class="theme-btn" data-i18n="theme_light" data-theme="light">فاتح</div>
+<div class="theme-btn" data-i18n="theme_dark" data-theme="dark">داكن</div>
+<div class="theme-btn" data-i18n="theme_amoled" data-theme="amoled">أسود خالص (AMOLED)</div>
+</div>
+<hr/>
+<h4 data-i18n="button_color">لون الأزرار</h4>
+<div class="row" id="accentRow">
+<div class="color-dot" data-accent="#6d62ff" style="background:#6d62ff"></div>
+<div class="color-dot" data-accent="#2ed3c6" style="background:#2ed3c6"></div>
+<div class="color-dot" data-accent="#f97316" style="background:#f97316"></div>
+<div class="color-dot" data-accent="#22c55e" style="background:#22c55e"></div>
+<div class="color-dot" data-accent="#06b6d4" style="background:#06b6d4"></div>
+<div class="color-dot" data-accent="#ef4444" style="background:#ef4444"></div>
+</div>
+<hr/>
+<h4 data-i18n="language">اللغة</h4>
+<div class="row">
+<div class="lang-chip" data-lang="ar">العربية</div>
+<div class="lang-chip" data-lang="en">English</div>
+</div>
+<hr/>
+<h4 data-i18n="timezone">المنطقة الزمنية</h4>
+<div class="row">
+<select id="tzSelect" style="max-width:420px"></select>
+</div>
+<div class="muted" data-i18n="settings_hint" style="margin-top:8px">الخلفية لا تغيّر ألوان الأزرار — اختر اللون أعلاه. يتم حفظ الإعدادات تلقائيًا.</div>
+</div>
+<div class="card birthday-banner" data-i18n="birthday_today">اليوم عيد ميلادك! كل عام وأنت بخير 🎉</div>
+<div class="bento" id="contentArea" style="display:none">
+<div class="card">
+<h2 data-i18n="metrics_title">عمرك بصيغ وأشكال مختلفة</h2>
+<div class="kpis">
+<div class="kpi"><div class="muted" data-i18n="years">بالسنوات</div><div class="num" id="yearsAge">—</div></div>
+<div class="kpi"><div class="muted" data-i18n="months">بالأشهر</div><div class="num" id="monthsAge">—</div></div>
+<div class="kpi"><div class="muted" data-i18n="weeks">بالأسابيع</div><div class="num" id="weeksAge">—</div></div>
+<div class="kpi"><div class="muted" data-i18n="days">بالأيام</div><div class="num" id="daysAge">—</div></div>
+<div class="kpi"><div class="muted" data-i18n="hours">بالساعات</div><div class="num" id="hoursAge">—</div></div>
+</div>
+<div class="notice" style="margin-top:12px">
+<b data-i18n="countdown_title">العد التنازلي لعيد ميلادك القادم</b>
+<div class="countdown" id="countdown" style="margin-top:8px">
+<div class="count-box"><div class="count-num" id="cdDays">—</div><div class="muted" data-i18n="cd_days">أيام</div></div>
+<div class="count-box"><div class="count-num" id="cdHours">—</div><div class="muted" data-i18n="cd_hours">ساعات</div></div>
+<div class="count-box"><div class="count-num" id="cdMin">—</div><div class="muted" data-i18n="cd_minutes">دقائق</div></div>
+<div class="count-box"><div class="count-num" id="cdSec">—</div><div class="muted" data-i18n="cd_seconds">ثواني</div></div>
+</div>
+</div>
+<div class="share-row">
+<button class="share-btn" data-i18n="share_image" id="shareBtn">مشاركة كصورة (طولي)</button>
+<button class="share-btn" data-i18n="share_square" id="shareSquareBtn">مشاركة إنستا (مربّع)</button>
+<button class="ghost-btn share-btn" data-i18n="copy_link" id="copyLinkBtn">نسخ الرابط</button>
+</div>
+<div class="copy-toast"></div>
+<hr/>
+<h3 data-i18n="more_info">معلومات أكثر عن عمرك</h3>
+<div class="row">
+<span class="tag"><span data-i18n="born_day">ولدت يوم: </span><b id="weekday">—</b></span>
+<span class="tag"><span data-i18n="born_season">ولدت في فصل: </span><b id="season">—</b></span>
+<span class="tag"><span data-i18n="life_stage">مرحلة حياتك: </span><b id="lifeStage">—</b></span>
+<span class="tag" data-i18n="sleep">نومك الصحي: من 7 إلى 9 ساعات يوميًا</span>
+</div>
+<hr/>
+<h3 data-i18n="greg_age">العمر بالميلادي</h3>
+<div class="muted" id="gregInfo">—</div>
+<hr/>
+<h3 data-i18n="hijri_age">العمر بالهجري (أم القرى)</h3>
+<div class="muted" id="hijriInfo">—</div>
+</div>
+<div class="card">
+<h2 class="facts-title" data-i18n="facts">حقائق حصلت في حياتك</h2>
+<div class="fact-line" id="breathsLine">—</div>
+<div class="fact-line" id="heartbeatsLine">—</div>
+<div class="fact-line" id="laughsLine">—</div>
+<div class="fact-line" id="sleptLine">—</div>
+<div class="fact-line" id="eatenLine">—</div>
+<div class="notice" data-i18n="clarify">
         معدلات تقريبية ثابتة: ٢٠ ألف نَفَس/يوم، ٨٠ نبضة/دقيقة، ١٠ ضحكات/يوم، ٨ ساعات نوم/يوم، ٨٠ دقيقة طعام/يوم.
       </div>
-    </div>
-  </div>
-
-  <div class="card notice" id="noData" style="display:none">
-    <span data-i18n="no_birth">لم يتم إدخال تاريخ ميلاد بعد.</span>
-    <a href="index.html" data-i18n="go_input">اذهب لصفحة الإدخال</a>.
-  </div>
-
-  <footer class="container" style="text-align: center;">
-    Made By: <b>Abdulmajeed Althuwaini</b> · <span class="ver">v1.0</span> · Made With Love 💚 · © <span id="yearNow"></span>
-  </footer>
 </div>
-
+</div>
+<div class="card notice" id="noData" style="display:none">
+<span data-i18n="no_birth">لم يتم إدخال تاريخ ميلاد بعد.</span>
+<a data-i18n="go_input" href="index.html">اذهب لصفحة الإدخال</a>.
+  </div>
+<div class="container" style="text-align:center;margin:26px auto;"><a href="install.html" id="installBannerLink" style="display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:12px;text-decoration:none;border:1px solid var(--muted);color:var(--text);background:color-mix(in srgb, var(--card) 86%, transparent);"><span id="installBtnMain"></span><span class="muted" id="installBtnSub" style="opacity:.8"></span></a></div><footer class="container" style="text-align: center;">
+    Made By: <b>Abdulmajeed Althuwaini</b> · <span class="ver">v1.0</span> · Made With Love 💚 · © <span id="yearNow"></span>
+</footer>
+</div>
 <script>
 const VERSION = "v1.0";
 const FONT_AR = "Tajawal, 'Noto Kufi Arabic', 'Noto Sans Arabic', system-ui, -apple-system, 'Segoe UI', sans-serif";
@@ -443,7 +430,7 @@ function shareImagePortrait(data, lang){
   ctx.font='700 32px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.fillText(lang==='ar'?'سنة':'years', W/2, 370);
   const labels=(lang==='ar'?['أشهر','أسابيع','أيام','ساعات']:['Months','Weeks','Days','Hours']); const values=[fmt(data.months,lang), fmt(data.weeks,lang), fmt(data.days,lang), fmt(data.hours,lang)];
   for(let i=0;i<4;i++){ const x=100+i*((W-200)/4); const y=440; const w=(W-240)/4; const h=150; roundedRect(ctx,x,y,w,h,24); ctx.fillStyle='rgba(255,255,255,0.16)'; ctx.fill(); ctx.strokeStyle='rgba(255,255,255,0.35)'; ctx.lineWidth=2; ctx.stroke(); ctx.fillStyle='#fff'; ctx.font='700 28px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.textAlign='center'; ctx.fillText(labels[i], x+w/2, y+48); ctx.font='900 46px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.fillText(values[i], x+w/2, y+105); }
-  ctx.textAlign='center'; ctx.fillStyle='#fff'; ctx.font='670 34px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.fillText((lang==='ar'?'يوم ميلادك القادم: ':'Next birthday: ')+data.nextStr, W/2, 670);
+  ctx.textAlign='center'; ctx.fillStyle='#fff'; ctx.font='670 34px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.fillText((lang==='ar'?'عيد ميلادك القادم: ':'Next birthday: ')+data.nextStr, W/2, 670);
   const factsL=[dict.breaths,dict.heartbeats,dict.laughs,dict.slept,dict.eaten]; 
   const factsV=[fmt(data.breaths,lang)+' '+(lang==='ar'?dict.times_word:dict.times_word),
                 fmt(data.heartbeats,lang)+' '+(lang==='ar'?dict.beats_word:dict.beats_word),
@@ -470,7 +457,7 @@ function shareImageSquare(data, lang){
   for(let i=0;i<4;i++){ const x=80+i*((S-160)/4); const y=320; const w=(S-200)/4; const h=118; roundedRect(ctx,x,y,w,h,20); ctx.fillStyle='rgba(255,255,255,0.16)'; ctx.fill(); ctx.strokeStyle='rgba(255,255,255,0.35)'; ctx.lineWidth=2; ctx.stroke(); ctx.fillStyle='#fff'; ctx.font='700 24px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.textAlign='center'; ctx.fillText(labels[i], x+w/2, y+42); ctx.font='900 38px ' + (lang==='ar'?FONT_AR:FONT_EN); ctx.fillText(values[i], x+w/2, y+90); }
   ctx.textAlign='center'; ctx.fillStyle='#fff'; ctx.font='700 28px ' + (lang==='ar'?FONT_AR:FONT_EN); 
   // raise "next" line
-  ctx.fillText((lang==='ar'?'يوم ميلادك القادم: ':'Next: ')+data.nextStr, S/2, 500);
+  ctx.fillText((lang==='ar'?'عيد ميلادك القادم: ':'Next: ')+data.nextStr, S/2, 500);
   // facts with larger spacing
   const factsL=[dict.breaths,dict.heartbeats,dict.laughs,dict.slept,dict.eaten];
   const factsV=[fmt(data.breaths,lang)+' '+(lang==='ar'?dict.times_word:dict.times_word),
@@ -658,7 +645,6 @@ function calcAndRender(){
 document.getElementById('yearNow').textContent = new Date().getFullYear();
 setupSettings(); applyI18n(); calcAndRender();
 </script>
-
 <script>
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
@@ -666,6 +652,38 @@ if ('serviceWorker' in navigator) {
   });
 }
 </script>
-
-</body>
+<script>
+/* PWA install banner i18n */
+(function(){
+  function refreshInstallBannerText(lang){
+    try{
+      var l = (lang || (localStorage.getItem('ageLang')||'ar')).toLowerCase();
+      var isEN = l.indexOf('en')===0;
+      var main = document.getElementById('installBtnMain');
+      var sub  = document.getElementById('installBtnSub');
+      if(main && sub){
+        main.textContent = isEN ? 'Use this site as an app' : 'استخدم الموقع كتطبيق';
+        sub.textContent  = isEN ? '→ Learn how' : '→ تعرف على الطريقة';
+      }
+    }catch(e){}
+  }
+  // initial fill
+  refreshInstallBannerText();
+  // monkey-patch setLang to update banner immediately
+  try{ 
+    var _setLang = window.setLang;
+    if(typeof _setLang === 'function'){
+      window.setLang = function(l){ _setLang(l); refreshInstallBannerText(l); };
+    }
+  }catch(e){}
+  // hide banner if installed (standalone)
+  try{
+    var isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+    if(isStandalone){
+      var a = document.getElementById('installBannerLink');
+      if(a && a.parentElement) a.parentElement.style.display='none';
+    }
+  }catch(e){}
+})();
+</script></body>
 </html>

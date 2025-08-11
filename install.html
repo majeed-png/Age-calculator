@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ثبّت الموقع كتطبيق | Install as an App</title>
+<meta name="description" content="طريقة تثبيت الموقع كتطبيق (PWA) على iOS وAndroid وWindows/macOS · How to install the site as a PWA on iOS, Android and desktop.">
+<link rel="manifest" href="manifest.json">
+<style>
+:root{
+  --bg:#0f1115;
+  --card:#151a22;
+  --text:#e9eef6;
+  --muted:#a8b3c7;
+  --radius:14px;
+  --shadow: 0 10px 30px rgba(0,0,0,.25);
+  --font:"Tajawal", system-ui, -apple-system, "Segoe UI", Roboto, "Noto Kufi Arabic", "Noto Sans Arabic", Arial, "Apple Color Emoji","Segoe UI Emoji";
+}
+:root[data-theme='light']{
+  --bg:#e7ecf3;
+  --card:#f1f4f9;
+  --text:#0b0f14;
+  --muted:#4b5565;
+}
+:root[data-theme='amoled']{
+  --bg:#000000;
+  --card:#0a0a0a;
+  --text:#e9eef6;
+  --muted:#a8b3c7;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background: radial-gradient(1200px 600px at 100% -10%, rgba(124,92,255,.10), transparent 60%),
+              radial-gradient(1200px 600px at -30% 110%, rgba(46,211,198,.08), transparent 60%),
+              var(--bg);
+  color:var(--text);
+  font-family:var(--font);
+  line-height:1.8;
+}
+.container{max-width:900px;margin:0 auto;padding:22px}
+.card{
+  background:var(--card);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:var(--radius);
+  padding:20px 20px;
+  box-shadow:var(--shadow);
+}
+h1,h2,h3{margin:0 0 10px}
+h1{font-weight:900;font-size:28px}
+h2{font-weight:800;font-size:22px;margin-top:18px}
+h3{font-weight:800;font-size:18px;margin-top:18px}
+p{margin-top:0}
+ul,ol{margin:10px 18px}
+.small{opacity:.85}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.btn{
+  appearance:none;border:1px solid var(--muted);padding:9px 14px;border-radius:12px;
+  color:var(--text);background:color-mix(in srgb, var(--card) 86%, transparent);
+  text-decoration:none;cursor:pointer
+}
+a{color:inherit}
+code.kbd{background:rgba(255,255,255,.08);padding:2px 6px;border-radius:8px;border:1px solid rgba(255,255,255,.15)}
+.muted{opacity:.8}
+footer{padding:24px;text-align:center;opacity:.8}
+.hidden{display:none}
+</style>
+</head>
+<body>
+  <main class="container">
+    <div class="card">
+      <h1 data-ar="📲 ثبّت الموقع كتطبيق" data-en="📲 Install this site as an app"></h1>
+      <p class="small" data-ar="يشتغل بدون نت بعد أول زيارة، ويصير كأنه تطبيق مستقل."
+         data-en="Works offline after your first visit and runs like a standalone app."></p>
+
+      <h2 data-ar="🍏 iOS (آيفون/آيباد)" data-en="🍏 iOS (iPhone/iPad)"></h2>
+      <ol>
+        <li data-ar="افتح الموقع في Safari." data-en="Open the site in Safari."></li>
+        <li data-ar="اضغط زر المشاركة (⬆️)." data-en="Tap the Share button (⬆️)."></li>
+        <li data-ar="اختر إضافة إلى الشاشة الرئيسية." data-en='Choose "Add to Home Screen".'></li>
+        <li data-ar="اضغط إضافة." data-en='Tap "Add".'></li>
+      </ol>
+
+      <h2 data-ar="🤖 Android" data-en="🤖 Android"></h2>
+      <ol>
+        <li data-ar="افتح الموقع في Chrome." data-en="Open the site in Chrome."></li>
+        <li data-ar="إذا ظهر زر Install app اضغطه. إذا ما ظهر: افتح قائمة ⋮ واختر Install app."
+            data-en='If you see "Install app", tap it. If not, open menu (⋮) and choose "Install app".'></li>
+      </ol>
+
+      <h2 data-ar="💻 Windows / macOS" data-en="💻 Windows / macOS"></h2>
+      <ol>
+        <li data-ar="افتح الموقع في Chrome أو Edge." data-en="Open the site in Chrome or Edge."></li>
+        <li data-ar="اضغط زر Install بجانب شريط العنوان." data-en='Click the "Install" button near the address bar.'></li>
+      </ol>
+
+      <div class="row" style="margin-top:14px">
+        <a class="btn" id="backHome" href="index.html" data-ar="⬅️ الرجوع للصفحة الرئيسية" data-en="⬅️ Back to Home"></a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="small muted">© <span id="y"></span> · <span id="offlineNote"></span></footer>
+
+<script>
+  // theme
+  (function(){
+    try{
+      var t = localStorage.getItem('ageTheme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    }catch(e){}
+    document.getElementById('y').textContent = new Date().getFullYear();
+  })();
+
+  // language
+  (function(){
+    var lang = (localStorage.getItem('ageLang') || 'ar').toLowerCase();
+    var isEN = lang.startsWith('en');
+    document.documentElement.setAttribute('lang', isEN ? 'en' : 'ar');
+    document.documentElement.setAttribute('dir', isEN ? 'ltr' : 'rtl');
+    var nodes = document.querySelectorAll('[data-ar]');
+    nodes.forEach(function(n){
+      n.textContent = isEN ? n.getAttribute('data-en') : n.getAttribute('data-ar');
+    });
+    var off = document.getElementById('offlineNote');
+    off.textContent = isEN ? 'Works offline' : 'يعمل حتى بدون إنترنت';
+  })();
+</script>
+</body>
+</html>
